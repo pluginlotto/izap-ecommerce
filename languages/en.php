@@ -57,7 +57,7 @@ $english = array(
   'izap-ecommerce:my_orders' => 'My orders',
   'izap-ecommerce:wishlist' => 'Wishlist',
   'izap-ecommerce:page_owner_products' => '[PAGE_OWNER_USERNAME]\'s products',
-  'izap-ecommerce:' => '',
+  'izap-ecommerce:all_orders' => 'All orders',
 
   // titles and others
   'izap-ecommerce:welcome_to_store' => 'Welcome to the store',
@@ -93,7 +93,7 @@ $english = array(
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
   'izap-ecommerce:invalid_product' => 'Invalid product',
-  'izap-ecommerce:unable_to_process_payment' => 'Unable to process the payment. Payment gateway not found.',
+  'izap-ecommerce:unable_to_process_payment' => 'Unable to process the payment.',
   
   // add form
   'izap-ecommerce:add_new_product' => 'Add new product',
@@ -128,6 +128,12 @@ $english = array(
   'izap-ecommerce:order_processed_message' => 'Your order has been confirmed. Please check here: ',
   'izap-ecommerce:order_processe_error' => 'Error processing error',
   'izap-ecommerce:order_processe_error_message' => 'There was an error processing your order, Please contact the administratror for more info.',
+  'izap-ecommerce:order_details' => 'Order details',
+  'izap-ecommerce:name' => 'Name',
+  'izap-ecommerce:email' => 'Email',
+  'izap-ecommerce:order_date' => 'Order date',
+  'izap-ecommerce:order_comfirmed' => 'Confirmed',
+  'izap-ecommerce:payment_method' => 'Payment method',
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',

@@ -17,5 +17,5 @@ admin_gatekeeper();
 global $IZAP_ECOMMERCE;
 $title = __('my_orders');
 $body = elgg_view_title($title);
-$body .= elgg_list_entities(array('type' => 'object', 'subtype' => 'izap_order'));
+$body .= elgg_list_entities(array('type' => 'object', 'subtype' => 'izap_order', 'limit' => 20));
 IzapEcommerce::draw_page($title, $body);

@@ -101,8 +101,9 @@ return array(
                                 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/order/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false, 'groupby' => 'my'),
                                 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'publid' => FALSE, 'groupby' => 'my'),
 
-                                //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/[PAGE_OWNER_USERNAME]/' =>array('title'=>"izap-ecommerce:page_owner_products",'public'=>true, 'groupby' => 'others'),
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/all_orders/'=>array('title'=>"izap-ecommerce:all_orders",'admin_only'=>TRUE, 'groupby' => 'all'),
                           
+                                //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/[PAGE_OWNER_USERNAME]/' =>array('title'=>"izap-ecommerce:page_owner_products",'public'=>true, 'groupby' => 'others'),
                                 //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/settings' => array ('title' => 'izap-ecommerce:edit_settings', 'admin_only' => TRUE, 'groupby' => 'admin'),
                         ),
                 ),

@@ -28,18 +28,19 @@ if(get_input('payment_option') == 'paypal') {
 }
 
 // save order first but disable it
-$guid = save_order_izap_ecommerce($data_array['items'], $cart_id);
-if($guid) {
+$order = save_order_izap_ecommerce($data_array['items'], $cart_id);
+$order->payment_method = $payment_method;
+
+if($order) {
   add_to_session_izap_ecommerce('cart_id', $cart_id);
-  $data_array['custom'] = $guid;
+  $data_array['custom'] = $order;
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
   $processed = $payment->process((int) get_input('owner_guid'));
   if(get_input('payment_option') == 'paypal') {
     exit;
   }
-  if($processed) {
-    $order = get_entity($guid);
+  if($processed['status'] === TRUE) {
     $order->confirmed = 'yes';
     $order->payment_transaction_id = $payment->getTransactionId();
     system_message(elgg_echo('izap-ecommerce:order_success'));

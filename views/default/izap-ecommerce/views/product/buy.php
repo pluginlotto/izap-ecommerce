@@ -47,8 +47,15 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
 
   <div class="izap-product-float-right izap-product-buy-buynow">
     <?php if($product->isAvailable()) {
+      $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
+      if(isadminloggedin()) {
+        ?>
+    <a href="<?php echo $donwload_link?>">
+          <?php _e('download');?>
+    </a>
+        <?php
+      }
       if(!$price) {
-        $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
         ?>
     <a href="<?php echo $donwload_link?>">
           <?php _e('download');?>

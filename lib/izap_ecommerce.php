@@ -445,7 +445,7 @@ function save_order_izap_ecommerce($items, $cart_id) {
   $order->cart_id = $cart_id;
 
   if($order->save()) {
-    return $order->guid;
+    return $order;
   }
 
 
@@ -474,6 +474,8 @@ function create_hash_izap_ecommerce($order_guid, $product_guid, $time, $owner_gu
 
 function verify_order_izap_ecommerce($order) {
   global $IZAP_ECOMMERCE;
+
+  if(isadminloggedin()) {return TRUE;}
 
   if($order->confirmed == 'no') {
     register_error(__('not_processed_properly'));

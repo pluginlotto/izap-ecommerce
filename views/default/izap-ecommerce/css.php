@@ -58,16 +58,16 @@ border: 1px solid #F5DA8B;
 }
 
 .izap-product-buy-rate{
-width:20%;
+width:15%;
 }
 
 .izap-product-buy-price{
-width:20%;
+width:15%;
 }
 
 .izap-product-buy-buynow{
 margin-top: 5px;
-width:40%;
+width:70%;
 }
 
 .izap-product-remove-from-cart{
@@ -127,6 +127,7 @@ color: #E01F1F;
 
 .izap-product-buy-buynow a{
 padding:10px;
+margin-left:10px;
 -moz-border-radius: 8px 8px 8px 8px;
 background-color: #4690D6;
 color: #FFFFFF;
@@ -177,4 +178,43 @@ color: #FFFFFF;
 .izap-product-cart-descrption {
   margin: 0px 0px 0px 10px;
   width: 70%;
+}
+
+.order_detail_owner .icon {
+  float:left;
+  margin-right: 10px;
+}
+
+.order_detail_owner .info {
+  
+}
+
+.confirmed_order {
+  background-color: #036100;
+  color: #FFFFFF;
+}
+
+.confirmed_order:hover {
+  background-color: #0B5109;
+}
+
+.confirmed_order a{
+  background-color: #036100;
+  color: #FFFFFF;
+  text-decoration:none;
+}
+
+.unconfirmed_order {
+  background-color: #FF0000;
+  color: #FCED00;
+}
+
+.unconfirmed_order:hover {
+  background-color: #C80000;
+}
+
+.unconfirmed_order a{
+  background-color: #FF0000;
+  color: #FCED00;
+  text-decoration:none;
 }
