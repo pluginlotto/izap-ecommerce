@@ -16,5 +16,11 @@
 global $CONFIG;
 $title = __('my_orders');
 $body = elgg_view_title($title);
-$body .= list_entities_from_metadata('confirmed', 'yes', 'object', 'izap_order', get_loggedin_userid());
+$options['type'] = 'object';
+$options['subtype'] = 'izap_order';
+$options['owner_guid'] = get_loggedin_userid();
+$options['metadata_names'] = 'confirmed';
+$options['metadata_values'] = 'yes';
+
+$body .= elgg_list_entities_from_metadata($options);
 IzapEcommerce::draw_page($title, $body);
