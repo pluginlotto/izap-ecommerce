@@ -9,7 +9,7 @@ class IzapStoreController extends IzapController {
     global $IZAP_ECOMMERCE;
     $this->_page = $page;
     $this->page_elements['filter'] = false;
-    $this->page_elements['buttons'] = false;
+//    $this->page_elements['buttons'] = false;
 
     $cart = get_from_session_izap_ecommerce('izap_cart');
     if (is_array($cart) && sizeof($cart)) {
@@ -245,7 +245,7 @@ class IzapStoreController extends IzapController {
 
     $options['type'] = 'object';
     $options['subtype'] = 'izap_order';
-    $options['owner_guid'] = get_loggedin_userid();
+    $options['owner_guid'] = elgg_get_logged_in_user_guid();
     if ($IZAP_ECOMMERCE->show_not_confirmed_orders == 'no') {
       $options['metadata_names'] = 'confirmed';
       $options['metadata_values'] = 'yes';

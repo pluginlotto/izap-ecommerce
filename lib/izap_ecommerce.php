@@ -405,7 +405,7 @@ class IzapEcommerce extends ElggFile {
     if($user instanceof ElggUser) {
       $user_guid = $user->guid;
     }else {
-      $user_guid = get_loggedin_userid();
+      $user_guid = elgg_get_logged_in_user_guid();
     }
 
     $price_array = (array) unserialize($this->user_pirce_array);
@@ -453,7 +453,7 @@ class IzapEcommerce extends ElggFile {
 
   public static function getWishList($user = false) {
     if(!$user) {
-      $user = get_loggedin_user();
+      $user = elgg_get_logged_in_user_entity();
     }
     if(!$user) {
       return FALSE;
@@ -554,9 +554,9 @@ class IzapEcommerce extends ElggFile {
   }
 
   public function get_access($functionName = 'get_full_access_IZAP') {
-    register_plugin_hook('permissions_check', 'all', $functionName);
-    register_plugin_hook('container_permissions_check', 'all', $functionName);
-    register_plugin_hook('permissions_check:metadata', 'all', $functionName);
+    elgg_register_plugin_hook_handler('permissions_check', 'all', $functionName);
+    elgg_register_plugin_hook_handler('container_permissions_check', 'all', $functionName);
+    elgg_register_plugin_hook_handler('permissions_check:metadata', 'all', $functionName);
   }
 
   public function remove_access($functionName = 'get_full_access_IZAP') {

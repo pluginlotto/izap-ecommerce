@@ -23,7 +23,7 @@ if(get_input('search_viewtype') == 'gallery') {
 
     if($vars['entity']->getPrice(FALSE)) {
       $extra .=  '<b>' .
-              ((isloggedin()) ? elgg_echo('izap-ecommerce:price') : elgg_echo('izap-ecommerce:price_not_more'))
+              ((elgg_is_logged_in()) ? elgg_echo('izap-ecommerce:price') : elgg_echo('izap-ecommerce:price_not_more'))
               . '</b>: ' . $vars['entity']->getPrice() . '<br />';
     }else {
       $extra .=  '<b>' . elgg_echo('izap-ecommerce:free') . '</b><br />';
@@ -32,9 +32,7 @@ if(get_input('search_viewtype') == 'gallery') {
     if(IzapEcommerce::isInWishlist($vars['entity']->guid)) {
       $extra .= '<a href="'.
               elgg_add_action_tokens_to_url(
-              func_get_actions_path_byizap(array(
-              'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
-              'remove_from_wishlist?guid=' . $vars['entity']->guid)
+              IzapBase::getFormAction('remove_from_wishlist',GLOBAL_IZAP_ECOMMERCE_PLUGIN).'?guid=' . $vars['entity']->guid)
               .'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a><br />';
     }
 

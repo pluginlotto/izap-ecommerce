@@ -17,16 +17,16 @@ define('GLOBAL_IZAP_ECOMMERCE_PLUGIN', 'izap-ecommerce');
 define('GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER', 'store');
 define('GLOBAL_IZAP_ECOMMERCE_SUBTYPE', 'izap_ecommerce');
 
-function izap_ecommerce_init() {
-  include_once( dirname(__FILE__) . '/lib/load.php' );
-  include_once( dirname(__FILE__) . '/lib/izap_ecommerce.php' );
-  if(is_plugin_enabled('izap-elgg-bridge')) {
-    izap_plugin_init(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
-  }else {
-    register_error(GLOBAL_IZAP_ECOMMERCE_PLUGIN . ' plugin, needs izap-elgg-bridge');
-    disable_plugin(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
-  }
+if(elgg_is_active_plugin('izap-elgg-bridge'))
+  register_elgg_event_handler('init', 'system', 'izap_ecommerce_init');
 
+function izap_ecommerce_init() {
+  global $CONFIG;
+//  include_once( dirname(__FILE__) . '/lib/load.php' );
+//  include_once( dirname(__FILE__) . '/lib/izap_ecommerce.php' );
+  izap_plugin_init(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
+  IzapBase::loadLib(array('lib' =>'load','plugin'=>GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+  IzapBase::loadLib(array('lib' =>'izap_ecommerce','plugin' =>GLOBAL_IZAP_ECOMMERCE_PLUGIN));
   elgg_register_menu_item('site', array(
     'name'=>elgg_echo('izap-ecommerce:store'),
     'text'=>elgg_echo('izap-ecommerce:store'),
@@ -37,7 +37,7 @@ function izap_ecommerce_init() {
         'vars' => array('all')
   ))));
 
-  if(get_context()=='store') {
+  if(elgg_get_context()=='store') {
     $submenu = array(
                 ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
 
@@ -101,6 +101,7 @@ function izap_ecommerce_init() {
     foreach($actions as $action=>$filename) {
       elgg_register_action($action, $CONFIG->pluginspath. GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/actions/' . $filename, $access_id );
       elgg_register_plugin_hook_handler('action', $action, GLOBAL_IZAP_ACTIONHOOK);
+//      ECHO $CONFIG->pluginspath;EXIT;C($CONFIG);EXIT;
     }
   }
   elgg_register_event_handler('logout', 'user', 'func_save_cart_izap_ecommerce');
@@ -144,8 +145,6 @@ function izap_ecommerce_getUrl($entity) {
 function izap_order_getUrl($entity) {
   return GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/order/' . $entity->guid;
 }
-
-register_elgg_event_handler('init', 'system', 'izap_ecommerce_init');
 
 // HELPER FUNCTIONS
 function izap_set_params($array) {
