@@ -15,11 +15,20 @@
 
 global $IZAP_ECOMMERCE;
 $order = $vars['entity'];
+$order_owner = $order->getOwnerEntity();
 ?>
 <div class="<?php echo ($order->confirmed == 'no') ? 'unconfirmed_order' : 'confirmed_order'?>">
   <a href="<?php echo $IZAP_ECOMMERCE->link?>order_detail/<?php echo $order->guid?>/">
     <div class="izap-product-float-left" style="width: 50%">
       #<b><?php echo $order->guid;?></b>
+      <?php if(isadminloggedin()) :?>
+      : <?php echo elgg_echo('izap-ecommerce:by');?>
+      <em>
+        <b>
+            <?php echo $order_owner->username;?>
+        </b>
+      </em>
+      <?php endif; ?>
     </div>
 
     <div class="izap-product-float-left" style="width: 30%">
@@ -36,7 +45,7 @@ $order = $vars['entity'];
       <?php
       echo date('d M Y', $order->time_created);
       ?>
-  </div>
-  <div class="clearfloat"></div>
+    </div>
+    <div class="clearfloat"></div>
   </a>
 </div
