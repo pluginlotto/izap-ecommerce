@@ -37,9 +37,19 @@ if(is_callable('elgg_get_entities')) {
 
 if($all_products) {
   foreach($all_products as $product) {
-    $product->archived = 'no';
+    // set default for the archive
+    if(empty ($product->archived)) {
+      $product->archived = 'no';
+    }
+
+    // set default for the code
     if(empty ($product->code)) {
       $product->code = func_generate_unique_id();
+    }
+
+    // set default for the rating
+    if(empty ($izap_product->avg_rating)) {
+      $izap_product->avg_rating = (int) 0;
     }
   }
 }
@@ -77,8 +87,8 @@ if($all_orders) {
 // end of updating orders
 
 echo func_set_href_byizap(array(
-        'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-        'page' => 'index',
+'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+'page' => 'index',
 ));
 
 forward(func_set_href_byizap(array(
