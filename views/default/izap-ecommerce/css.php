@@ -22,7 +22,7 @@ global $IZAP_ECOMMERCE;
 float:left;
 }
 
-.izapcontentWrapper:hover{
+.izap-contentWrapper:hover{
 background-color:#EEEEEE;
 }
 
