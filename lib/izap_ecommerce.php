@@ -211,7 +211,7 @@ class IzapEcommerce extends ElggFile {
     $childers = get_archived_products_izap_ecommerce($this, TRUE);
     if($childers) {
       $last_archived = get_entity(max($childers));
-      $last_archived->archived = 'no';
+        $last_archived->archived = $this->archived;
     }
 
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
