@@ -26,8 +26,13 @@ function izap_ecommerce_page_handler($page) {
   global $CONFIG;
   set_input('username', get_loggedin_user()->username);
   izap_set_params($page);
-  if(!include_once func_get_pages_path_byizap() . $page[0] . '.php') {
-    include_once func_get_pages_path_byizap() . 'index.php';
+  $version = (float) get_version(TRUE);
+  if($version < 1.7) {
+    $mode = 'elgg16/';
+  }
+  
+  if(!include_once func_get_pages_path_byizap() . $mode . $page[0] . '.php') {
+    include_once func_get_pages_path_byizap() . $mode .'index.php';
   }
 }
 
