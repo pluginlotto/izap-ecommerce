@@ -13,7 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-echo dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';exit;
 include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
 include_once dirname(dirname(__FILE__)) . '/lib/gateways/clsGateway.php';
 
