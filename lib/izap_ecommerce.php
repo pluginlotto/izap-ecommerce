@@ -183,7 +183,7 @@ class IzapEcommerce extends ElggFile {
       $price = $this->getUserPrice();
     }else {
       $price_range_array = explode('-', $this->price);
-      $price = $price_range_array[1];
+      $price = ($price_range_array[1]) ? $price_range_array[1] : $price_range_array[0];
     }
 
     if($format) {
