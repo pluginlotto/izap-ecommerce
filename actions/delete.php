@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 $entity = get_entity(get_input('guid'));
 
-if($entity->delete()) {
+if($entity->delete() || delete_entity($entity->guid)) {
   system_message(elgg_echo('izap-ecommerce:product_deleted'));
 }else{
   register_error(elgg_echo('izap-ecommerce:product_not_deleted'));

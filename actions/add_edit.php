@@ -48,9 +48,11 @@ if($error) {
       register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
 
+      // check if it is new version
       if(isset ($posted_data->parent_of)) {
         $izap_product->archiveOldProduct($posted_data->parent_of);
       }
+      
       // add to river
       add_to_river(
               func_get_template_path_byizap(

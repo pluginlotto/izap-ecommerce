@@ -15,7 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
-if($product->canEdit()) {
+if($product->canEdit() && !$product->isArchived()) {
   ?>
 <a href="<?php echo $IZAP_ECOMMERCE->link?>edit/<?php echo $product->guid?>">
     <?php echo elgg_echo('izap-ecommerce:edit');?>

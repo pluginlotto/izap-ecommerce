@@ -136,8 +136,11 @@ class IzapEcommerce extends ElggFile {
       $old_product->parent_guid = $this->guid;
       $old_product->save();
 
+      // save some imp data
       $this->children = $new_childs;
-      $this->archived = 'no';
+      if((string)$this->image_path == '') {
+        $this->copyOldFiles($old_product);
+      }
     }
 
     return FALSE;
@@ -150,7 +153,55 @@ class IzapEcommerce extends ElggFile {
 
     return FALSE;
   }
-  
+
+  public function copyOldFiles($old_product) {
+    if($old_product) {
+      $old_file_handler = new ElggFile();
+      $old_file_handler->owner_guid = $old_product->owner_guid;
+      $old_file_handler->setFilename($old_product->image_path);
+
+      $this->image_extension = $old_product->image_extension;
+      $new_file_handler = new ElggFile();
+      $new_file_handler->owner_guid = $this->owner_guid;
+      $new_file_handler->setFilename($this->file_prefix . 'icon.' . $this->image_extension);
+
+      if(copy($old_file_handler->getFilenameOnFilestore(), $new_file_handler->getFilenameOnFilestore())) {
+        $this->image_path = $this->file_prefix . 'icon.' . $this->image_extension;
+      }
+
+      $old_file_handler->close();
+      $new_file_handler->close();
+      unset ($old_file_handler, $new_file_handler);
+
+      $old_file_handler = new ElggFile();
+      $old_file_handler->owner_guid = $old_product->owner_guid;
+
+      $new_file_handler = new ElggFile();
+      $new_file_handler->owner_guid = $this->owner_guid;
+
+      $screenshots = unserialize($old_product->screenshots);
+      if(sizeof($screenshots)) {
+        foreach($screenshots as $thumb) {
+          // main image
+          $new_file_handler->setFilename($this->file_prefix . $thumb);
+          $old_file_handler->setFilename($old_product->file_prefix . $thumb);
+          @copy($old_file_handler->getFilenameOnFilestore(), $new_file_handler->getFilenameOnFilestore());
+
+          // thumb
+          $new_file_handler->setFilename($this->file_prefix . 'thumb_' . $thumb);
+          $old_file_handler->setFilename($old_product->file_prefix . 'thumb_' .  $thumb);
+          @copy($old_file_handler->getFilenameOnFilestore(), $new_file_handler->getFilenameOnFilestore());
+        }
+        $this->screenshots = $old_product->screenshots;
+        $this->screenshot_thumbs = $old_product->screenshot_thumbs;
+      }
+
+      $old_file_handler->close();
+      $new_file_handler->close();
+      unset ($old_file_handler, $new_file_handler);
+    }
+  }
+
   public function delete() {
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
     $items = glob($dir . '*.*');
@@ -164,34 +215,34 @@ class IzapEcommerce extends ElggFile {
   }
 
   public function canDownload($user = FALSE) {
-      if(!$user) {
-        $user = get_loggedin_user();
-      }
+    if(!$user) {
+      $user = get_loggedin_user();
+    }
 
-      // if it is free
-      if(!$this->getPrice()) {
-        return TRUE;
-      }
-      
-      // check for user then
-      if(!$user) {
-        return FALSE;
-      }
+    // if it is free
+    if(!$this->getPrice(FALSE)) {
+      return TRUE;
+    }
 
-      // if admin loggeding
-      if(isadminloggedin()) {
-        return TRUE;
-      }
-
-      // if the user have already bought it
-      $purchased = 'purchased_' . $this->guid;
-      if($user->$purchased == 'yes') {
-        return TRUE;
-      }
-      
+    // check for user then
+    if(!$user) {
       return FALSE;
+    }
+
+    // if admin loggeding
+    if(isadminloggedin()) {
+      return TRUE;
+    }
+
+    // if the user have already bought it
+    $purchased = 'purchased_' . $this->guid;
+    if($user->$purchased == 'yes') {
+      return TRUE;
+    }
+
+    return FALSE;
   }
-  
+
   public function makeImageSize($size) {
     switch ($size) {
       case "tiny":
@@ -635,7 +686,10 @@ function get_archived_products_izap_ecommerce($product) {
 
   if(sizeof($children)) {
     foreach($children as $child) {
-      $return_array[$child] = get_entity($child);
+      $child_product = get_entity($child);
+      if($child_product) {
+        $return_array[$child] = $child_product;
+      }
     }
   }
 
