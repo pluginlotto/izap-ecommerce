@@ -103,9 +103,10 @@ padding-right: 90px;
 
 .izap-cart-title{
 margin-top: 5px;
-padding:2px 0px 2px 0px;
+padding:2px 2px 2px 2px;
 border-top: #C0BEBE 1px solid;
-color:#FDC453;
+color:#FFFFFF;
+background-color:#4690D6;
 }
 
 .izap-cart-partial{
@@ -114,11 +115,11 @@ border-bottom: #C0BEBE 1px solid;
 }
 
 .izap-partial-cart-product {
-color: #FEFBDA
+color: #000000;
 }
 
 .izap-partial-cart-product a{
-color: #FEFBDA
+color: #4690D6
 }
 
 .izap-partial-cart-product .izap-product-remove-from-cart:hover{

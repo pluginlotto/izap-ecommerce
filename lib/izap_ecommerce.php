@@ -55,37 +55,40 @@ class IzapEcommerce extends ElggFile {
     $image_written = TRUE;
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
 
+    // start uploading product file
     $content = get_uploaded_file('file');
-    
     if($content != '' && $_FILES['file']['error'] == 0) {
-      if(!in_array(get_extension_izap_ecommerce($_FILES['file']['name']), $this->allowed_file_types)) {
+      $file_extension = get_extension_izap_ecommerce($_FILES['file']['name']);
+      if(!in_array($file_extension, $this->allowed_file_types)) {
         return $edit_mode;
       }
 
-      $items = glob($dir . '*.' . (($this->file_extension) ? $this->file_extension : get_extension_izap_ecommerce($_FILES['file']['name'])));
+      $items = glob($dir . '*.' . (($this->file_extension) ? $this->file_extension : $file_extension));
       if(is_array($items) && sizeof($items)) {
         foreach($items as $file) {
           unlink($file);
         }
       }
 
-      $this->file_extension = get_extension_izap_ecommerce($_FILES['file']['name']);
+      $this->file_extension = $file_extension;
       $this->file_path = $this->file_prefix . $this->slug . '.' . $this->file_extension;
       $this->setFilename($this->file_path);
       $this->open("write");
       $file_written = $this->write($content);
     }
 
+    // start uploading image file
     $image_content = get_uploaded_file('image');
     if($image_content != '' && $_FILES['image']['error'] == 0) {
-      $items = glob($dir . '*.' . (($this->image_extension) ? $this->image_extension : get_extension_izap_ecommerce($_FILES['image']['name'])));
+      $file_extension = get_extension_izap_ecommerce($_FILES['image']['name']);
+      $items = glob($dir . '*.' . (($this->image_extension) ? $this->image_extension : $file_extension));
       if(is_array($items) && sizeof($items)) {
         foreach($items as $file) {
           unlink($file);
         }
       }
 
-      $this->image_extension = get_extension_izap_ecommerce($_FILES['image']['name']);
+      $this->image_extension = $file_extension;
       if(in_array($this->image_extension, $this->allowed_image_types)) {
         $this->image_path = $this->file_prefix . 'icon.' . $this->image_extension;
         $image = get_uploaded_file('image');
@@ -165,10 +168,13 @@ class IzapEcommerce extends ElggFile {
 
   public function getFile() {
     global $IZAP_ECOMMERCE;
-    $this->setFilename($this->file_path);
-    $this->open("read");
-    if(file_exists($this->getFilenameOnFilestore())) {
-      $content = $this->grabFile();
+    
+    $file_handler = new ElggFile();
+    $file_handler->owner_guid = $this->owner_guid;
+    $file_handler->setFilename($this->file_path);
+    $file_handler->open("read");
+    if(file_exists($file_handler->getFilenameOnFilestore())) {
+      $content = $file_handler->grabFile();
     }else {
       $content = false;
     }
@@ -224,13 +230,12 @@ class IzapEcommerce extends ElggFile {
   }
   
   public function draw_page($title, $body, $remove_cart = FALSE) {
-//    if($remove_cart) {
-//      $body = elgg_view_layout('two_column_left_sidebar', '', $body);
-//    }else {
-//      $body = elgg_view_layout('two_column_left_sidebar', '', $body);
-//    }
-
-    $body = elgg_view_layout('two_column_left_sidebar', '', $body);
+    if($remove_cart) {
+      $body = elgg_view_layout('two_column_left_sidebar', '', $body);
+    }else {
+      $body = elgg_view_layout('two_column_left_sidebar', izap_view_cart(), $body);
+    }
+    
     page_draw($title, $body);
   }
 

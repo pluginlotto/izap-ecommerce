@@ -53,7 +53,5 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Pragma: public');
 header('Content-Length: ' . $size );
-ob_clean();
-flush();
 echo $content;
 exit;

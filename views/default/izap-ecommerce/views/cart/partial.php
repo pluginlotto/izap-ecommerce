@@ -44,7 +44,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         }
         
         $remove_link = elgg_add_action_tokens_to_url($remove_lnk . $product->guid);
-        $remove_link = '<a href="'.$remove_link.'" class="izap-product-remove-from-cart" title="Remove from carr">X</a>'
+        $remove_link = '<a href="'.$remove_link.'" class="izap-product-remove-from-cart" title="'.__('remove_from_cart').'">X</a>'
                 ?>
     <li style="margin:0;padding:0;" class="izap-partial-cart-product">
           <?php echo $remove_link;?>:<a href="<?php echo $product->getUrl()?>" title="<?php echo $product->title; ?>" class="">

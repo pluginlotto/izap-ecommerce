@@ -13,5 +13,5 @@
 global $CONFIG;
 $title = __('my_orders');
 $body = elgg_view_title($title);
-$body .= list_entities_from_metadata('confirmed', 'yes', 'object', 'izap_order');
+$body .= list_entities_from_metadata('confirmed', 'no', 'object', 'izap_order', get_loggedin_userid()); // TODO: Change to yes (Only did for testing)
 IzapEcommerce::draw_page($title, $body);
