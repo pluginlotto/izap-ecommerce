@@ -416,11 +416,12 @@ class IzapEcommerce extends ElggFile {
   }
 
   public static function notifyAdminForNewOrder($order) {
+    global $CONFIG;
     if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
       $site_admin = func_get_admin_entities_byizap(array('limit' => 1));
       notify_user(
               $site_admin[0]->guid,
-              get_loggedin_userid(),
+              $CONFIG->site->guid,
               elgg_echo('izap-ecommerce:new_order'),
               sprintf(elgg_echo('izap-ecommerce:new_order_description'), $order->getURL(), $order->getURL())
       );
