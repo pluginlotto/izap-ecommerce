@@ -91,6 +91,17 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
   <div class="clearfloat"></div>
     <?php
   }else {
+    if(IzapEcommerce::isInWishlist($product->guid)) {
+      ?>
+  <div class="add_new_version">
+    <a href="<?php echo elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
+        'remove_from_wishlist?guid=' . $product->guid);
+           ?>">
+             <?php echo elgg_echo('izap-ecommerce:remove_from_wishlist');?>
+    </a>
+  </div>
+      <?php
+    }
     $new_version = get_product_izap_ecommerce($product->parent_guid);
     if($new_version) {
       ?>
@@ -114,5 +125,6 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
   <div class="clearfloat"></div>
     <?php
   }
+
   ?>
 </div>

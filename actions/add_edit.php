@@ -16,8 +16,10 @@
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
 
 $product = new IzapEcommerce($posted_data->guid);
-$product->archived = 'no';
-$product->avg_rating = (int) 0;
+if(!$posted_data->guid) {
+  $product->archived = 'no';
+  $product->avg_rating = (int) 0;
+}
 $error = $product->verify_posted_data($posted_data);
 if($error) {
   register_error(elgg_echo('izap-ecommerce:missing_required_info'));
@@ -48,13 +50,13 @@ if($error) {
       delete_entity($product->guid);
       register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
-
+      $product->user_pirce_array = array();
       $product->code = func_generate_unique_id();
       // check if it is new version
       if(isset ($posted_data->parent_of)) {
         $product->archiveOldProduct($posted_data->parent_of);
       }
-      
+
       // add to river
       add_to_river(
               func_get_template_path_byizap(
