@@ -41,6 +41,7 @@ border-radius:8px;
 padding:5px;
 margin:5px;
 text-align:center;
+width:90px;
 }
 
 .listing-options .edit {
