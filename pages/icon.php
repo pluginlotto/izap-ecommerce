@@ -55,10 +55,11 @@ if(!$contents) {
   $contents = file_get_contents($IZAP_ECOMMERCE->default_image);
 }
 
-$file_name = friendly_title($izap_product->title . '.' . $izap_product->image_extension);
+$file_friendly_name = friendly_title($izap_product->title . '.' . $izap_product->image_extension);
 izap_cache_headers(array(
   'content_type' => $izap_product->image_mime_type,
-  'file_name' => $file_name
+  'file_name' => $file_friendly_name,
+  'filemtime' => filemtime($file_name),
 ));
 echo $contents;
 exit;
