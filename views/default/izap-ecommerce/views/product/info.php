@@ -11,14 +11,16 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 ?>
 <div>
   <div class="izap-product-description">
-    <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" align="left" class="izap-product-image"/>
+    <a href="<?php echo $product->getIcon('orignal');?>" target="_blank">
+      <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" align="left" class="izap-product-image"/>
+    </a>
     <?php
     echo $product->description;
     ?>

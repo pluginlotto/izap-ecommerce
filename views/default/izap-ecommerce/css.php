@@ -21,7 +21,6 @@ margin: 2px;
 }
 
 .izap-product-description{
-float: left;
 padding: 2px;
 margin: 2px;
 }
