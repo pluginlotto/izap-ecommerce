@@ -19,22 +19,6 @@ $product = $vars['entity'];
 <div class="izap-product-info">
   <div class="left">
     <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" class="izap-product-image" />
-
-    <div class="description">
-      <?php
-      echo elgg_view('output/longtext', array('value' => $product->description));
-      ?>
-      <p align="right">
-        <?php
-        echo elgg_echo('izap-ecommerce:tags');
-        echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
-        ?>
-        <br />
-        <?php
-        echo $IZAPTEMPLATE->render('product/edit_delete', array('entity' => $product));
-        ?>
-      </p>
-    </div>
   </div>
 
   <div class="right">
@@ -95,4 +79,20 @@ $product = $vars['entity'];
     ?>
   </div>
   <div class="clearfloat"></div>
+
+  <div class="description">
+      <?php
+      echo elgg_view('output/longtext', array('value' => $product->description));
+      ?>
+      <p align="right">
+        <?php
+        echo elgg_echo('izap-ecommerce:tags');
+        echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
+        ?>
+        <br />
+        <?php
+        echo $IZAPTEMPLATE->render('product/edit_delete', array('entity' => $product));
+        ?>
+      </p>
+    </div>
 </div>

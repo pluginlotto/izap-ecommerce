@@ -327,7 +327,7 @@ border: 2px #BCDEFD solid;
 font-weight: normal;
 }
 
-.izap-product-info .left .description {
+.izap-product-info .description {
 padding: 5px;
 margin-top: 10px;
 margin-bottom: 10px;
