@@ -59,9 +59,8 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
     <a href="<?php echo $add_cart_link?>">
           <?php _e('buynow');?>
     </a>
-        <?}
-    }
-    else {?>
+        <?php }
+    }else {?>
     <a href="#">
         <?php _e('comming soon');?>
     </a>
