@@ -18,7 +18,9 @@ $product = $vars['entity'];
 ?>
 <div>
   <div class="izap-product-description">
-    <?php if($product->canEdit() && !$product->isArchived()) {?>
+    <?php
+    // link to add the new version
+    if($product->canEdit() && !$product->isArchived()) {?>
     <div align="right" class="add_new_version">
       <a href="<?php echo func_set_href_byizap(array(
         'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
@@ -43,6 +45,16 @@ $product = $vars['entity'];
     echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
     ?>
     <br />
-    <?php echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product));?>
-  </p>
+    <?php
+    echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product));
+    // show download count to owner
+    if($product->canEdit()) {
+      ?>
+  <h3 align="right"><?php
+      echo elgg_echo('izap-ecommerce:total_download') . ': ' . $product->getDownloads();
+      ?></h3>
+    <?php
+  }
+  ?>
+</p>
 </div>
