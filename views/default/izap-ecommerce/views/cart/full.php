@@ -12,7 +12,6 @@
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
-
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
 $attributes = get_from_session_izap_ecommerce('izap_cart_attrib');
@@ -104,8 +103,8 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
           'value' => $user_guid,
         ));
         if(is_plugin_enabled('izap-payment-gateways')) {
-        ?>
-        <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" />
+        ?><div class="payment">
+        <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" /></div>
         <?php } else {
           echo elgg_echo('izap_payment:no_gateway_found');
         }

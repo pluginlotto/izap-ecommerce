@@ -331,6 +331,21 @@ border: 2px solid #dadada;
 padding: 5px;
 margin:2px,0px,2px,0px;
 }
+
+
+.payment input[type=submit]{
+    background-color: #5C1761;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 12px/100% Arial,Helvetica,sans-serif;
+    height: 25px;
+    margin: 10px 0;
+    padding: 2px 6px;
+    width: 150px;
+}
+
+
 .izap-product-info  fieldset {
 border: 2px #BCDEFD solid;
 padding: 10px;
