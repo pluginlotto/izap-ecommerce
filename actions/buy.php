@@ -39,7 +39,7 @@ if($guid) {
 //  $gateway->paypal($data_array);
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
-  if($payment->process()) {
+  if($payment->process((int)get_input('owner_guid'))) {
     $order = get_entity($guid);
     $order->confirmed = 'yes';
     $order->payment_transaction_id = $payment->getTransactionId();
