@@ -13,6 +13,9 @@
  */
 
 $product = elgg_extract('entity', $vars);
+if($product->getPrice(FALSE) <= 0 || elgg_is_admin_logged_in()) {
+  return '';
+}
 $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?product_guid=' . $product->guid);
 $cart_url = '#';
 ?>
