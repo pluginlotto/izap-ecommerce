@@ -131,8 +131,6 @@ text-decoration:none;
 }
 
 
-
-
 .unconfirmed_order {
 background-color: #FF0000;
 color: #FCED00;
@@ -216,6 +214,8 @@ border:2px solid black;
 }
 
 .download {
+margin-top:15px;
+text-align:center;
 }
 
 .download a {
@@ -251,7 +251,7 @@ float:right;
 text-decoration:none;
 }
 
-.download a.text{
+.download .text{
 margin: 15px 0px 0px 5px;
 font-size:38px;
 font-weight:bolder;
@@ -261,6 +261,17 @@ text-decoration: none;
 }
 
 .download_desc {
+font-size:25px;
+}
+ #product_price_html {
+ font-size:38px;
+ font-weight:bolder;
+font-family:arial;
+color:#AE7D3D;
+
+ }
+
+ .add_to_cart {
 font-size:25px;
 }
 

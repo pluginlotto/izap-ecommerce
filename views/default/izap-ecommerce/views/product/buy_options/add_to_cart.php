@@ -18,15 +18,21 @@ if($product->getPrice(FALSE) <= 0 || elgg_is_admin_logged_in()) {
 }
 $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?product_guid=' . $product->guid);
 $cart_url = '#';
+define('show_buy_now', 'yes');
 ?>
 <div class="download">
-  <a href="<?php echo $cart_url;?>" class="img" id="post_cart_1">
-    <img src ="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/add_to_cart.png' ?>" />
-  </a>
-  <a href="<?php echo $cart_url;?>" class="text" id="post_cart_2">
-    <?php echo elgg_echo('izap-ecommerce:add_to_cart'); ?>
+<!--  <a href="<?php //echo $cart_url;?>" class="img" id="post_cart_1">-->
+<!--    <img src ="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/add_to_cart.png' ?>" />-->
+<!--  </a>-->
+<!--  <a href="<?php //echo $cart_url;?>" class="text" id="post_cart_2">-->
+    <?php //echo elgg_echo('izap-ecommerce:add_to_cart');
+    ?>
+<span class="text">
+  <?php echo elgg_echo('izap-ecommerce:price');?>
+</span>
     <span class="download_desc">
-      <?php echo '(<span id="product_price_html">' . $product->getPrice() . '</span>)' ?>
+      <?php
+      echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
     </span>
-  </a>
+<!--  </a>-->
 </div>

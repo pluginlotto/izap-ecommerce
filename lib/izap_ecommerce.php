@@ -117,7 +117,7 @@ class IzapEcommerce extends ElggFile {
   public function size() {
     return strlen($this->getFile());
   }
-  
+
   public function save() {
     global $IZAP_ECOMMERCE;
     $this->slug = friendly_title($this->title);
@@ -712,10 +712,10 @@ function save_order_izap_ecommerce($items, $cart_id) {
   $order = new ElggObject();
   $order->subtype = 'izap_order';
   $order->access_id = ACCESS_PUBLIC;
-
   $i=0;
   $total_price=0;
   foreach($items as $product) {
+
     $item_name = 'item_name_' . $i;
     $item_price = 'item_price_' . $i;
     $item_guid = 'item_guid_' . $i;
@@ -725,7 +725,15 @@ function save_order_izap_ecommerce($items, $cart_id) {
     $order->$item_price = $product['amount'];
     $order->$item_guid = $product['guid'];
     $order->$item_code = $product['code'];
+    if(isset($product['attributes'])){
 
+      $item_attribs = array();
+        foreach($product['attributes'] as $key=>$value){
+        $item_attribs[]=$key;
+      }
+      $item_attributes = $item_name.'_attribs';
+      $order->$item_attributes = $item_attribs;
+    }
     $i++;
     $total_price += (int)$product['amount'];
 

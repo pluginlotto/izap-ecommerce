@@ -43,11 +43,12 @@ if(sizeof($vars['attribs'])) {
   if($vars['type'] == 'radio') {
     $options['None'] = 0;
   }
-  
+
   echo elgg_view('input/' . $vars['type'], array(
   'internalname' => 'product_attribs['.$vars['group']['name'] . "|" .$vars['type'].']',
   'options' => $options,
     'js' => 'onclick="update_price_field();"'
   )
   );
+  define('show_buy_now', 'yes');
 }

@@ -18,7 +18,6 @@ global $IZAP_ECOMMERCE;
 $cart_id = time();
 $cart = get_from_session_izap_ecommerce('izap_cart');
 $payment_method = get_input('payment_option');
-
 $data_array['items'] = get_from_session_izap_ecommerce('items');
 $data_array['grandTotal'] = get_from_session_izap_ecommerce('total_cart_price');
 

@@ -24,12 +24,12 @@ if($product) {
       $g_arr[$g['name']] = $key;
     }
   }
-  
+
   foreach($_POST['product_attribs'] as $key => $att) {
     $group_name = current(explode('|', $key));
     $attrib_array = $product->getAttribute($g_arr[$group_name]);
     $p_att = (array) $att;
-    
+
     foreach($p_att as $attrib) {
       $tmp = explode('|', $attrib);
       $att_price = $tmp[0];

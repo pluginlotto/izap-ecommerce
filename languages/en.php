@@ -103,6 +103,7 @@ $english = array(
     'izap-ecommerce:comming_soon' => 'Coming Soon...',
     'izap-ecommerce:add_to_cart' => 'Add to cart',
     'izap-ecommerce:add_attrib' => 'Add attributes',
+    'izap-ecommerce:add_to_cart' =>' Add to cart',
     // add form
     'izap-ecommerce:add_new_product' => 'Add new product',
     'izap-ecommerce:save' => 'Save',

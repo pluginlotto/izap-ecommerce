@@ -15,6 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
+$cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?product_guid=' . $product->guid);
 ?>
 <div class="izap-product-info">
   <div><div class="left">
@@ -32,9 +33,12 @@ $product = $vars['entity'];
       </div>
 
       <?php
-      if($product->getprice(false)>0)
+      //if($product->getprice(false)>0)
           echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/view_attributes', array('entity' => $product));
+          if(show_buy_now == 'yes') {
       ?>
+      <a href="<?php echo $cart_url?>" id="post_cart_1" class="elgg-button elgg-button-action"><img src ="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/add_to_cart.png' ?>" /><span class="add_to_cart"><?php echo elgg_echo('izap-ecommerce:add_to_cart')?></span></a>
+      <?php }?>
         </div>
 
         <div class="right">
