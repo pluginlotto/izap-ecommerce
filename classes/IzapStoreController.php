@@ -351,4 +351,9 @@ class IzapStoreController extends IzapController {
     }
   }
 
+  public function actionPay_return() {
+    remove_from_session_izap_ecommerce('izap_cart');
+    forward('/' . GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/orders');
+    exit;
+  }
 }
