@@ -114,6 +114,10 @@ class IzapEcommerce extends ElggFile {
     }
   }
 
+  public function size() {
+    return strlen($this->getFile());
+  }
+  
   public function save() {
     global $IZAP_ECOMMERCE;
     $this->slug = friendly_title($this->title);
@@ -526,7 +530,7 @@ class IzapEcommerce extends ElggFile {
   public static function draw_page($title, $body, $remove_cart = FALSE) {
     global $CONFIG, $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 
-    $categories = '<div class="contentWrapper">'.
+    $categories = '<div class="izapcontentWrapper">'.
             elgg_view('categories/list', array(
             'baseurl' => $CONFIG->wwwroot . 'search/?subtype='.$IZAP_ECOMMERCE->object_name.'&tagtype=universal_categories&tag=')).
             '</div>';

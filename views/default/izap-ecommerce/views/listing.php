@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 ?>
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <div class="listing-image">
     <a href="<?php echo $product->getUrl()?>">
       <img src="<?php echo $product->getIcon();?>" alt="<?php echo $product->title?>" align="left"/>

@@ -47,7 +47,7 @@ class IzapStoreController extends IzapController {
   public function actionEdit() {
     global $CONFIG, $IZAP_ECOMMERCE;
     admin_gatekeeper();
-    $product = get_entity($this->url_vars[1]);
+    $product = get_entity($this->url_vars[2]);
     if (!$product) {
       forward();
     }
@@ -56,15 +56,75 @@ class IzapStoreController extends IzapController {
   }
 
   public function actionProduct() {
+
     $izap_product = get_product_izap_ecommerce($this->url_vars[2]);
     if (!$izap_product) {
       register_error(elgg_echo('izap-ecommerce:invalid_product'));
       forward();
     }
+
+    if ($izap_product->canEdit()) {
+      // NEW VERSION LINK
+      if (!$izap_product->isArchived()) {
+        $menu = new ElggMenuItem('add_new_version', elgg_echo('izap-ecommerce:add_version'), IzapBase::setHref(array(
+                            'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+                            'action' => 'newversion',
+                            'vars' => array($izap_product->guid),
+                        )));
+        $menu->setSection('IMP');
+        $menu->setLinkClass('izap_pro_menu');
+        elgg_register_menu_item('page', $menu);
+      }
+
+      // EDIT LINK
+      $menu_edit = new ElggMenuItem('edit_product', elgg_echo('izap-ecommerce:edit'), IzapBase::setHref(array(
+                          'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+                          'action' => 'edit',
+                          'vars' => array($izap_product->guid),
+                      )));
+      $menu_edit->setSection('IMP');
+      $menu_edit->setLinkClass('izap_pro_menu');
+      elgg_register_menu_item('page', $menu_edit);
+
+      // DELETE LINK
+      $menu_delete = new ElggMenuItem('delete_product', elgg_echo('izap-ecommerce:delete'), IzapBase::deleteLink(array(
+                          'only_url' => TRUE,
+                          'rurl' => IzapBase::setHref(array(
+                              'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+                              'action' => 'all'
+                          )),
+                      )));
+      $menu_delete->setSection('IMP');
+      $menu_delete->setLinkClass('izap_pro_menu');
+      $menu_delete->setConfirmText('ARe you Sure');
+      elgg_register_menu_item('page', $menu_delete);
+
+      $menu_add_attrib = new ElggMenuItem('add_attrib', elgg_echo('izap-ecommerce:add_attrib'), IzapBase::setHref(array(
+                          'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+                          'action' => 'attrib',
+                          'vars' => array($izap_product->guid)
+                      )));
+      $menu_add_attrib->setSection('IMP');
+      $menu_add_attrib->setLinkClass('izap_pro_menu');
+      elgg_register_menu_item('page', $menu_add_attrib);
+    }
+
+
+
+
     $this->page_elements['title'] = $izap_product->title;
     $this->page_elements['content'] = elgg_view_entity($izap_product, TRUE);
     //func_increment_views_byizap($izap_product);
     $this->drawPage();
+  }
+
+  public function actionAttrib() {
+    $product = get_entity($this->url_vars[2]);
+    if (elgg_instanceof($product, 'object', GLOBAL_IZAP_ECOMMERCE_SUBTYPE)) {
+      $title ='<a href="'.$product->getURL().'">'.$product->title.'</a>';
+      $this->page_elements['title'] = elgg_view_title(elgg_echo('izap-ecommerce:add_attribute:adding_for').' : '.$title);
+      $this->render(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/forms/add_attribute', array('entity' => $product));
+    }
   }
 
   public function actionIcon() {

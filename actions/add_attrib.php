@@ -13,11 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-if(!izap_is_ajax_request()) {
-  forward($_SERVER['HTTP_REFERER']);
-  exit;
-}
-
 $attrib_name = get_input('attrib_name');
 $attrib_value = get_input('attrib_value');
 $attrib_desc = get_input('attrib_help');
@@ -33,10 +28,12 @@ if($product && $product->canEdit()) {
 
   $attrib_groups = $product->getAttributeGroups();
   $product->attribs = serialize($attribs);
-  echo IzapEcommerce::createAttributes(array(
-  'type' =>$attrib_groups[$group_id]['type'],
-  'attribs' => $attribs[$group_id],
-  'entity' => $product,
-  ));
+//  echo IzapEcommerce::createAttributes(array(
+//  'type' =>$attrib_groups[$group_id]['type'],
+//  'attribs' => $attribs[$group_id],
+//  'entity' => $product,
+//  ));
+
 }
+forward(REFERER);
 exit;

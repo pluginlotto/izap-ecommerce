@@ -15,7 +15,7 @@
 
 $billing_info = get_billing_info_izap_ecommerce();
 ?>
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <?php
     echo elgg_view_title(elgg_echo('izap-ecommerce:billing_info'));
   ?>

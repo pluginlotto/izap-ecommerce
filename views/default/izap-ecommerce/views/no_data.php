@@ -13,6 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 ?>
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <?php echo elgg_echo('izap-ecommerce:nothing_to_display');?>
 </div>

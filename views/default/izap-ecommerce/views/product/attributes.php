@@ -37,14 +37,6 @@ global $IZAP_ECOMMERCE;
 <?php
 if(sizeof($vars['attribs'])) {
   foreach($vars['attribs'] as $key => $attrib) {
-    if($attrib['description'] != '') {
-      $tooltip = '<a href="#" rel="tooltip" title="'.$attrib['description'].'">?</a>';
-    }
-    if($vars['entity']->canEdit()) {
-      $remove_link = $vars['url']. 'action/izap_ecommerce/remove_attrib?r_type=attrib&key=' . $key . '&g_key=' . $vars['group_id'] . '&guid=' . $vars['entity']->guid;
-      
-      $remove_html = elgg_view('output/confirmlink', array('href' => $remove_link, 'text' => ' X '));
-    }
     $options[$attrib['name'] . '('.$IZAP_ECOMMERCE->currency_sign.$attrib['value'].') ' . $tooltip . $remove_html] = $attrib['value'] . '|' . $key;
   }
 

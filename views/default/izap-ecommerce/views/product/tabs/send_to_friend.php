@@ -17,7 +17,7 @@ global $IZAP_ECOMMERCE, $CONFIG;
 $product = $vars['entity'];
 ?>
 
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
 
   <form action="<?php echo $vars['url']?>action/izap_ecommerce/sendtofriend" method="post">
     <?php

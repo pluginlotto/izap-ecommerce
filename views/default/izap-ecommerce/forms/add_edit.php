@@ -16,7 +16,7 @@
 $product = $vars['entity'];
 $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
 ?>
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <form action="<?php echo $vars['url']?>action/izap_ecommerce/add" method="POST" enctype="multipart/form-data">
     <p>
       <label>

@@ -1,18 +1,19 @@
 <?php
-/**************************************************
-* PluginLotto.com                                 *
-* Copyrights (c) 2005-2010. iZAP                  *
-* All rights reserved                             *
-***************************************************
-* @author iZAP Team "<support@izap.in>"
-* @link http://www.izap.in/
-* @version 1.0
-* Under this agreement, No one has rights to sell this script further.
-* For more information. Contact "Tarun Jangra<tarun@izap.in>"
-* For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
-* Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
-global $IZAP_ECOMMERCE; ?>
+/* * ************************************************
+ * PluginLotto.com                                 *
+ * Copyrights (c) 2005-2010. iZAP                  *
+ * All rights reserved                             *
+ * **************************************************
+ * @author iZAP Team "<support@izap.in>"
+ * @link http://www.izap.in/
+ * @version 1.0
+ * Under this agreement, No one has rights to sell this script further.
+ * For more information. Contact "Tarun Jangra<tarun@izap.in>"
+ * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
+ * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
+ */
+global $IZAP_ECOMMERCE;
+?>
 
 
 .izap-product-description{padding: 2px; margin: 2px}
@@ -30,7 +31,6 @@ float:left;
 .izap-product-buy-price{width:35%;padding:12px;margin:10px;font-size:15px;
 color:red;
 border:1px solid black;}
-.izap-product-buy-buynow{margin-top: 5px}
 .izap-product-remove-from-cart{}
 .izap-product-cart .even {background-color: #E6EEC2}
 .izap-product-cart .odd {background-color: #FAF1D7}
@@ -142,13 +142,11 @@ margin:4px;
 }
 
 .add_new_version {
-background-color: #0054A7;
+
 float: right;
 padding: 10px;
 margin:10px 10px 0px 10px;
 font-size:1em;
--moz-border-radius: 8px;
--webkit-border-radius: 8px;
 }
 
 .add_new_version:hover {
@@ -167,24 +165,14 @@ font-weight: bold;
 }
 
 .old_version_download {
-background-color: #FF0000;
 float: right;
-padding: 10px;
-margin:0px 10px 0px 10px;
-font-size:1em;
--moz-border-radius: 8px;
--webkit-border-radius: 8px;
+position: relative;
+top: 65px;
 }
 
 .old_version_download a{
-color: #FFFFFF;
 font-weight: bold;
-}
-
-.old_version_download a:hover{
-text-decoration: none;
-color: #FFFFFF;
-font-weight: bold;
+font-size: 15px;
 }
 
 
@@ -193,7 +181,6 @@ font-weight: bold;
 .izap-product-info {
 }
 .izap-product-info .left {
-border:1px solid black;
 width: 55%;
 }
 
@@ -206,17 +193,62 @@ padding:5px;
 border:2px solid black;
 }
 
+.download {
+}
 
-.izap-product-buy {
-width:400px;
-height:80px;
-background-color: #6E6E71;
-border: 1px solid #355EC6;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
+.download a {
+float:left;
+}
+
+.download a.img {
+}
+
+.comingsoon, .comingsoon:hover {
+display: block;
+margin: 30px;
+font-size:38px;
+font-weight:bolder;
+font-family:arial;
+color:#AE7D3D;
+text-decoration: none;
+}
+
+
+.izap-product-extra {
+  font-size: 16px;
+  font-weight:bold;
+  margin:10px;
+}
+
+.wishlist {
+float:right;
 
 }
-.izap-product-info .right fieldset {
+
+.wishlist a {
+text-decoration:none;
+}
+
+.download a.text{
+margin: 15px 0px 0px 5px;
+font-size:38px;
+font-weight:bolder;
+font-family:arial;
+color:#AE7D3D;
+text-decoration: none;
+}
+
+.download_desc {
+font-size:25px;
+}
+
+.add_attrib {
+margin:10px;
+padding:5px;
+}
+
+
+.add_attrib fieldset {
 border: 2px #BCDEFD solid;
 padding: 10px;
 background-color: #E4F2FF;
@@ -225,10 +257,72 @@ background-color: #E4F2FF;
 margin-bottom: 10px;
 }
 
-.izap-product-info .right fieldset legend {
+.add_attrib fieldset legend {
 font-size: 1.2em;
 font-weight: bold;
 margin-left: 8px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+padding: 2px 5px 2px 5px;
+background-color: #E4F2FF;
+border: 2px #BCDEFD solid;
+}
+
+.add_group {
+border:1px black solid;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+padding:10px;
+margin:3px;
+}
+
+.attrib_list th{
+font-size:14px;
+font-weight:bold;
+width:60px
+margin:5px,15px,15px,15px;
+padding:3px;
+}
+
+.attrib_list td{
+font-size:12px;
+width:60px
+margin:5px,15px,15px,15px;
+padding:3px;
+}
+.elgg-table-alt th {
+	background-color: #eee;
+	font-weight: bold;
+}
+
+
+.attrib_list ul{
+margin-left:20px;
+}
+
+.izap-product-buy {
+width:385px;
+height:80px;
+background-color: #FBFBF5;
+border: 2px solid #dadada;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+padding: 5px;
+margin:2px,0px,2px,0px;
+}
+.izap-product-info  fieldset {
+border: 2px #BCDEFD solid;
+padding: 10px;
+background-color: #E4F2FF;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+margin-bottom: 10px;
+}
+
+.izap-product-info fieldset legend {
+font-size: 1.2em;
+font-weight: bold;
+margin: 8px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
 padding: 2px 5px 2px 5px;
@@ -245,23 +339,32 @@ padding: 5px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: 2px #DADADA solid;
-background: #E6E6E6;
+background: #FBFBF5;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
 }
 
 .add_attrib_button {
+position:relative;
+top:80px;
 cursor: pointer;
 float: right;
 }
 
 #izap_product_attrib_group_form {
-display: none;
+position:relative;
+top:110px;
+display:none;
+border:1px black solid;
+padding:10px;
+background-color:#FBFBF5;
 }
 
 .izap-product_attrib_form {
 display: none;
 background: #DEDEDE;
+position:relative;
+top:50px;
 }
 
 #izap-product_attrib_form table{
@@ -297,4 +400,14 @@ padding:5px 5px 5px 15px;
 
 #tooltip .tipFooter {
 height:8px;
+}
+
+a.izap_pro_menu {
+background: #AE7D3D;
+color: #FFFFFF;
+}
+
+a.izap_pro_menu:hover {
+background: #FFFFFF;
+color: #AE7D3D;
 }

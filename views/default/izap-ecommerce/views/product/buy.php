@@ -1,4 +1,5 @@
 <?php
+
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -15,22 +16,27 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
-$add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?guid=' . $product->guid);
-$add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_wishlist?guid=' . $product->guid);
-
-if (!$product->isArchived()) {
-  $likes_html = elgg_view('likes/display', array('entity' => $product));
-  $price = $product->getPrice(false);
-  if ($price) {
-    if (isloggedin ()) {
-      $price_product = elgg_echo('izap-ecommerce:price');
-    } else {
-      $price_product = elgg_echo('izap-ecommerce:price_not_more');
-    }
-    $price_product .= '<b id="product_price_html">' . $product->getPrice() . '</b>';
-  }
-}
 ?>
 <div class="izap-product-buy">
+<?php
+// if is comming soon
+if (!$product->isAvailable()) {
+  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/comming_soon', array('entity' => $product));
+}else{
 
+// render the archived or non archived version
+if (!$product->isArchived())
+  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/unarchived', array('entity' => $product));
+else
+  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/archived', array('entity' => $product));
+}
+?>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#post_cart_1, #post_cart_2').click(function (){
+      $('#izap_cart_from').submit();
+      return false;
+    });
+  });
+</script>

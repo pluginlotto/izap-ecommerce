@@ -61,16 +61,16 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
           $form .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
 
 
-          if(IzapEcommerce::isInWishlist($product->guid)) {
-            $form .= '
-            <a class="button" href="'.elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/' .
-                    'remove_from_wishlist?guid=' . $product->guid).'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a>
-          ';
-          }elseif(isloggedin()) {
-            $form .= '
-            <a class="button" href="'.$add_wishlist_link.'">'.elgg_echo('izap-ecommerce:add_to_wishlist').'</a>
-          ';
-          }
+//          if(IzapEcommerce::isInWishlist($product->guid)) {
+//            $form .= '
+//            <a class="button" href="'.elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/' .
+//                    'remove_from_wishlist?guid=' . $product->guid).'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a>
+//          ';
+//          }elseif(isloggedin()) {
+//            $form .= '
+//            <a class="button" href="'.$add_wishlist_link.'">'.elgg_echo('izap-ecommerce:add_to_wishlist').'</a>
+//          ';
+//          }
 
           $form .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:buynow')));
         }

@@ -39,13 +39,14 @@ function izap_ecommerce_init() {
 
   if(get_context()=='store') {
     $submenu = array(
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
 
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/add' => array ('title' => 'izap-ecommerce:add_product','admin_only'=>TRUE, 'groupby' => 'my'),
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/' . get_loggedin_user()->username . '/' =>array('title'=>"izap-ecommerce:my_products",'admin_only'=>TRUE, 'groupby' => 'my'),
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/orders/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false, 'groupby' => 'my'),
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'public' => FALSE, 'groupby' => 'my'),
-                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/all_orders/'=>array('title'=>"izap-ecommerce:all_orders",'admin_only'=>TRUE, 'groupby' => 'all'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/add' => array ('title' => 'izap-ecommerce:add_product','admin_only'=>TRUE, 'groupby' => 'my'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/' . get_loggedin_user()->username . '/' =>array('title'=>"izap-ecommerce:my_products",'admin_only'=>TRUE, 'groupby' => 'my'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/orders/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false, 'groupby' => 'my'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'public' => FALSE, 'groupby' => 'my'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/all_orders/'=>array('title'=>"izap-ecommerce:all_orders",'admin_only'=>TRUE, 'groupby' => 'all'),
+
               );
     foreach($submenu as $url=>$options) {
       if( isset($options['public']) && $options['public']==TRUE && !isloggedin() ) {

@@ -23,7 +23,7 @@ if(is_plugin_enabled('messages')) {
 }
 ?>
 
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <div class="order_detail_owner">
 
     <div class="icon">
@@ -96,7 +96,7 @@ if(is_plugin_enabled('messages')) {
 <?php
 echo elgg_view_title(elgg_echo('izap-ecommerce:order_details'));
 ?>
-<div class="contentWrapper">
+<div class="izapcontentWrapper">
   <?php
   $odd_even = 1;
   for($i = 0; $i < $order->total_items; $i++):
