@@ -19,8 +19,10 @@ $body = elgg_view_title($title);
 $options['type'] = 'object';
 $options['subtype'] = 'izap_order';
 $options['owner_guid'] = get_loggedin_userid();
-$options['metadata_names'] = 'confirmed';
-$options['metadata_values'] = 'yes';
+if(func_get_custom_value_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'var' => 'show_not_confirmed_orders')) == 'no') {
+  $options['metadata_names'] = 'confirmed';
+  $options['metadata_values'] = 'yes';
+}
 $list = elgg_list_entities_from_metadata($options);
 if(empty($list)) {
   $list = func_izap_bridge_view('views/no_data');

@@ -112,6 +112,7 @@ return array(
                         'default_image' => $CONFIG->pluginspath . 'izap-ecommerce/_graphics/no_image.jpg',
                         'currency' => 'USD',
                         'currency_sign' => '$',
+                        'show_not_confirmed_orders' => 'no',
                 ),
 
                 'events' => array(
