@@ -211,10 +211,15 @@ class IzapEcommerce extends ElggFile {
   }
 
   public function draw_page($title, $body, $remove_cart = FALSE) {
+    global $CONFIG, $IZAP_ECOMMERCE;
+    
+    $categories = '<div class="contentWrapper">'.
+    elgg_view('categories/list', array('baseurl' => $CONFIG->wwwroot . 'search/?subtype='.$IZAP_ECOMMERCE->object_name.'&tagtype=universal_categories&tag=')).
+    '</div>';
     if($remove_cart) {
-      $body = elgg_view_layout('two_column_left_sidebar', '', $body);
+      $body = elgg_view_layout('two_column_left_sidebar', '', $body, $categories);
     }else {
-      $body = elgg_view_layout('two_column_left_sidebar', izap_view_cart(), $body);
+      $body = elgg_view_layout('two_column_left_sidebar', izap_view_cart(), $body, $categories);
     }
 
     page_draw($title, $body);

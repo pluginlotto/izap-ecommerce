@@ -16,6 +16,7 @@
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
 $buy_link = $vars['url'] . 'action/izap_ecommerce/buy';
+$remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 ?>
 <div class="contentWrapper">
   <div class="izap-product-cart">
@@ -44,6 +45,11 @@ $buy_link = $vars['url'] . 'action/izap_ecommerce/buy';
       
       <div class="izap-product-float-right">
         <b><?php echo $product->getPrice();?></b>
+        <br />
+        <br />
+        <a href="<?php echo $remove_lnk . $product->guid?>" title="<?php echo __('remove_from_cart')?>">
+          <img src="<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images'))?>remove_from_cart.png" alt="<?php echo __('remove_from_cart')?>"/>
+        </a>
       </div>
 
       <div class="clearfloat"></div>

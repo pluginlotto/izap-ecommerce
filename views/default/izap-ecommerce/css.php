@@ -62,12 +62,12 @@ width:20%;
 }
 
 .izap-product-buy-price{
-width:30%;
+width:20%;
 }
 
 .izap-product-buy-buynow{
 margin-top: 5px;
-width:30%;
+width:40%;
 }
 
 .izap-product-remove-from-cart{

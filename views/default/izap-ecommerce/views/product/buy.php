@@ -67,7 +67,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
     </a>
       <?php }?>
     <?php if(isloggedin()) {?>
-      <br /><br /><br />
+      &nbsp;
     <a href="<?php echo $add_wishlist_link;?>">
       <?php _e('add_to_wishlist');?>
     </a>
