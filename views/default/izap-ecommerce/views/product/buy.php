@@ -69,22 +69,23 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
       if($product->canEdit()) {
         echo $form;
       }else {
-        $form .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
+        if(!$product->canDownload()) {
+          $form .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
 
 
-        if(IzapEcommerce::isInWishlist($product->guid)) {
-          $form .= '
+          if(IzapEcommerce::isInWishlist($product->guid)) {
+            $form .= '
             <a class="button" href="'.elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
-                  'remove_from_wishlist?guid=' . $product->guid).'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a>
+                    'remove_from_wishlist?guid=' . $product->guid).'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a>
           ';
-        }elseif(isloggedin()) {
-          $form .= '
+          }elseif(isloggedin()) {
+            $form .= '
             <a class="button" href="'.$add_wishlist_link.'">'.elgg_echo('izap-ecommerce:add_to_wishlist').'</a>
           ';
+          }
+
+          $form .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:buynow')));
         }
-
-        $form .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:buynow')));
-
         echo elgg_view('input/form', array('body' => $form, 'action' => func_get_actions_path_byizap(array(
                 'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
                 )) . 'add_to_cart'));
