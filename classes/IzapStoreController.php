@@ -174,7 +174,7 @@ class IzapStoreController extends IzapController {
     }
 
     $file_friendly_name = elgg_get_friendly_title($izap_product->title . '.' . $izap_product->image_extension);
-    IzapBase::izapCacheHeaders(array(
+    IzapBase::cacheHeaders(array(
         'content_type' => $izap_product->image_mime_type,
         'file_name' => $file_friendly_name,
         'filemtime' => filemtime($file_name),
