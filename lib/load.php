@@ -15,6 +15,7 @@
 
 include_once dirname(__FILE__) . '/izap_ecommerce.php';
 include_once dirname(__FILE__) . '/gateways/clsGateway.php';
+include_once dirname(__FILE__) . '/gateways/paypal/paypal.php';
 
 global $IZAP_ECOMMERCE, $CONFIG;
 $IZAP_ECOMMERCE = new stdClass();

@@ -14,6 +14,7 @@
 */
 
 include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
+include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/clsGateway.php';
 
 global $IZAP_ECOMMERCE;
 $cart_id = time();
