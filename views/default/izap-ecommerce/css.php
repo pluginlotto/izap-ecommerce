@@ -14,16 +14,22 @@
 */
 global $IZAP_ECOMMERCE; ?>
 
-.izap-product-image {}
+
 .izap-product-description{padding: 2px; margin: 2px}
-.izap-product-float-left{float:left}
+
+.izap-product-float-left {
+float:left;
+}
+
 .izap-product-float-right{float:right}
 .listing-image {float: left; padding: 2px; margin: 2px; width: 16%}
 .listing-description {float: left; padding: 2px; margin: 2px; width: 59%}
 .listing-options {float: right; padding: 2px; margin: 2px; width: 20%}
-.izap-product-buy{ margin:10px 0px 10px 0px; background-color: #FBF2D8; border: 1px solid #F5DA8B}
-.izap-product-buy-rate{width:45%}
-.izap-product-buy-price{width:45%}
+
+.izap-product-buy-rate{width:45%;padding:8px;}
+.izap-product-buy-price{width:35%;padding:12px;margin:10px;font-size:15px;
+color:red;
+border:1px solid black;}
 .izap-product-buy-buynow{margin-top: 5px}
 .izap-product-remove-from-cart{}
 .izap-product-cart .even {background-color: #E6EEC2}
@@ -182,12 +188,34 @@ font-weight: bold;
 }
 
 
-/*New layout for prodct page*/
+/***********************New layout for prodct page*****************************/
+
+.izap-product-info {
+}
 .izap-product-info .left {
-float:left;
-width: 45%
+border:1px solid black;
+width: 55%;
 }
 
+
+.izap-product-info .right {
+}
+
+.izap-product-image {
+padding:5px;
+border:2px solid black;
+}
+
+
+.izap-product-buy {
+width:400px;
+height:80px;
+background-color: #6E6E71;
+border: 1px solid #355EC6;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+
+}
 .izap-product-info .right fieldset {
 border: 2px #BCDEFD solid;
 padding: 10px;
@@ -220,11 +248,6 @@ border: 2px #DADADA solid;
 background: #E6E6E6;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
-}
-
-.izap-product-info .right {
-float:right;
-width: 52%;
 }
 
 .add_attrib_button {

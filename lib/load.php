@@ -28,7 +28,7 @@ $IZAP_ECOMMERCE->graphics_path = $CONFIG->pluginspath . $IZAP_ECOMMERCE->plugin_
 $IZAP_ECOMMERCE->default_image = $CONFIG->pluginspath . 'izap-ecommerce/_graphics/no_image.jpg';
 
 $IZAP_ECOMMERCE->page_handler = GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER;
-$IZAP_ECOMMERCE->link = $CONFIG->wwwroot . 'pg/store/';
+$IZAP_ECOMMERCE->link = $CONFIG->wwwroot . 'store/';
 $IZAP_ECOMMERCE->full_url = $CONFIG->wwwroot . 'mod/' . $IZAP_ECOMMERCE->plugin_name . '/';
 $IZAP_ECOMMERCE->_graphics = $CONFIG->wwwroot . 'mod/'.GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/_graphics/';
 

@@ -20,6 +20,7 @@ $english = array(
         'izap_ecommerce:river:annotate' => 'comment on',
         'izap-ecommerce:nothing_to_display' => 'There is nothing to display right now, check back soon.',
         'izap-ecommerce:deleted' => 'Deleted',
+        'izap-ecommmerce:get_original' =>'Show Full Image',
 
         // admin settings
         'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
@@ -107,7 +108,7 @@ $english = array(
         'izap-ecommerce:title' => 'Name*',
         'izap-ecommerce:description' => 'Description*',
         'izap-ecommerce:image' => 'Image',
-        'izap-ecommerce:price' => 'Price',
+        'izap-ecommerce:price' => 'Price: ',
         'izap-ecommerce:price_range' => 'Enter price',
         'izap-ecommerce:tags' => 'Tags',
         'izap-ecommerce:missing_required_info' => 'Missing required fields, fields marked "*" are complusory.',
