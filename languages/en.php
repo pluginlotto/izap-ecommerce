@@ -37,7 +37,7 @@ $english = array(
           if he/she has purched the old version',
         'izap-ecommerce:yes' => 'Yes',
         'izap-ecommerce:no' => 'No',
-        'izap-ecommerce:' => '',
+        'izap-ecommerce:upgraded' => 'Products upgraded successfully.',
         'izap-ecommerce:' => '',
         'izap-ecommerce:' => '',
         'izap-ecommerce:' => '',

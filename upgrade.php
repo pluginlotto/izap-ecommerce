@@ -15,14 +15,6 @@
 
 require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
 admin_gatekeeper();
-ob_start();
-?>
-<h1>
-  Upgrading old products
-</h1>
-<?php
-ob_flush();
-
 $options['type'] = 'object';
 
 // updating products
@@ -84,13 +76,8 @@ if($all_orders) {
   }
 }
 
+system_message(elgg_echo('izap-ecommerce:upgraded'));
 // end of updating orders
-
-echo func_set_href_byizap(array(
-'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-'page' => 'index',
-));
-
 forward(func_set_href_byizap(array(
         'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
         'page' => 'index',
