@@ -99,6 +99,7 @@ $english = array(
         'izap-ecommerce:get_latest_version' => 'Newer version is available',
         'izap-ecommerce:invalid_product' => 'Invalid product',
         'izap-ecommerce:unable_to_process_payment' => 'Unable to process the payment.',
+        'izap-ecommerce:no_response' => 'No response from the remote server',
 
         // add form
         'izap-ecommerce:add_new_product' => 'Add new product',
