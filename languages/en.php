@@ -137,8 +137,8 @@ $english = array(
   'izap-ecommerce:payment_method' => 'Payment method',
   'izap-ecommerce:by' => 'by',
   'izap-ecommerce:order_transction_id' => 'Transction id',
-  'izap-ecommerce:' => '',
-  'izap-ecommerce:' => '',
+  'izap-ecommerce:new_order' => 'New order',
+  'izap-ecommerce:new_order_description' => 'A new order has been palced. <a href="%s">%s</a>',
 
   // send to friend
   'izap-ecommerce:your_name' => 'Your name*',

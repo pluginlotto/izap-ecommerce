@@ -33,7 +33,7 @@ $order->payment_method = $payment_method;
 
 if($order->guid !== 0) {
   add_to_session_izap_ecommerce('cart_id', $cart_id);
-  $data_array['custom'] = $order;
+  $data_array['custom'] = $order->guid;
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
   $processed = $payment->process((int) get_input('owner_guid'));

@@ -59,6 +59,11 @@ return array(
                                 'class'=>"IzapEcommerce",
                                 'type' => 'object',
                         ),
+
+                        'izap_order'=>array(
+                                'getUrl'=>"izap_order_getUrl",
+                                'type' => 'object',
+                        ),
                 ),
 
                 'actions'=>array(

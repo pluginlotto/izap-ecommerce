@@ -13,9 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-//include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
-//include_once dirname(dirname(__FILE__)) . '/lib/gateways/clsGateway.php';
-
 global $IZAP_ECOMMERCE;
 
 $payment = new IzapPayment('paypal');
@@ -45,6 +42,7 @@ if($variables['status'] === TRUE) {
           __('order_processed'),
           __('order_processed_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
   );
+  IzapEcommerce::notifyAdminForNewOrder($order);
 }else {
   $order_id = $variables['ipn_data']['custom'];
   $order = get_entity($order_id);

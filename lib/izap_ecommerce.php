@@ -196,9 +196,9 @@ class IzapEcommerce extends ElggFile {
     }else {
       return (int)$this->price;
     }
-    }
+  }
 
-    public static function getWishList($user = false) {
+  public static function getWishList($user = false) {
     if(!$user) {
       $user = get_loggedin_user();
     }
@@ -210,11 +210,11 @@ class IzapEcommerce extends ElggFile {
     if(!is_array($wishlist) && (int) $wishlist) {
       $wishlist = array($wishlist);
     }
-      foreach($wishlist as $pro) {
-        if(get_entity($pro)) {
-          $return[] = $pro;
-        }
+    foreach($wishlist as $pro) {
+      if(get_entity($pro)) {
+        $return[] = $pro;
       }
+    }
 
     return $return;
   }
@@ -223,6 +223,18 @@ class IzapEcommerce extends ElggFile {
     $wishlist = self::getWishList();
     return (int) count($wishlist);
 
+  }
+
+  public static function notifyAdminForNewOrder($order) {
+    if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
+      $site_admin = func_get_admin_entities_byizap(array('limit' => 1));
+      notify_user(
+              $site_admin->guid,
+              get_loggedin_userid(),
+              elgg_echo('izap-ecommerce:new_order'),
+              sprintf(elgg_echo('izap-ecommerce:new_order_description'), $order->getURL(), $order->getURL())
+      );
+    }
   }
 
   public function getRating() {
@@ -475,7 +487,9 @@ function create_hash_izap_ecommerce($order_guid, $product_guid, $time, $owner_gu
 function verify_order_izap_ecommerce($order) {
   global $IZAP_ECOMMERCE;
 
-  if(isadminloggedin()) {return TRUE;}
+  if(isadminloggedin()) {
+    return TRUE;
+  }
 
   if($order->confirmed == 'no') {
     register_error(__('not_processed_properly'));
@@ -518,7 +532,7 @@ function func_save_wishlist_izap_ecommerce($products = array(), $user = FALSE) {
 
   $old_wishlist = IzapEcommerce::getWishList($user);
   $new_wishlist = array_unique(array_merge((array) $old_wishlist, (array) $products));
-  
+
   $user->izap_wishlist = $new_wishlist;
   return TRUE;
 }

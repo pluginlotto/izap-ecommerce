@@ -54,10 +54,18 @@ function izap_ecommerce_getUrl($entity) {
           'page' => 'product',
           'vars' => array($entity->guid, $entity->slug)
   ));
-//  global $IZAP_ECOMMERCE, $CONFIG;
-//  return $IZAP_ECOMMERCE->link . 'product/' . $entity->guid . '/' . $entity->slug . '/';
 }
 
+
+function izap_order_getUrl($entity) {
+
+  return func_set_href_byizap(array(
+          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+          'page_owner' => get_user($entity->container_guid)->username,
+          'page' => 'order_detail',
+          'vars' => array($entity->guid)
+  ));
+}
 
 register_elgg_event_handler('init', 'system', 'izap_ecommerce_init');
 
