@@ -13,11 +13,31 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $product = $vars['entity'];
 ?>
-<div>
-  <div class="izap-product-description">
+<div class="izap-product-info">
+  <div class="left">
+    <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" class="izap-product-image" />
+
+    <div class="description">
+      <?php
+      echo elgg_view('output/longtext', array('value' => $product->description));
+      ?>
+      <p align="right">
+        <?php
+        echo elgg_echo('izap-ecommerce:tags');
+        echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
+        ?>
+        <br />
+        <?php
+        echo $IZAPTEMPLATE->render('product/edit_delete', array('entity' => $product));
+        ?>
+      </p>
+    </div>
+  </div>
+
+  <div class="right">
     <?php
     // link to add the new version
     if($product->canEdit() && !$product->isArchived()) {?>
@@ -29,32 +49,18 @@ $product = $vars['entity'];
            ));?>"><?php echo elgg_echo('izap_ecommerce:add_new_version'); ?></a>
     </div>
     <div class="clearfloat"></div>
-      <?php }?>
-    <div align="center">
-      <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" class="izap-product-image"/>
-    </div>
-    <?php
-    echo $product->description;
-    ?>
-  </div>
-
-  <div class="clearfloat"></div>
-  <p>
-    <?php
-    echo elgg_echo('izap-ecommerce:tags');
-    echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
-    ?>
-    <br />
-    <?php
-    echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product));
+      <?php }
     // show download count to owner
     if($product->canEdit()) {
       ?>
-  <h3 align="right"><?php
-      echo elgg_echo('izap-ecommerce:total_download') . ': ' . $product->getDownloads();
-      ?></h3>
-    <?php
-  }
-  ?>
-</p>
+    <h3 align="right"><?php
+        echo elgg_echo('izap-ecommerce:total_download') . ': ' . $product->getDownloads();
+        ?></h3>
+      <?php
+    }
+    echo $IZAPTEMPLATE->render('product/buy', array('entity' => $product));
+    echo $IZAPTEMPLATE->render('forms/add_attribute', array('entity'=> $product));
+    ?>
+  </div>
+  <div class="clearfloat"></div>
 </div>

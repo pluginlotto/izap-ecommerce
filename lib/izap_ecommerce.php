@@ -372,6 +372,25 @@ class IzapEcommerce extends ElggFile {
     return $price - $disount;
   }
 
+  public function getAttributeGroups() {
+    $group = unserialize($this->attrib_groups);
+    if(is_array($group) && count($group)) {
+      return $group;
+    }
+
+    return FALSE;
+  }
+
+  public function getAttribute($group_key) {
+    $attribs  = unserialize($this->attribs);
+    $attribs = $attribs[$group_key];
+    if(is_array($attribs) && count($attribs)) {
+      return $attribs;
+    }
+
+    return FALSE;
+  }
+  
   public function getDownloads() {
     return (int) $this->total_downloads;
   }
@@ -511,6 +530,11 @@ class IzapEcommerce extends ElggFile {
             'area2' => $body,
             'area3' => $categories,
     ));
+  }
+
+  public static function createAttributes($array = array()) {
+    $IZAPTEMPLATE = new IzapTemplate(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+    return $IZAPTEMPLATE->render('product/attributes', $array);
   }
 
   public function izap_get_plugin_entity() {

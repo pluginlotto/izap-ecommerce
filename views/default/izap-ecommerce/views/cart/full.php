@@ -15,6 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
+$attributes = get_from_session_izap_ecommerce('izap_cart_attrib');
 $buy_link = $vars['url'] . 'action/izap_ecommerce/buy';
 $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 ?>
@@ -25,9 +26,12 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
     $total_products = 1;
     $odd_even = 1;
     foreach($cart as $guid) {
+      $product_attribs = $attributes[$guid];
       $product = get_product_izap_ecommerce($guid);
       $class = ($odd_even%2 != 0) ? 'even' : 'odd';
       if($product) {
+        $attrib_amount = array_sum($product_attribs);
+        $pro_price = ($product->getPrice(FALSE) + $attrib_amount);
         $remove_link = elgg_add_action_tokens_to_url($remove_lnk . $product->guid);
         $remove_link = '<a href="'.$remove_link.'" class="izap-product-remove-from-cart">X</a>'
                 ?>
@@ -40,11 +44,20 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 
       <div class="izap-product-cart-descrption izap-product-float-left">
         <h3><a href="<?php echo $product->getUrl()?>"><?php echo $product->title?></a></h3>
-            <?php echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);?>
+            <?php
+            echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);
+            if($attrib_amount > 0) {
+              echo '<ol>';
+                foreach($product_attribs as $name => $val) {
+                  echo '<li><em>'.$name.'</em></li>';
+                }
+              echo '</ol>';
+            }
+            ?>
       </div>
 
       <div class="izap-product-float-right">
-        <b><?php echo $product->getPrice();?></b>
+        <b><?php echo $IZAP_ECOMMERCE->currency_sign . $pro_price;?></b>
         <br />
         <br />
         <a href="<?php echo elgg_add_action_tokens_to_url($remove_lnk . $product->guid)?>" title="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>">
@@ -56,12 +69,13 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
     </div>
         <?php
         $item[$total_products]['name'] = $product->title;
-        $item[$total_products]['amount'] = $product->getPrice(FALSE);
+        $item[$total_products]['amount'] = $pro_price;
         $item[$total_products]['guid'] = $product->guid;
         $item[$total_products]['code'] = $product->code;
+        $item[$total_products]['attributes'] = $product_attribs;
 
         $total_products++;
-        $total_price += $product->getPrice(FALSE);
+        $total_price += $pro_price;
         $odd_even++;
 
         $user_guid = $product->owner_guid;

@@ -87,6 +87,22 @@ return array(
                                 'public' => FALSE,
                         ),
 
+
+                        'izap_ecommerce/add_attrib' => array(
+                                'file' => 'add_attrib.php',
+                                'admin_only' => TRUE,
+                        ),
+
+                        'izap_ecommerce/add_attrib_group' => array(
+                                'file' => 'add_attrib_group.php',
+                                'admin_only' => TRUE,
+                        ),
+
+                        'izap_ecommerce/remove_attrib' => array(
+                                'file' => 'remove_attrib.php',
+                                'admin_only' => TRUE,
+                        ),
+
                         'izap_ecommerce/delete_screenshot' => array(
                                 'file' => 'delete_screenshot.php',
                                 'public' => FALSE,

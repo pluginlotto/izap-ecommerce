@@ -58,16 +58,15 @@ border: 1px solid #F5DA8B;
 }
 
 .izap-product-buy-rate{
-width:15%;
+width:45%;
 }
 
 .izap-product-buy-price{
-width:25%;
+width:45%;
 }
 
 .izap-product-buy-buynow{
 margin-top: 5px;
-width:60%;
 }
 
 .izap-product-remove-from-cart{
@@ -125,15 +124,17 @@ color: #4690D6
 color: #E01F1F;
 }
 
-.izap-product-buy-buynow a{
-padding:10px;
-margin-left:10px;
--moz-border-radius: 8px;
--webkit-border-radius: 8px;
+.izap-product-buy-buynow a.button{
+padding:4.5px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
 background-color: #4690D6;
 color: #FFFFFF;
 text-decoration: none;
-font-weight:bold;
+}
+
+.izap-product-buy-buynow a.button:hover{
+background-color: #0054A8;
 }
 
 .river_object_izap_ecommerce_created{
@@ -177,71 +178,71 @@ color: #FFFFFF;
 }
 
 .izap-product-cart-descrption {
-  margin: 0px 0px 0px 10px;
-  width: 70%;
+margin: 0px 0px 0px 10px;
+width: 70%;
 }
 
 .order_detail_owner .icon {
-  float:left;
-  margin-right: 10px;
+float:left;
+margin-right: 10px;
 }
 
 .order_detail_owner .info {
-  
+
 }
 
 
 .confirmed_order {
-  background-color: #036100;
-  color: #FFFFFF;
-  -moz-border-radius:8px 8px 8px 8px;
-  -webkit-border-radius:8px 8px 8px 8px;
+background-color: #036100;
+color: #FFFFFF;
+-moz-border-radius:8px 8px 8px 8px;
+-webkit-border-radius:8px 8px 8px 8px;
 margin:0 10px 10px;
 padding:10px;
 }
 
 .confirmed_order:hover {
-  background-color: #0B5109;
+background-color: #0B5109;
 }
 
 .confirmed_order a{
-  background-color: #036100;
-  color: #FFFFFF;
-  text-decoration:none;
+background-color: #036100;
+color: #FFFFFF;
+text-decoration:none;
 }
 
 .confirmed_order a:hover{
-  background-color: #0B5109;
-  color: #FFFFFF;
-  text-decoration:none;
+background-color: #0B5109;
+color: #FFFFFF;
+text-decoration:none;
 }
 
 
 
 
 .unconfirmed_order {
-  background-color: #FF0000;
-  color: #FCED00;
-  -moz-border-radius:8px 8px 8px 8px;
-  -webkit-border-radius:8px 8px 8px 8px;
+background-color: #FF0000;
+color: #FCED00;
+-moz-border-radius:8px 8px 8px 8px;
+-webkit-border-radius:8px 8px 8px 8px;
 margin:0 10px 10px;
 padding:10px;
 }
 
 .unconfirmed_order:hover {
-  background-color: #C80000;
+background-color: #C80000;
 }
 
 .unconfirmed_order a{
-  background-color: #FF0000;
-  color: #FCED00;
-  text-decoration:none;
+background-color: #FF0000;
+color: #FCED00;
+text-decoration:none;
 }
 
 .unconfirmed_order a:hover{
-  background-color: #C80000;
-  color: #FCED00;
-  text-decoration:none;
+background-color: #C80000;
+color: #FCED00;
+text-decoration:none;
 }
 
 .screeshot_thumb {
@@ -253,7 +254,7 @@ margin:4px;
 background-color: #0054A7;
 float: right;
 padding: 10px;
-margin:0px 10px 0px 10px;
+margin:10px 10px 0px 10px;
 font-size:1em;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
@@ -293,4 +294,99 @@ font-weight: bold;
 text-decoration: none;
 color: #FFFFFF;
 font-weight: bold;
+}
+
+
+/*New layout for prodct page*/
+.izap-product-info .left {
+float:left;
+width: 45%
+}
+
+.izap-product-info .right fieldset {
+border: 2px #BCDEFD solid;
+padding: 10px;
+background-color: #E4F2FF;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+margin-bottom: 10px;
+}
+
+.izap-product-info .right fieldset legend {
+font-size: 1.2em;
+font-weight: bold;
+margin-left: 8px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+padding: 2px 5px 2px 5px;
+background-color: #E4F2FF;
+border: 2px #BCDEFD solid;
+}
+
+.izap-product-info .right fieldset label {
+font-weight: normal;
+}
+
+.izap-product-info .left .description {
+padding: 5px;
+margin-top: 10px;
+margin-bottom: 10px;
+border: 2px #DADADA solid;
+background: #E6E6E6;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+.izap-product-info .right {
+float:right;
+width: 52%;
+}
+
+.add_attrib_button {
+cursor: pointer;
+float: right;
+}
+
+#izap_product_attrib_group_form {
+display: none;
+}
+
+.izap-product_attrib_form {
+display: none;
+background: #DEDEDE;
+}
+
+#izap-product_attrib_form table{
+width: 100%;
+}
+
+
+/*Tool tip*/
+#tooltip {
+position:absolute;
+z-index:9999;
+color:#fff;
+font-size:10px;
+width:300px;
+}
+
+#tooltip div{
+text-decoration: none;
+font-size: 14px;
+}
+
+#tooltip .tipHeader {
+height:8px;
+}
+
+/* IE hack */
+*html #tooltip .tipHeader {margin-bottom:-6px;}
+
+#tooltip .tipBody {
+background-color:#000;
+padding:5px 5px 5px 15px;
+}
+
+#tooltip .tipFooter {
+height:8px;
 }

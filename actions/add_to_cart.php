@@ -11,13 +11,43 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
-$old_cart = get_from_session_izap_ecommerce('izap_cart', TRUE);
-$product = get_product_izap_ecommerce(get_input('guid'));
+global $IZAP_ECOMMERCE;
+$product = get_product_izap_ecommerce(get_input('product_guid'));
 if($product) {
+
+  // work on attributes
+  $attrib_groups = $product->getAttributeGroups();
+  if($attrib_groups) {
+    foreach($attrib_groups as $key => $g) {
+      $g_arr[$g['name']] = $key;
+    }
+  }
+  
+  foreach($_POST['product_attribs'] as $key => $att) {
+    $group_name = current(explode('|', $key));
+    $attrib_array = $product->getAttribute($g_arr[$group_name]);
+    $p_att = (array) $att;
+    
+    foreach($p_att as $attrib) {
+      $tmp = explode('|', $attrib);
+      $att_price = $tmp[0];
+      $att_key = $tmp[1];
+      $posted_attribs[$attrib_array[$att_key]['name'] . ' (' . $IZAP_ECOMMERCE->currency_sign . $attrib_array[$att_key]['value'].')'] = $attrib_array[$att_key]['value'];
+    }
+  }
+
+  // product array
+  $old_cart = get_from_session_izap_ecommerce('izap_cart', TRUE);
   $old_cart[] = $product->guid;
+
+  $attrib_session_array = get_from_session_izap_ecommerce('izap_cart_attrib', TRUE);
+  $attrib_session_array[$product->guid] = $posted_attribs;
   func_remove_from_wishlist_izap_ecommerce($product->guid);
 }
+
 add_to_session_izap_ecommerce('izap_cart', array_unique($old_cart));
+add_to_session_izap_ecommerce('izap_cart_attrib', $attrib_session_array);
 forward($_SERVER['HTTP_REFERER']);
+exit;

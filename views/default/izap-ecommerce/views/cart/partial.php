@@ -14,6 +14,7 @@
 */
 
 global $IZAP_ECOMMERCE;
+$attributes = get_from_session_izap_ecommerce('izap_cart_attrib');
 $cart = $vars['cart'];
 $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 
@@ -28,7 +29,10 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
     foreach($cart as $guid) {
       $product = get_product_izap_ecommerce($guid);
       if($product) {
+        $product_attribs = $attributes[$guid];
+        $attrib_amount = array_sum($product_attribs);
         $dots = '';
+        $int_price = $product->getPrice(FALSE) + $attrib_amount;
         $price = $product->getPrice();
 
         $total_length = 19;
@@ -54,11 +58,11 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
           <?php echo $remove_link;?>:<a href="<?php echo $product->getUrl()?>" title="<?php echo $product->title; ?>" class="">
             <?php echo $title . $dots;?>
       </a>
-      [<?php echo $price;?>]
+      [<?php echo $IZAP_ECOMMERCE->currency_sign . $int_price;?>]
 
     </li>
         <?php
-        $total_price += $product->getPrice(FALSE);
+        $total_price += $int_price;
       }
     }
     ?>

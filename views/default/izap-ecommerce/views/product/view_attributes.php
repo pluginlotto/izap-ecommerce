@@ -11,15 +11,25 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
-global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $product = $vars['entity'];
-echo elgg_view_title($product->title);
+$product_attrib_groups = $product->getAttributeGroups();
+if($product_attrib_groups) {
+  foreach($product_attrib_groups as $key => $group) {
+    ?>
+<fieldset><legend><?php echo $group['name']?></legend>
+      <?php echo IzapEcommerce::createAttributes(array(
+      'type' =>$group['type'],
+      'group' => $group,
+      'attribs' => $product->getAttribute($key),
+      'entity' => $product,
+      ));
+      ?>
+</fieldset>
+    <?php
+  }
+}
 ?>
-<div class="contentWrapper">
-<?php
-echo $IZAPTEMPLATE->render('product/info', $vars);
-echo $IZAPTEMPLATE->render('product/tabs', $vars);
-?>
-</div>
+<br />
+<div class="clearfloat"></div>

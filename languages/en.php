@@ -170,5 +170,10 @@ $english = array(
         'izap-ecommerce:screenshots' => 'Screenshots',
         'izap-ecommerce:upload_images' => 'Upload images',
         'izap-ecommerce:archives' => 'Archives',
+
+        // attributes
+        'izap-ecommerce:attrib_group_name' => 'Group name',
+        'izap-ecommerce:attrib_group_type' => 'Type',
+        'izap-ecommerce:add_attrib_group' => 'Add group',
 );
 add_translation('en', $english);
