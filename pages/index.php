@@ -31,7 +31,11 @@ $options['pagination'] = TRUE;
 
 $context = get_context();
 set_context('search');
-$body .= elgg_list_entities($options);
+$list =elgg_list_entities($options);
+if($list == '') {
+  $list = func_izap_bridge_view('views/no_data');
+}
+$body .= $list;
 set_context($context);
 //$body .= elgg_view($IZAP_ECOMMERCE->views . 'default');
 IzapEcommerce::draw_page($title, $body);

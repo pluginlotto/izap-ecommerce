@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 global $CONFIG;
 $title = __('my_orders');
@@ -21,6 +21,9 @@ $options['subtype'] = 'izap_order';
 $options['owner_guid'] = get_loggedin_userid();
 $options['metadata_names'] = 'confirmed';
 $options['metadata_values'] = 'yes';
-
-$body .= elgg_list_entities_from_metadata($options);
+$list = elgg_list_entities_from_metadata($options);
+if(empty($list)) {
+  $list = func_izap_bridge_view('views/no_data');
+}
+$body .= $list;
 IzapEcommerce::draw_page($title, $body);

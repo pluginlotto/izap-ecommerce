@@ -13,14 +13,12 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-//include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
-//include_once dirname(dirname(__FILE__)) . '/lib/gateways/clsGateway.php';
-
+gatekeeper();
 global $IZAP_ECOMMERCE;
 $cart_id = time();
 $cart = get_from_session_izap_ecommerce('izap_cart');
 $payment_method = get_input('payment_option');
-//$data_array['business'] = get_plugin_setting('paypal_account', $IZAP_ECOMMERCE->plugin_name);
+
 $data_array['items'] = get_from_session_izap_ecommerce('items');
 $data_array['grandTotal'] = get_from_session_izap_ecommerce('total_cart_price');
 
@@ -29,17 +27,11 @@ if(get_input('payment_option') == 'paypal') {
   $data_array['notify_url'] = $IZAP_ECOMMERCE->link . 'paypal_notify';
 }
 
-$debug = FALSE;
-if(get_plugin_setting('sandbox', $IZAP_ECOMMERCE->plugin_name) == 'yes') {
-  $debug = TRUE;
-}
-
+// save order first but disable it
 $guid = save_order_izap_ecommerce($data_array['items'], $cart_id);
 if($guid) {
   add_to_session_izap_ecommerce('cart_id', $cart_id);
   $data_array['custom'] = $guid;
-//  $gateway = new gateway('paypal', '', $debug);
-//  $gateway->paypal($data_array);
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
   if($payment->process((int) get_input('owner_guid'))) {
