@@ -47,7 +47,7 @@ class IzapStoreController extends IzapController {
   public function actionEdit() {
     global $CONFIG, $IZAP_ECOMMERCE;
     admin_gatekeeper();
-    $product = get_entity($this->url_vars[2]);
+    $product = get_entity($this->url_vars[1]);
     if (!$product) {
       forward();
     }
