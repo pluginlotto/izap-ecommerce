@@ -30,7 +30,22 @@ background-color:#EEEEEE;
 .izap-product-float-right{float:right}
 .listing-image {float: left; padding: 2px; margin: 2px; width: 16%}
 .listing-description {float: left; padding: 2px; margin: 2px; width: 59%}
-.listing-options {float: right; padding: 2px; margin: 2px; width: 20%}
+.listing-options {float: right; padding: 2px; margin: 7px; }
+
+.listing-options .price {
+font-weight:bold;
+color:#fff;
+moz-border-radius:8px;
+webkikt-border-radius:8px;
+border-radius:8px;
+padding:5px;
+margin:5px;
+text-align:center;
+}
+
+.listing-options .edit {
+padding:5px 10px 5px 15px;
+}
 
 .izap-product-buy-rate{width:45%;padding:8px;}
 .izap-product-buy-price{width:35%;padding:12px;margin:10px;font-size:15px;
