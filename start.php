@@ -30,8 +30,11 @@ function izap_ecommerce_init() {
   elgg_register_menu_item('site', array(
     'name'=>elgg_echo('izap-ecommerce:store'),
     'text'=>elgg_echo('izap-ecommerce:store'),
-    'href'=>$CONFIG->wwwroot . 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'
-  ));
+    'href'=>  IzapBase::setHref(array(
+        'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+        'action' => 'all',
+        'page_owner' => false
+  ))));
 
   if(get_context()=='store') {
     $submenu = array(
