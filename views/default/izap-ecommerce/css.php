@@ -189,9 +189,14 @@ color: #FFFFFF;
   
 }
 
+
 .confirmed_order {
   background-color: #036100;
   color: #FFFFFF;
+  -moz-border-radius:8px 8px 8px 8px;
+  -webkit-border-radius:8px 8px 8px 8px;
+margin:0 10px 10px;
+padding:10px;
 }
 
 .confirmed_order:hover {
@@ -204,9 +209,22 @@ color: #FFFFFF;
   text-decoration:none;
 }
 
+.confirmed_order a:hover{
+  background-color: #0B5109;
+  color: #FFFFFF;
+  text-decoration:none;
+}
+
+
+
+
 .unconfirmed_order {
   background-color: #FF0000;
   color: #FCED00;
+  -moz-border-radius:8px 8px 8px 8px;
+  -webkit-border-radius:8px 8px 8px 8px;
+margin:0 10px 10px;
+padding:10px;
 }
 
 .unconfirmed_order:hover {
@@ -215,6 +233,12 @@ color: #FFFFFF;
 
 .unconfirmed_order a{
   background-color: #FF0000;
+  color: #FCED00;
+  text-decoration:none;
+}
+
+.unconfirmed_order a:hover{
+  background-color: #C80000;
   color: #FCED00;
   text-decoration:none;
 }

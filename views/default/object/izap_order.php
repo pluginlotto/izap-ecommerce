@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 $order = $vars['entity'];
 ?>
-<div class="contentWrapper <?php echo ($order->confirmed == 'no') ? 'unconfirmed_order' : 'confirmed_order'?>">
+<div class="<?php echo ($order->confirmed == 'no') ? 'unconfirmed_order' : 'confirmed_order'?>">
   <a href="<?php echo $IZAP_ECOMMERCE->link?>order_detail/<?php echo $order->guid?>/">
     <div class="izap-product-float-left" style="width: 50%">
       #<b><?php echo $order->guid;?></b>
