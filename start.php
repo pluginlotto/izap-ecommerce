@@ -21,7 +21,7 @@ function izap_ecommerce_init() {
   if(is_plugin_enabled('izap-elgg-bridge')) {
     func_init_plugin_byizap(array('plugin'=>array('name'=>GLOBAL_IZAP_ECOMMERCE_PLUGIN)));
   }else {
-    register_error('This plugin needs izap-elgg-bridge');
+    register_error(GLOBAL_IZAP_ECOMMERCE_PLUGIN . ' plugin, needs izap-elgg-bridge');
     disable_plugin(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
   }
 }

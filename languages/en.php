@@ -18,7 +18,7 @@ $english = array(
         'item:object:izap_ecommerce' => 'Store',
         'item:object:izap_order' => 'Orders',
         'izap_ecommerce:river:annotate' => 'comment on',
-        'izap-ecommerce:nothing_to_display' => 'There no product to display right now, check back soon.',
+        'izap-ecommerce:nothing_to_display' => 'There is nothing to display right now, check back soon.',
         'izap-ecommerce:deleted' => 'Deleted',
 
         // admin settings

@@ -77,7 +77,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         <?php echo elgg_echo('izap-ecommerce:total') . ': ' . $IZAP_ECOMMERCE->currency_sign . $total_price;?>
       </b><br />
     </p>
-    <div class="izap-product-float-right">
+    <div>
       <form action="<?php echo $buy_link?>" method="POST">
         <?php echo elgg_view('input/securitytoken');?>
         <?php
@@ -89,7 +89,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
           'internalname' => 'owner_guid',
           'value' => $user_guid,
         ));
-        if(is_plugin_enabled(GLOBAL_IZAP_PAYMENT_PLUGIN)) {
+        if(is_plugin_enabled('izap-payment-gateways')) {
         ?>
         <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" />
         <?php } else {

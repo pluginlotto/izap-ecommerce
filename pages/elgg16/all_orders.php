@@ -17,5 +17,9 @@ admin_gatekeeper();
 global $IZAP_ECOMMERCE;
 $title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);
-$body .= list_entities('object', 'izap_order');
+$list = list_entities('object', 'izap_order', 0, 20);
+if($list == '') {
+  $list = func_izap_bridge_view('views/no_data', array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+}
+$body .= $list;
 IzapEcommerce::draw_page($title, $body);

@@ -15,7 +15,11 @@
 
 admin_gatekeeper();
 global $IZAP_ECOMMERCE;
-$title = elgg_echo('izap-ecommerce:my_orders');
+$title = elgg_echo('izap-ecommerce:all_orders');
 $body = elgg_view_title($title);
-$body .= elgg_list_entities(array('type' => 'object', 'subtype' => 'izap_order', 'limit' => 20));
+$list = elgg_list_entities(array('type' => 'object', 'subtype' => 'izap_order', 'limit' => 20));
+if($list == '') {
+  $list = func_izap_bridge_view('views/no_data', array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+}
+$body .= $list;
 IzapEcommerce::draw_page($title, $body);
