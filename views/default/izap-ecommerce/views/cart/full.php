@@ -91,7 +91,10 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         if(is_plugin_enabled(GLOBAL_IZAP_PAYMENT_PLUGIN)) {
         ?>
         <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" />
-        <?php }?>
+        <?php } else {
+          echo elgg_echo('izap_payment:no_gateway_found');
+        }
+        ?>
       </form>
     </div>
 
