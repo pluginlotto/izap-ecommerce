@@ -14,5 +14,5 @@
 */
 ?>
 <div class="contentWrapper">
-  <?php _e('nothing_to_display');?>
+  <?php echo elgg_echo('izap-ecommerce:nothing_to_display');?>
 </div>

@@ -21,9 +21,9 @@
 		</select>
 </p>
 <p>
-  <?php echo __('widgets:thumb_size');?>
+  <?php echo elgg_echo('izap-ecommerce:widgets:thumb_size');?>
   <select name="params[thumb]">
-    <option value="small" <?php if($vars['entity']->thumb == 'small') echo "SELECTED"; ?>><?php _e('widgets:thumb_size_small');?></option>
-    <option value="medium" <?php if($vars['entity']->thumb == 'medium') echo "SELECTED"; ?>><?php _e('widgets:thumb_size_medium');?></option>
+    <option value="small" <?php if($vars['entity']->thumb == 'small') echo "SELECTED"; ?>><?php echo elgg_echo('izap-ecommerce:widgets:thumb_size_small');?></option>
+    <option value="medium" <?php if($vars['entity']->thumb == 'medium') echo "SELECTED"; ?>><?php echo elgg_echo('izap-ecommerce:widgets:thumb_size_medium');?></option>
   </select>
 </p>

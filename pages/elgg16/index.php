@@ -15,7 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 $list_param = izap_get_params(1);
-$title = __('welcome_to_store');
+$title = elgg_echo('izap-ecommerce:welcome_to_store');
 $body = elgg_view_title($title);
 $options['type'] = 'object';
 $options['subtype'] = 'izap_ecommerce';

@@ -33,7 +33,7 @@ if($content == '') {
 
 
 if($error) {
-  register_error(__('invalid_link'));
+  register_error(elgg_echo('izap-ecommerce:invalid_link'));
   forward();
 }else {
 

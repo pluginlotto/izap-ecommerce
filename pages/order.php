@@ -14,7 +14,7 @@
  */
 
 global $CONFIG;
-$title = __('my_orders');
+$title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);
 $options['type'] = 'object';
 $options['subtype'] = 'izap_order';

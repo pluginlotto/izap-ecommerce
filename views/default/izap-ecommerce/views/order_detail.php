@@ -131,7 +131,7 @@ echo elgg_view_title(elgg_echo('izap-ecommerce:order_details'));
 
     <div class="izap-product-float-left" style="width: 20%">
       <a href="<?php echo $download_link?>">
-          <?php _e('download');?>
+          <?php echo elgg_echo('izap-ecommerce:download');?>
       </a>
     </div>
 
@@ -149,7 +149,7 @@ echo elgg_view_title(elgg_echo('izap-ecommerce:order_details'));
     <p align="right">
       <b>
         <?php
-        _e('total');
+        echo elgg_echo('izap-ecommerce:total');
         ?>
         : <?php echo $IZAP_ECOMMERCE->currency_sign . $order->total_amount?></b>
     </p>

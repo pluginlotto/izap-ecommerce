@@ -21,13 +21,13 @@ if (!$CONFIG->post_byizap->form_validated) {
 }
 
 if(!filter_var($CONFIG->post_byizap->attributes['send_email'], FILTER_VALIDATE_EMAIL) || !filter_var($CONFIG->post_byizap->attributes['email'], FILTER_VALIDATE_EMAIL)) {
-  register_error(__('not_valid_email'));
+  register_error(elgg_echo('izap-ecommerce:not_valid_email'));
   forward($_SERVER['HTTP_REFERER']);
 }
 
 $entity = get_entity($CONFIG->post_byizap->attributes['guid']);
 if (!$entity) {
-  register_error(__('not_valid_entity'));
+  register_error(elgg_echo('izap-ecommerce:not_valid_entity'));
   forward($_SERVER['HTTP_REFERER']);
 }
 
@@ -50,8 +50,8 @@ $success=func_send_mail_byizap($params);
 
 // Success message
 if($success) {
-  system_message(__('success_send_to_friend'));
+  system_message(elgg_echo('izap-ecommerce:success_send_to_friend'));
   unset ($_SESSION['postArray']);
 } else {
-  register_error(__('error_send_to_friend'));
+  register_error(elgg_echo('izap-ecommerce:error_send_to_friend'));
 }forward($entity->getURL());

@@ -26,27 +26,27 @@ $product = $vars['entity'];
     ?>
 
     <p>
-      <label for="name" ><?php _e('your_name');?></label>
+      <label for="name" ><?php echo elgg_echo('izap-ecommerce:your_name');?></label>
       <?php echo elgg_view('input/text', array('internalname' => 'attributes[_name]', 'value' => $vars['postArray']['name'], 'internalid'=>"name")) ;?>
     </p>
 
     <p>
-      <label for="email" ><?php _e('your_email');?></label>
+      <label for="email" ><?php echo elgg_echo('izap-ecommerce:your_email');?></label>
       <?php echo elgg_view('input/text', array('internalname' => 'attributes[_email]', 'value' => $vars['postArray']['email'], 'internalid'=>"email")) ;?>
     </p>
 
     <p>
-      <label for="send_name" ><?php _e('your_friend_name');?></label>
+      <label for="send_name" ><?php echo elgg_echo('izap-ecommerce:your_friend_name');?></label>
       <?php echo elgg_view('input/text', array('internalname' => 'attributes[_send_name]', 'value' => $vars['postArray']['send_name'], 'internalid'=>"send_name")) ;?>
     </p>
 
     <p>
-      <label for="send_email" ><?php _e('your_friend_email');?></label>
+      <label for="send_email" ><?php echo elgg_echo('izap-ecommerce:your_friend_email');?></label>
       <?php echo elgg_view('input/text', array('internalname' => 'attributes[_send_email]', 'value' => $vars['postArray']['send_email'], 'internalid'=>"send_email")) ;?>
     </p>
 
     <p>
-      <label for="msg"><?php _e('message');?></label
+      <label for="msg"><?php echo elgg_echo('izap-ecommerce:message');?></label
       <?php echo elgg_view('input/longtext', array('internalname' => 'attributes[_msg]', 'value' => $vars['postArray']['msg'], 'internalid'=>"msg"));?>
     </p>
 

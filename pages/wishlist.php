@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 $page_owner = page_owner_entity();
 $wishlist = IzapEcommerce::getWishList($page_owner);
-$title = __('wishlist');
+$title = elgg_echo('izap-ecommerce:wishlist');
 $body = elgg_view_title($title);
 
 if(sizeof($wishlist)) {

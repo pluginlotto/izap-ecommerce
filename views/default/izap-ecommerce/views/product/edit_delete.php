@@ -18,12 +18,12 @@ $product = $vars['entity'];
 if($product->canEdit()) {
   ?>
 <a href="<?php echo $IZAP_ECOMMERCE->link?>edit/<?php echo $product->guid?>">
-    <?php echo __('edit');?>
+    <?php echo elgg_echo('izap-ecommerce:edit');?>
 </a>
 /
   <?php
   echo elgg_view('output/confirmlink', array(
-  'text' => __('delete'),
+  'text' => elgg_echo('izap-ecommerce:delete'),
   'href' => elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/delete?guid=' . $product->guid),
   ));
 

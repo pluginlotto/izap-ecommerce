@@ -18,7 +18,7 @@ $posted_data = get_posted_data_izap_ecommerce('izap_product');
 $izap_product = new IzapEcommerce($posted_data->guid);
 $error = $izap_product->verify_posted_data($posted_data);
 if($error) {
-  register_error(__('missing_required_info'));
+  register_error(elgg_echo('izap-ecommerce:missing_required_info'));
 }else {
   if((int)$posted_data->guid) {
     $edit_mode = TRUE;
@@ -44,7 +44,7 @@ if($error) {
   if($izap_product->save()) {
     if(!$izap_product->saveFiles($edit_mode)) {
       delete_entity($izap_product->guid);
-      register_error(__('error_uploading_file'));
+      register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
       // add to river
       add_to_river(
@@ -55,11 +55,11 @@ if($error) {
               $izap_product->guid
       );
       unset_posted_data_izap_ecommerce('izap_product');
-      system_message(__('saved_successfully'));
+      system_message(elgg_echo('izap-ecommerce:saved_successfully'));
       forward($izap_product->getUrl());
     }
   }else {
-    register_error(__('error_saving'));
+    register_error(elgg_echo('izap-ecommerce:error_saving'));
   }
 }
 forward($_SERVER['HTTP_REFERER']);

@@ -27,9 +27,9 @@ $product = $vars['entity'];
       <br />
       <?php
       if($product->getPrice(FALSE)) {
-        echo '<b>' . __('price') . '</b>: ' . $product->getPrice() . '<br />';
+        echo '<b>' . elgg_echo('izap-ecommerce:price') . '</b>: ' . $product->getPrice() . '<br />';
       }else {
-        echo '<b>' . __('free') . '</b><br />';
+        echo '<b>' . elgg_echo('izap-ecommerce:free') . '</b><br />';
       }
       ?>
     </div>

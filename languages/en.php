@@ -160,8 +160,4 @@ $english = array(
   'izap-ecommerce:widgets:thumb_size' => 'Thumb size',
   'izap-ecommerce:widgets:thumb_size_small' => 'small',
   'izap-ecommerce:widgets:thumb_size_medium' => 'medium',
-);function __($key) {
-  return elgg_echo('izap-ecommerce:' . $key);
-}function _e($key) {
-  echo elgg_echo('izap-ecommerce:' . $key);
-}add_translation('en', $english);
+);add_translation('en', $english);

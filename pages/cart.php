@@ -15,7 +15,7 @@
 
 gatekeeper();
 global $IZAP_ECOMMERCE;
-$title = __('cart');
+$title = elgg_echo('izap-ecommerce:cart');
 $body = elgg_view_title($title);
 $body .= izap_view_cart(TRUE);
 IzapEcommerce::draw_page($title, $body, TRUE);

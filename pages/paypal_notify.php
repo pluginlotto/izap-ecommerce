@@ -53,7 +53,7 @@ if($variables['status'] === TRUE) {
   notify_user(
           $order->owner_guid,
           $CONFIG->site->guid,
-          __('order_processe_error'),
-          __('order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
+          elgg_echo('izap-ecommerce:order_processe_error'),
+          elgg_echo('izap-ecommerce:order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
   );
 }

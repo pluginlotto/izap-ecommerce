@@ -19,7 +19,7 @@ $product = get_entity(izap_get_params(1));
 if(!$product) {
   forward();
 }
-$title = __('edit_product');
+$title = elgg_echo('izap-ecommerce:edit_product');
 $body = elgg_view_title($title);
 $body .= elgg_view($IZAP_ECOMMERCE->forms . 'add_edit', array('entity' => $product));
 IzapEcommerce::draw_page($title, $body);

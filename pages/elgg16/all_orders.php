@@ -15,7 +15,7 @@
 
 admin_gatekeeper();
 global $IZAP_ECOMMERCE;
-$title = __('my_orders');
+$title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);
 $body .= list_entities('object', 'izap_order');
 IzapEcommerce::draw_page($title, $body);

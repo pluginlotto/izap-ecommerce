@@ -243,8 +243,8 @@ class IzapEcommerce extends ElggFile {
       notify_user(
               $order->owner_guid,
               $CONFIG->site->guid,
-              __('order_processed'),
-              __('order_processed_message') . $order->getURL()
+              elgg_echo('izap-ecommerce:order_processed'),
+              elgg_echo('izap-ecommerce:order_processed_message') . $order->getURL()
       );
 
       self::notifyAdminForNewOrder($order);
@@ -506,12 +506,12 @@ function verify_order_izap_ecommerce($order) {
   }
 
   if($order->confirmed == 'no') {
-    register_error(__('not_processed_properly'));
+    register_error(elgg_echo('izap-ecommerce:not_processed_properly'));
     forward($IZAP_ECOMMERCE->link . 'order');
   }
 
   if(!isadminloggedin() && $order->owner_guid != get_loggedin_userid()) {
-    register_error(__('no_access'));
+    register_error(elgg_echo('izap-ecommerce:no_access'));
     forward();
   }
 

@@ -18,7 +18,7 @@ global $IZAP_ECOMMERCE;
 $guid = izap_get_params(1);
 $order = get_entity($guid);
 verify_order_izap_ecommerce($order);
-$title = __('order_number') . ' - #' . $guid;
+$title = elgg_echo('izap-ecommerce:order_number') . ' - #' . $guid;
 $body = elgg_view_title($title);
 $body .= elgg_view($IZAP_ECOMMERCE->views . 'order_detail', array('entity' => $order));
 IzapEcommerce::draw_page($title, $body);

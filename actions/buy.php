@@ -50,11 +50,11 @@ if($order->guid !== 0) {
     // delete the not processed order
     $order->delete();
     $response = $payment->getResponse();
-    register_error(__('unable_to_process_payment') . ': ' . $response['error_msg']);
+    register_error(elgg_echo('izap-ecommerce:unable_to_process_payment') . ': ' . $response['error_msg']);
     forward($_SERVER['HTTP_REFERER']);
   }
 }else {
-  register_error(__('unable_to_save_order'));
+  register_error(elgg_echo('izap-ecommerce:unable_to_save_order'));
   forward($_SERVER['HTTP_REFERER']);
 }
 exit;

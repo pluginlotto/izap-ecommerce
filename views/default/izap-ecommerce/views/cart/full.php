@@ -47,8 +47,8 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         <b><?php echo $product->getPrice();?></b>
         <br />
         <br />
-        <a href="<?php echo elgg_add_action_tokens_to_url($remove_lnk . $product->guid)?>" title="<?php echo __('remove_from_cart')?>">
-          <img src="<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images'))?>remove_from_cart.png" alt="<?php echo __('remove_from_cart')?>"/>
+        <a href="<?php echo elgg_add_action_tokens_to_url($remove_lnk . $product->guid)?>" title="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>">
+          <img src="<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images'))?>remove_from_cart.png" alt="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>"/>
         </a>
       </div>
 
@@ -73,7 +73,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
   <div class="contentWrapper izap-product-buy">
     <p align="right" style="margin:0;padding:0;">
       <b>
-        <?php echo __('total') . ': ' . $IZAP_ECOMMERCE->currency_sign . $total_price;?>
+        <?php echo elgg_echo('izap-ecommerce:total') . ': ' . $IZAP_ECOMMERCE->currency_sign . $total_price;?>
       </b><br />
     </p>
     <div class="izap-product-float-right">
@@ -89,7 +89,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
           'value' => $user_guid,
         ));
         ?>
-        <input type="submit" value="<?php _e('pay_now')?>" />
+        <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" />
       </form>
     </div>
 

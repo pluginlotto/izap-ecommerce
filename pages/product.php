@@ -16,7 +16,7 @@
 $guid = izap_get_params(2);
 $izap_product = get_product_izap_ecommerce($guid);
 if(!$izap_product) {
-  register_error(__('invalid_product'));
+  register_error(elgg_echo('izap-ecommerce:invalid_product'));
   forward();
 }
 $title = $izap_product->title;

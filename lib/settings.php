@@ -91,8 +91,8 @@ return array(
                 'widget' => array(
 
                         'latest_product' => array(
-                                'name' => __('widgets:latest_products:name'),
-                                'description' => __('widgets:latest_products:description'),
+                                'name' => elgg_echo('izap-ecommerce:widgets:latest_products:name'),
+                                'description' => elgg_echo('izap-ecommerce:widgets:latest_products:description'),
                         ),
 
                 ),

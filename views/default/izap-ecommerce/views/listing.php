@@ -37,7 +37,7 @@ $product = $vars['entity'];
   </div>
 
   <div class="listing-options">
-    <?php if($product->getPrice(FALSE)) echo __('price') . ': ' . $product->getPrice() . '<br />'; else echo __('free') . '<br />';?>
+    <?php if($product->getPrice(FALSE)) echo elgg_echo('izap-ecommerce:price') . ': ' . $product->getPrice() . '<br />'; else echo elgg_echo('izap-ecommerce:free') . '<br />';?>
     <?php echo elgg_view('output/rate', array('entity' => $product));?>
     <?php echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product));?>
   </div>
@@ -45,7 +45,7 @@ $product = $vars['entity'];
   <div class="clearfloat"></div>
     <p>
       <?php
-      _e('tags');
+      echo elgg_echo('izap-ecommerce:tags');
       echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
       ?>
     </p>

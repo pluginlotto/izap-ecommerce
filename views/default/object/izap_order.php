@@ -33,7 +33,7 @@ $order_owner = $order->getOwnerEntity();
 
     <div class="izap-product-float-left" style="width: 30%">
       <?php
-      _e('total_amount');
+      echo elgg_echo('izap-ecommerce:total_amount');
       ?>
       :
       <b>

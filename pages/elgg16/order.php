@@ -14,7 +14,7 @@
 */
 
 global $CONFIG;
-$title = __('my_orders');
+$title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);
 $body .= list_entities_from_metadata('confirmed', 'yes', 'object', 'izap_order', get_loggedin_userid());
 IzapEcommerce::draw_page($title, $body);
