@@ -15,7 +15,6 @@
 
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
-c($cart);
 $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 
 ?>
