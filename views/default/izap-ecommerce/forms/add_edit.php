@@ -30,9 +30,6 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
       </label>
     </p>
 
-    <?php
-    if($vars['archive'] | !(int)$loaded_data->guid) {
-      ?>
     <p>
       <label>
           <?php
@@ -44,7 +41,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
           ?>
       </label>
     </p>
-      <?php }?>
+    
     <p>
       <label>
         <?php
