@@ -219,10 +219,10 @@ class IzapEcommerce extends ElggFile {
     $items = glob($dir . '*.*');
     if(is_array($items) && sizeof($items)) {
       foreach($items as $file) {
-        unlink($file);
+        @unlink($file);
       }
     }
-    rmdir($dir);
+    @rmdir($dir);
     return parent::delete();
   }
 
@@ -317,13 +317,68 @@ class IzapEcommerce extends ElggFile {
   public function getPrice($format = TRUE) {
     global $IZAP_ECOMMERCE;
 
-    if($format) {
-      return $IZAP_ECOMMERCE->currency_sign . (int)$this->price;
+    if(isloggedin()) {
+      $price = $this->getUserPrice();
     }else {
-      return (int)$this->price;
+      $price = $this->makePrice('max');
+    }
+
+    if($format) {
+      return $IZAP_ECOMMERCE->currency_sign . (int)$price;
+    }else {
+      return (int)$price;
     }
   }
 
+  public function getDownloads() {
+    return (int) $this->total_downloads;
+  }
+
+  public function getUserPrice($user) {
+    $user_guid = get_loggedin_userid();
+    $price_array = (array) unserialize($this->user_pirce_array);
+    
+    if(!isset ($price_array[$user_guid])) {
+      $price_array[$user_guid] = $this->makePrice();
+      self::get_access();
+      $this->user_pirce_array = serialize((array) $price_array);
+      self::remove_access();
+    }
+
+    $current_price = $price_array[$user_guid];
+    return $current_price;
+  }
+
+  function makePrice($type = 'rand') {
+    $price = $this->price;
+    if(strstr($price, '-')) {
+      $price_range = explode('-', $price);
+      // casting whole array as int
+      foreach($price_range as $val) {
+        $price_range_array[] = (int) $val;
+      }
+      switch ($type) {
+        case "rand":
+          return rand(min($price_range_array), max($price_range_array));
+          break;
+
+        case "max":
+          return max($price_range_array);
+          break;
+
+        case "min":
+          return min($price_range_array);
+          break;
+
+        default:
+          return max($price_range_array);
+          break;
+      }
+    }else{
+      return (int) $price;
+    }
+  }
+  
   public static function getWishList($user = false) {
     if(!$user) {
       $user = get_loggedin_user();

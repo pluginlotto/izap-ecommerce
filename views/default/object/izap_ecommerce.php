@@ -22,7 +22,9 @@ if(get_input('search_viewtype') == 'gallery') {
   if(elgg_view_exists('output/entity_row')) {
 
     if($vars['entity']->getPrice(FALSE)) {
-    $extra .=  '<b>' . elgg_echo('izap-ecommerce:price') . '</b>: ' . $vars['entity']->getPrice() . '<br />';
+    $extra .=  '<b>' . 
+      ((isloggedin()) ? elgg_echo('izap-ecommerce:price') : elgg_echo('izap-ecommerce:price_not_more'))
+      . '</b>: ' . $vars['entity']->getPrice() . '<br />';
     }else{
       $extra .=  '<b>' . elgg_echo('izap-ecommerce:free') . '</b><br />';
     }

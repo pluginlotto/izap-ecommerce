@@ -39,7 +39,7 @@ if($error) {
 
   // update the  total download count
   func_hook_access_over_ride_byizap(array('status' => TRUE));
-  $product->total_downloads = (int) $product->total_downloads +1;
+  $product->total_downloads = (int) ($product->total_downloads) +1;
   func_hook_access_over_ride_byizap(array('status' => TRUE));
   
   $file_name = basename($product->file_path);

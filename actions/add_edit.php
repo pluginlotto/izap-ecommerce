@@ -15,10 +15,10 @@
 
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
 
-$izap_product = new IzapEcommerce($posted_data->guid);
-$izap_product->archived = 'no';
-$izap_product->avg_rating = (int) 0;
-$error = $izap_product->verify_posted_data($posted_data);
+$product = new IzapEcommerce($posted_data->guid);
+$product->archived = 'no';
+$product->avg_rating = (int) 0;
+$error = $product->verify_posted_data($posted_data);
 if($error) {
   register_error(elgg_echo('izap-ecommerce:missing_required_info'));
 }else {
@@ -31,28 +31,28 @@ if($error) {
   unset ($posted_data->guid);
   foreach($posted_data as $key => $value) {
     if($key == 'tags') {
-      $izap_product->$key = string_to_tag_array($value);
+      $product->$key = string_to_tag_array($value);
     }else {
-      $izap_product->$key = $value;
+      $product->$key = $value;
     }
   }
 
   if(isset($posted_data->comming_soon[0]) && $posted_data->comming_soon[0] == 'yes') {
-    $izap_product->comming_soon = 'yes';
+    $product->comming_soon = 'yes';
   }else {
-    $izap_product->comming_soon = 'no';
+    $product->comming_soon = 'no';
   }
 
-  if($izap_product->save()) {
-    if(!$izap_product->saveFiles($edit_mode)) {
-      $izap_product->delete();
+  if($product->save()) {
+    if(!$product->saveFiles($edit_mode)) {
+      delete_entity($product->guid);
       register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
 
-      $izap_product->code = func_generate_unique_id();
+      $product->code = func_generate_unique_id();
       // check if it is new version
       if(isset ($posted_data->parent_of)) {
-        $izap_product->archiveOldProduct($posted_data->parent_of);
+        $product->archiveOldProduct($posted_data->parent_of);
       }
       
       // add to river
@@ -61,11 +61,11 @@ if($error) {
               array('plugin' => 'izap-ecommerce', 'type' => 'river')) .$river_action ,
               $river_action,
               get_loggedin_userid(),
-              $izap_product->guid
+              $product->guid
       );
       unset_posted_data_izap_ecommerce('izap_product');
       system_message(elgg_echo('izap-ecommerce:saved_successfully'));
-      forward($izap_product->getUrl());
+      forward($product->getUrl());
     }
   }else {
     register_error(elgg_echo('izap-ecommerce:error_saving'));

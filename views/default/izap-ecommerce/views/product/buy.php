@@ -37,7 +37,11 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
       if($price) {?>
     <b>
           <?php
+          if(isloggedin()) {
           echo elgg_echo('izap-ecommerce:price');
+          }else{
+            echo elgg_echo('izap-ecommerce:price_not_more');
+          }
           ?>
     </b><br />
         <?php
@@ -60,16 +64,16 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
     <a href="<?php echo $add_cart_link?>">
             <?php echo elgg_echo('izap-ecommerce:buynow');?>
     </a>
+    <?php if(isloggedin()) {?>
+    &nbsp;
+    <a href="<?php echo $add_wishlist_link;?>">
+          <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
+    </a>
+        <?php }?>
           <?php }
       }else {?>
     <a href="#">
           <?php echo elgg_echo('izap-ecommerce:comming soon');?>
-    </a>
-        <?php }?>
-      <?php if(isloggedin()) {?>
-    &nbsp;
-    <a href="<?php echo $add_wishlist_link;?>">
-          <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
     </a>
         <?php }?>
   </div>

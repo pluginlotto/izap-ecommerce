@@ -24,5 +24,6 @@ $body = elgg_view_title($title);
 $body .= elgg_view($IZAP_ECOMMERCE->forms . 'add_edit', array(
   'entity' => $product,
   'archive' => TRUE,
+  'parent_guid' => $product->guid,
   ));
 IzapEcommerce::draw_page($title, $body);
