@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 global $IZAP_ECOMMERCE;
 $page_owner = page_owner_entity();
@@ -22,7 +22,9 @@ $body = elgg_view_title($title);
 if(sizeof($wishlist)) {
   foreach($wishlist as $product_guid) {
     $product = get_entity($product_guid);
-    $body .= elgg_view_entity($product, FALSE);
+    if($product) {
+      $body .= elgg_view_entity($product, FALSE);
+    }
   }
 }else {
   $body .= func_izap_bridge_view('views/no_data');

@@ -47,7 +47,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         <b><?php echo $product->getPrice();?></b>
         <br />
         <br />
-        <a href="<?php echo $remove_lnk . $product->guid?>" title="<?php echo __('remove_from_cart')?>">
+        <a href="<?php echo elgg_add_action_tokens_to_url($remove_lnk . $product->guid)?>" title="<?php echo __('remove_from_cart')?>">
           <img src="<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images'))?>remove_from_cart.png" alt="<?php echo __('remove_from_cart')?>"/>
         </a>
       </div>

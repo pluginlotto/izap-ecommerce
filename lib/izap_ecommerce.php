@@ -209,9 +209,14 @@ class IzapEcommerce extends ElggFile {
     $wishlist = $user->izap_wishlist;
     if(!is_array($wishlist) && (int) $wishlist) {
       $wishlist = array($wishlist);
+      foreach($wishlist as $pro) {
+        if(get_entity($pro)) {
+          $return[] = $pro;
+        }
+      }
     }
 
-    return $wishlist;
+    return $return;
   }
 
   public static function countWishtlistItems() {

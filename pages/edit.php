@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-gatekeeper();
+admin_gatekeeper();
 global $IZAP_ECOMMERCE;
 $product = get_entity(izap_get_params(1));
 if(!$product) {

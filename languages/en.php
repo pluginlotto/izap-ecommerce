@@ -93,6 +93,7 @@ $english = array(
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
   'izap-ecommerce:invalid_product' => 'Invalid product',
+  'izap-ecommerce:unable_to_process_payment' => 'Unable to process the payment. Payment gateway not found.',
   
   // add form
   'izap-ecommerce:add_new_product' => 'Add new product',
