@@ -14,12 +14,12 @@
 */
 
 admin_gatekeeper();
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $title = elgg_echo('izap-ecommerce:all_orders');
 $body = elgg_view_title($title);
 $list = elgg_list_entities(array('type' => 'object', 'subtype' => 'izap_order', 'limit' => 20));
 if($list == '') {
-  $list = func_izap_bridge_view('views/no_data', array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+  $list = $IZAPTEMPLATE->render('views/no_data');
 }
 $body .= $list;
 IzapEcommerce::draw_page($title, $body);

@@ -14,7 +14,7 @@
  */
 
 gatekeeper();
-global $CONFIG;
+global $CONFIG, $IZAPTEMPLATE;
 $title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);
 $options['type'] = 'object';
@@ -26,7 +26,7 @@ if(func_get_custom_value_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 
 }
 $list = elgg_list_entities_from_metadata($options);
 if(empty($list)) {
-  $list = func_izap_bridge_view('views/no_data');
+  $list = $IZAPTEMPLATE->render('views/no_data');
 }
 $body .= $list;
 IzapEcommerce::draw_page($title, $body);

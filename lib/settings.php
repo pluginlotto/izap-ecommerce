@@ -48,7 +48,7 @@ return array(
 
         'plugin'=>array(
                 'name'=>"izap-ecommerce",
-
+                'layout' => 'two_column_left_sidebar',
                 'title'=>"E-commerce",
 
                 'url_title' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,

@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $list_param = izap_get_params(1);
 
 $title = elgg_echo('izap-ecommerce:welcome_to_store');
@@ -30,9 +30,8 @@ $context = get_context();
 set_context('search');
 $list =elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
 if($list == '') {
-  $list = func_izap_bridge_view('views/no_data', array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+  $list = $IZAPTEMPLATE->render('views/no_data');
 }
 $body .= $list;
 set_context($context);
-//$body .= elgg_view($IZAP_ECOMMERCE->views . 'default');
 IzapEcommerce::draw_page($title, $body);

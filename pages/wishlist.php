@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $page_owner = page_owner_entity();
 $wishlist = IzapEcommerce::getWishList($page_owner);
 $title = elgg_echo('izap-ecommerce:wishlist');
@@ -27,6 +27,6 @@ if(sizeof($wishlist)) {
     }
   }
 }else {
-  $body .= func_izap_bridge_view('views/no_data');
+  $body .= $IZAPTEMPLATE->render('views/no_data');
 }
 IzapEcommerce::draw_page($title, $body);

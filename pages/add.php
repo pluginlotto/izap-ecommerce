@@ -17,5 +17,6 @@ admin_gatekeeper();
 global $CONFIG, $IZAP_ECOMMERCE;
 $title = elgg_echo('izap-ecommerce:add_new_product');
 $body = elgg_view_title($title);
-$body .= elgg_view($IZAP_ECOMMERCE->forms . 'add_edit');
+//$body .= elgg_view($IZAP_ECOMMERCE->forms . 'add_edit');
+$body .= $IZAPTEMPLATE->render($IZAP_ECOMMERCE->forms . 'add_edit');
 IzapEcommerce::draw_page($title, $body);

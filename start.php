@@ -47,7 +47,9 @@ function izap_ecommerce_page_handler($page) {
       $filename = $intial_path . 'index.php';
     }
   }
-  izap_load_file($filename);
+  izap_load_file($filename, array(
+    'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN
+  ));
 }
 
 function izap_ecommerce_getUrl($entity) {

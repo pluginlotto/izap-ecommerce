@@ -14,14 +14,14 @@
 */
 
 admin_gatekeeper();
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $product = get_entity(izap_get_params(2));
 if(!$product) {
   forward();
 }
 $title = sprintf(elgg_echo('izap-ecommerce:new_version'), $product->title);
 $body = elgg_view_title($title);
-$body .= elgg_view($IZAP_ECOMMERCE->forms . 'add_edit', array(
+$body .= $IZAPTEMPLATE->render($IZAP_ECOMMERCE->forms . 'add_edit', array(
   'entity' => $product,
   'archive' => TRUE,
   'parent_guid' => $product->guid,
