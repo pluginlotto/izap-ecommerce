@@ -36,6 +36,7 @@ if($product && $product->canEdit()) {
   echo IzapEcommerce::createAttributes(array(
   'type' =>$attrib_groups[$group_id]['type'],
   'attribs' => $attribs[$group_id],
+  'entity' => $product,
   ));
 }
 exit;

@@ -144,6 +144,8 @@ class IzapEcommerce extends ElggFile {
       }
       $this->code = $old_product->code;
       $this->avg_rating = $old_product->avg_rating;
+      $this->total_views = $old_product->total_views;
+      $this->total_downloads = $old_product->total_downloads;
 
       if((string)$this->image_path == '') {
         $this->copyOldFiles($old_product);
@@ -390,13 +392,18 @@ class IzapEcommerce extends ElggFile {
 
     return FALSE;
   }
-  
+
   public function getDownloads() {
     return (int) $this->total_downloads;
   }
 
   public function getUserPrice($user) {
-    $user_guid = get_loggedin_userid();
+    if($user instanceof ElggUser) {
+      $user_guid = $user->guid;
+    }else {
+      $user_guid = get_loggedin_userid();
+    }
+
     $price_array = (array) unserialize($this->user_pirce_array);
 
     if(!isset ($price_array[$user_guid])) {
@@ -523,7 +530,7 @@ class IzapEcommerce extends ElggFile {
             elgg_view('categories/list', array(
             'baseurl' => $CONFIG->wwwroot . 'search/?subtype='.$IZAP_ECOMMERCE->object_name.'&tagtype=universal_categories&tag=')).
             '</div>';
-    
+
     $IZAPTEMPLATE->drawPage(array(
             'title' => $title,
             'area1' => (($remove_cart) ? '' : izap_view_cart()),

@@ -48,6 +48,38 @@ $product = $vars['entity'];
         'vars' => array($product->guid)
            ));?>"><?php echo elgg_echo('izap_ecommerce:add_new_version'); ?></a>
     </div>
+
+    <form action="#" id="get_user_price_form">
+      Enter username
+      <input type="text" name="izap_username" size="10"/>
+      <input type="hidden" name="product_guid" value="<?php echo $product->guid?>" />
+      <input type="submit" value="Get Price" />
+    </form>
+    <div id="user_price"></div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#get_user_price_form').submit(function(){
+          var action = '<?php echo func_get_www_path_byizap(array(
+          'type' => 'page',
+          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN
+          )) . 'user_price';?>';
+              $.ajax({
+                type: 'POST',
+                url: action,
+                data: $('#get_user_price_form').serialize(),
+                beforeSend: function(){
+                  $('#user_price').html('Loading...');
+                },
+                success: function(data){
+                  $('#user_price').html(data);
+                }
+              });
+
+              return false;
+            });
+          });
+    </script>
+
     <div class="clearfloat"></div>
       <?php }
     // show download count to owner
@@ -59,7 +91,7 @@ $product = $vars['entity'];
       <?php
     }
     echo $IZAPTEMPLATE->render('product/buy', array('entity' => $product));
-    echo $IZAPTEMPLATE->render('forms/add_attribute', array('entity'=> $product));
+    //echo $IZAPTEMPLATE->render('forms/add_attribute', array('entity'=> $product));
     ?>
   </div>
   <div class="clearfloat"></div>

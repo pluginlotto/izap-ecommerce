@@ -53,20 +53,25 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
       ?>
   </div>
   <div class="clearfloat"></div>
-  <br />
 </div>
 <div class="izap-product-buy-buynow">
     <?php if($product->isAvailable()) {
-      if($product->canDownload()) {
-        $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
-        ?>
-  <a class="button" href="<?php echo $donwload_link?>">
-          <?php echo elgg_echo('izap-ecommerce:download');?>
-  </a>
-        <?php
+      if($product->canEdit()) {
+        $form = $IZAPTEMPLATE->render('forms/add_attribute', array('entity'=> $product));
       }else {
         $form = $IZAPTEMPLATE->render('product/view_attributes', array('entity' => $product));
+      }
+      if($product->canDownload()) {
+        $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
+        $form .= '<a class="button" href="'.$donwload_link.'">
+            '.elgg_echo('izap-ecommerce:download').'</a>';
+      }
+      if($product->canEdit()) {
+        echo $form;
+      }else {
         $form .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
+
+
         if(IzapEcommerce::isInWishlist($product->guid)) {
           $form .= '
             <a class="button" href="'.elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
@@ -77,13 +82,15 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
             <a class="button" href="'.$add_wishlist_link.'">'.elgg_echo('izap-ecommerce:add_to_wishlist').'</a>
           ';
         }
+
         $form .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:buynow')));
 
         echo elgg_view('input/form', array('body' => $form, 'action' => func_get_actions_path_byizap(array(
                 'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
                 )) . 'add_to_cart'));
-        ?>
-        <?php }
+      }
+      ?>
+      <?php
     }else {?>
   <a class="button" href="#">
         <?php echo elgg_echo('izap-ecommerce:comming soon');?>
