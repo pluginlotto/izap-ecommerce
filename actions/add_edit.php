@@ -16,6 +16,7 @@
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
 
 $izap_product = new IzapEcommerce($posted_data->guid);
+$izap_product->archived = 'no';
 $error = $izap_product->verify_posted_data($posted_data);
 if($error) {
   register_error(elgg_echo('izap-ecommerce:missing_required_info'));

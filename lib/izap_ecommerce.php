@@ -643,7 +643,7 @@ function get_archived_products_izap_ecommerce($product) {
   return $return_array;
 }
 
-function get_default_listing_options_izap_ecommerce() {
+function get_default_listing_options_izap_ecommerce($array = array()) {
   $options['type'] = 'object';
   $options['subtype'] = 'izap_ecommerce';
   $options['limit'] = 10;
@@ -654,5 +654,6 @@ function get_default_listing_options_izap_ecommerce() {
   $options['metadata_name'] = 'archived';
   $options['metadata_value'] = 'no';
 
-  return $options;
+
+  return array_merge($options, $array);
 }
