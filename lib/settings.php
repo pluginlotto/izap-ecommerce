@@ -13,28 +13,34 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+include_once dirname(__FILE__) . '/izap_ecommerce.php';
+
 global $CONFIG;
 
 return array(
+        'includes'=>array(
+                dirname(__FILE__) => array('load.php'),
+        ),
+
         'path'=>array(
                 'www'=>array(
                         'page' => $CONFIG->wwwroot . 'pg/store/',
-                        'images' => $CONFIG->wwwroot . 'mod/izap-ecommerce/_graphics/',
+                        'images' => $CONFIG->wwwroot . 'mod/'.GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/_graphics/',
                         'action' => $CONFIG->wwwroot . 'action/izap_ecommerce/',
                 ),
                 'dir'=>array(
                         'plugin'=>dirname(dirname(__FILE__))."/",
-                        'actions'=>$CONFIG->pluginspath."izap-ecommerce/actions/",
+                        'actions'=>$CONFIG->pluginspath. GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/actions/',
                         'class'=>dirname(__FILE__)."/classes/",
                         'functions'=>dirname(__FILE__)."/functions/",
                         'gateways' => dirname(__FILE__) . '/gateways/',
                         'lib' => dirname(__FILE__) . '/',
                         'views'=>array(
-                                'home'=>"izap-ecommerce/",
-                                'forms'=>"izap-ecommerce/forms/",
-                                'views'=>"izap-ecommerce/views/",
-                                'river'=>"river/izap-ecommerce/",
-                                'product' => 'izap-ecommerce/views/product/',
+                                'home'=> GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/",
+                                'forms'=> GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/forms/",
+                                'views'=> GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/views/",
+                                'river'=>"river/" . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/',
+                                'product' => GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/',
                         ),
                         'pages'=>dirname(dirname(__FILE__)).'/pages/',
                 ),
@@ -57,24 +63,24 @@ return array(
 
                 'actions'=>array(
                         'izap_ecommerce/save_settings'=>array('file' => "save_settings.php",'public'=>false,'admin_only'=>true),
-                        'izap_ecommerce/add'=>array('file' => "add_edit.php",'public'=>false,'admin_only'=>true),
-                        'izap_ecommerce/add_to_cart'=>array('file' => "add_to_cart.php",'public'=>true,'admin_only'=>false),
+                        'izap_ecommerce/add'=>array('file' => "add_edit.php",'public'=>false),
+                        'izap_ecommerce/add_to_cart'=>array('file' => "add_to_cart.php",'public'=>true),
                         'izap_ecommerce/add_to_wishlist'=>array('file' => "add_to_wishlist.php",'public'=>FALSE),
 
-                        'izap_ecommerce/remove_from_cart'=>array('file' => "remove_from_cart.php",'public'=>true,'admin_only'=>false),
-                        'izap_ecommerce/buy'=>array('file' => "buy.php",'public'=>true,'admin_only'=>false),
-                        'izap_ecommerce/download'=>array('file' => "download.php",'public'=>false,'admin_only'=>false),
-                        'izap_ecommerce/delete'=>array('file' => "delete.php",'public'=>false,'admin_only'=>TRUE),
+                        'izap_ecommerce/remove_from_cart'=>array('file' => "remove_from_cart.php",'public'=>true),
+                        'izap_ecommerce/buy'=>array('file' => "buy.php",'public'=>true),
+                        'izap_ecommerce/download'=>array('file' => "download.php",'public'=>false),
+                        'izap_ecommerce/delete'=>array('file' => "delete.php",'public'=>false),
                         'izap_ecommerce/sendtofriend' => array(
                                 'file' => 'send_to_friends.php',
                                 'public' => TRUE,
                         ),
                 ),
 
-                'page_handler'=>array('store'=>'izap_ecommerce_page_handler'),
+                'page_handler'=>array(GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER =>'izap_ecommerce_page_handler'),
 
                 'menu'=>array(
-                        'pg/store/'=>array('title'=>"izap-ecommerce:store",'public'=>true),
+                        'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/'=>array('title'=>"izap-ecommerce:store",'public'=>true),
                 ),
 
                 'widget' => array(
@@ -88,11 +94,16 @@ return array(
 
                 'submenu'=>array(
                         'store' => array(
-                                'pg/store/'=>array('title'=>"izap-ecommerce:products",'public'=>true),
-                                'pg/store/order/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false),
-                                'pg/store/settings' => array ('title' => 'izap-ecommerce:edit_settings', 'admin_only' => TRUE),
-                                'pg/store/add' => array ('title' => 'izap-ecommerce:add_product', 'admin_only' => TRUE),
-                                'pg/store/wishlist' => array ('title' => 'izap-ecommerce:wishlist'),
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
+
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/add' => array ('title' => 'izap-ecommerce:add_product','public'=>false, 'groupby' => 'my'),
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/' . get_loggedin_user()->username . '/' =>array('title'=>"izap-ecommerce:my_products",'public'=>false, 'groupby' => 'my'),
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/order/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false, 'groupby' => 'my'),
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'publid' => FALSE, 'groupby' => 'my'),
+
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/[PAGE_OWNER_USERNAME]/' =>array('title'=>"izap-ecommerce:page_owner_products",'public'=>true, 'groupby' => 'others'),
+                          
+                                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/settings' => array ('title' => 'izap-ecommerce:edit_settings', 'admin_only' => TRUE, 'groupby' => 'admin'),
                         ),
                 ),
 
@@ -102,12 +113,6 @@ return array(
                         'currency_sign' => '$',
                 ),
 
-                'search' => array(
-                        'enabled' => TRUE,
-                        'type' => 'object',
-                        'subtype' => 'izap_ecommerce',
-                ),
-
                 'events' => array(
                         'logout' => array(
                                 'user' => array(
@@ -115,9 +120,5 @@ return array(
                                 ),
                         ),
                 ),
-        ),
-
-        'includes'=>array(
-                dirname(__FILE__) => array('load.php'),
         ),
 );

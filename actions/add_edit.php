@@ -13,7 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-admin_gatekeeper();
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
 
 $izap_product = new IzapEcommerce($posted_data->guid);

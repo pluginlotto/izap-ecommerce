@@ -13,8 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-include_once dirname(__FILE__) . '/izap_ecommerce.php';
-
 global $IZAP_ECOMMERCE, $CONFIG;
 $IZAP_ECOMMERCE = new stdClass();
 
@@ -26,7 +24,7 @@ $IZAP_ECOMMERCE->plugin_path = $main_array['path']['dir']['plugin'];
 $IZAP_ECOMMERCE->libs = $main_array['path']['dir']['lib'];
 $IZAP_ECOMMERCE->gateways = $main_array['path']['dir']['gateways'];
 
-$IZAP_ECOMMERCE->object_name = 'izap_ecommerce';
+$IZAP_ECOMMERCE->object_name = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
 $IZAP_ECOMMERCE->class_name = 'IzapEcommerce';
 $IZAP_ECOMMERCE->graphics_path = $CONFIG->pluginspath . $IZAP_ECOMMERCE->plugin_name . '/_graphics/';
 $IZAP_ECOMMERCE->default_image = $main_array['plugin']['custom']['default_image'];

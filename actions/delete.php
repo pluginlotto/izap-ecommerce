@@ -13,7 +13,6 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-admin_gatekeeper();
 global $IZAP_ECOMMERCE;
 $entity = get_entity(get_input('guid'));
 

@@ -51,9 +51,12 @@ $english = array(
   'izap-ecommerce:add_product' => 'Add product',
   'izap-ecommerce:edit_product' => '',
   'izap-ecommerce:products' => 'Products',
+  'izap-ecommerce:all_products' => 'All Products',
   'izap-ecommerce:edit_settings' => 'Edit store settings',
+  'izap-ecommerce:my_products' => 'My Products',
   'izap-ecommerce:my_orders' => 'My orders',
   'izap-ecommerce:wishlist' => 'Wishlist',
+  'izap-ecommerce:page_owner_products' => '[PAGE_OWNER_USERNAME]\'s products',
   'izap-ecommerce:' => '',
 
   // titles and others
@@ -83,9 +86,10 @@ $english = array(
   'izap-ecommerce:terms' => 'Terms and conditions',
   'izap-ecommerce:remove_from_cart' => 'Remove from cart',
   'izap-ecommerce:not_processed_properly' => 'Order was not processed properly. Please contact the site administrator for more details.',
+  'izap-ecommerce:added_to_wishlist' => 'Added to wishlist',
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
-  'izap-ecommerce:' => '',
+  'izap-ecommerce:invalid_product' => 'Invalid product',
   
   // add form
   'izap-ecommerce:add_new_product' => 'Add new product',

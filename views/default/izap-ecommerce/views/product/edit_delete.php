@@ -15,7 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
-if(isadminloggedin()) {
+if($product->canEdit()) {
   ?>
 <a href="<?php echo $IZAP_ECOMMERCE->link?>edit/<?php echo $product->guid?>">
     <?php echo __('edit');?>

@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-$guid = izap_get_params(1);
+$guid = izap_get_params(2);
 $izap_product = get_product_izap_ecommerce($guid);
 if(!$izap_product) {
   register_error(__('invalid_product'));

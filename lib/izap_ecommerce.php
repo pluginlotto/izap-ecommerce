@@ -196,6 +196,28 @@ class IzapEcommerce extends ElggFile {
     }else {
       return (int)$this->price;
     }
+    }
+
+    public static function getWishList($user = false) {
+    if(!$user) {
+      $user = get_loggedin_user();
+    }
+    if(!$user) {
+      return FALSE;
+    }
+
+    $wishlist = $user->izap_wishlist;
+    if(!is_array($wishlist) && (int) $wishlist) {
+      $wishlist = array($wishlist);
+    }
+
+    return $wishlist;
+  }
+
+  public static function countWishtlistItems() {
+    $wishlist = self::getWishList();
+    return (int) count($wishlist);
+
   }
 
   public function getRating() {
@@ -212,10 +234,10 @@ class IzapEcommerce extends ElggFile {
 
   public function draw_page($title, $body, $remove_cart = FALSE) {
     global $CONFIG, $IZAP_ECOMMERCE;
-    
+
     $categories = '<div class="contentWrapper">'.
-    elgg_view('categories/list', array('baseurl' => $CONFIG->wwwroot . 'search/?subtype='.$IZAP_ECOMMERCE->object_name.'&tagtype=universal_categories&tag=')).
-    '</div>';
+            elgg_view('categories/list', array('baseurl' => $CONFIG->wwwroot . 'search/?subtype='.$IZAP_ECOMMERCE->object_name.'&tagtype=universal_categories&tag=')).
+            '</div>';
     if($remove_cart) {
       $body = elgg_view_layout('two_column_left_sidebar', '', $body, $categories);
     }else {
@@ -484,11 +506,11 @@ function func_save_wishlist_izap_ecommerce($products = array(), $user = FALSE) {
   }
 
   if(!sizeof($products)) {
-    return TRUE;
+    return FALSE;
   }
-  
+
   $old_wishlist = $user->izap_wishlist;
-  $new_wishlist = array_unique(array_merge((array) $old_wishlist, (array) $products));  
+  $new_wishlist = array_unique(array_merge((array) $old_wishlist, (array) $products));
   $user->izap_wishlist = $new_wishlist;
   return TRUE;
 }

@@ -11,34 +11,51 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
+
+define('GLOBAL_IZAP_ECOMMERCE_PLUGIN', 'izap-ecommerce');
+define('GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER', 'store');
+define('GLOBAL_IZAP_ECOMMERCE_SUBTYPE', 'izap_ecommerce');
 
 function izap_ecommerce_init() {
   if(is_plugin_enabled('izap-elgg-bridge')) {
-    func_init_plugin_byizap(array('plugin'=>array('name'=>'izap-ecommerce')));
-  }else{
+    func_init_plugin_byizap(array('plugin'=>array('name'=>GLOBAL_IZAP_ECOMMERCE_PLUGIN)));
+  }else {
     register_error('This plugin needs izap-elgg-bridge');
-    disable_plugin('izap-ecommerce');
+    disable_plugin(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
   }
 }
 
 function izap_ecommerce_page_handler($page) {
   global $CONFIG;
-  set_input('username', get_loggedin_user()->username);
+  if(get_user_by_username($page[1])) {
+    set_input('username', $page[1]);
+  }else {
+    set_input('username', get_loggedin_user()->username);
+  }
   izap_set_params($page);
   $version = (float) get_version(TRUE);
   if($version < 1.7) {
     $mode = 'elgg16/';
   }
-  
+
   if(!include_once func_get_pages_path_byizap() . $mode . $page[0] . '.php') {
-    include_once func_get_pages_path_byizap() . $mode .'index.php';
+    if(!include_once func_get_pages_path_byizap() . $page[0] . '.php') {
+      include_once func_get_pages_path_byizap() . $mode .'index.php';
+    }
   }
 }
 
 function izap_ecommerce_getUrl($entity) {
-  global $IZAP_ECOMMERCE, $CONFIG;
-  return $IZAP_ECOMMERCE->link . 'product/' . $entity->guid . '/' . $entity->slug . '/';
+
+  return func_set_href_byizap(array(
+          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+          'page_owner' => get_user($entity->container_guid)->username,
+          'page' => 'product',
+          'vars' => array($entity->guid, $entity->slug)
+  ));
+//  global $IZAP_ECOMMERCE, $CONFIG;
+//  return $IZAP_ECOMMERCE->link . 'product/' . $entity->guid . '/' . $entity->slug . '/';
 }
 
 

@@ -14,10 +14,16 @@
  */
 
 global $IZAP_ECOMMERCE;
+$list_param = izap_get_params(1);
+
 $title = __('welcome_to_store');
 $body = elgg_view_title($title);
 $options['type'] = 'object';
 $options['subtype'] = 'izap_ecommerce';
+if($list_param != 'all') {
+  $options['container_guid'] = page_owner();
+}
+$options['limit'] = 10;
 $options['full_view'] = FALSE;
 $options['offset'] = get_input('offset', 0);
 $options['view_type_toggle'] = TRUE;

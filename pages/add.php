@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-admin_gatekeeper();
+gatekeeper();
 global $CONFIG, $IZAP_ECOMMERCE;
 $title = __('add_new_product');
 $body = elgg_view_title($title);
