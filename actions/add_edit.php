@@ -61,8 +61,7 @@ if($error) {
 
       // add to river
       add_to_river(
-              func_get_template_path_byizap(
-              array('plugin' => 'izap-ecommerce', 'type' => 'river')) .$river_action ,
+              $IZAP_ECOMMERCE->river.$river_action ,
               $river_action,
               get_loggedin_userid(),
               $product->guid

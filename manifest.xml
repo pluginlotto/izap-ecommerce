@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin_manifest>
-  <field key="author" value="iZAP" />
-  <field key="version" value="2.0" />
-  <field key="description" value="eCommerce for Elgg" />
-  <field key="website" value="http://www.izap.in/" />
-  <field key="copyright" value="(C) iZAP Web Solutions" />
-  <field key="licence" value="Commercial" />
-  <field key="elgg_version" value="2010030101" />
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>iZAP Ecommerce</name>
+	<author>iZAP Team</author>
+	<version>3.0</version>
+	<blurb>Full featured ecommerce for elgg.</blurb>
+	<description>This is a simple example of a manifest file.  In this example, there are many options used, including screenshots, dependencies, and additional information about the plugin.</description>
+	<website>http://www.pluginlotto.com</website>
+	<copyright>(C) iZAP Web Solutions 2011</copyright>
+	<license>Commercial</license>
+
+	<!-- All plugins must require either elgg_version or elgg_release. -->
+	<requires>
+		<type>elgg_release</type>
+		<version>1.8b1</version>
+	</requires>
+  <requires>
+		<type>elgg_version</type>
+		<version>2011032200</version>
+	</requires>
+  <requires>
+    <type>plugin</type>
+    <name>izap-elgg-bridge</name>
+    <version>2.0</version>
+  </requires>
+  <requires>
+    <type>php_extension</type>
+    <name>curl</name>
+  </requires>
+  <requires>
+    <type>priority</type>
+    <plugin>izap-elgg-bridge</plugin>
+    <priority>after</priority>
+  </requires>
+
+	<!-- The path is relative to the plugin's root. -->
+	<screenshot>
+		<description>Sample image</description>
+		<path>screenshots/1.jpg</path>
+	</screenshot>
+  <screenshot>
+		<description>Sample image 2</description>
+		<path>screenshots/2.png</path>
+	</screenshot>
+
+	<category>iZAP</category>
+	<admin_interface>advanced</admin_interface>
+
+	<provides>
+		<type>plugin</type>
+		<name>izap-ecommerce</name>
+		<version>3.0</version>
+	</provides>
+	<suggests>
+		<type>plugin</type>
+		<name>izap-videos</name>
+		<version>4.0</version>
+	</suggests>
+  <suggests>
+    <type>php_ini</type>
+    <name>memory_limit</name>
+    <value>256M</value>
+    <comparison>ge</comparison>
+  </suggests>
 </plugin_manifest>

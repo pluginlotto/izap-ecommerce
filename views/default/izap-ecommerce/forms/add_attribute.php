@@ -13,14 +13,13 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAPTEMPLATE;
+global $IZAP_ECOMMERCE;
 
 $product = $vars['entity'];
 if(!$product->canEdit()) {
   return '';
 }
-$pro_attribs = unserialize($product->attribs);
-?>
+$pro_attribs = unserialize($product->attribs); ?>
 <span class="add_attrib_button" onclick="javascript:$('#izap_product_attrib_group_form').toggle();">Add Group</span>
 <div class="clearfloat"></div>
 <div id="izap_product_attrib_group_form">
@@ -31,22 +30,15 @@ $pro_attribs = unserialize($product->attribs);
   $frm_data .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
   $frm_data .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:add_attrib_group')));
 
-  echo elgg_view('input/form', array('body' => $frm_data, 'action' => func_get_actions_path_byizap(array(
-          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-          )) . 'add_attrib_group'));
+  echo elgg_view('input/form', array('body' => $frm_data, 'action' => $vars['url'] . 'action/izap_ecommerce/add_attrib_group'));
   ?>
 </div>
 
-
-
 <?php
-   
 $attrib_groups = unserialize($product->attrib_groups);
 if(is_array($attrib_groups) && sizeof($attrib_groups)) {
   foreach($attrib_groups as $key => $group) {
-      $remove_link = func_get_actions_path_byizap(array(
-        'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-      )) . 'remove_attrib?r_type=group&g_key=' . $key . '&guid=' . $product->guid;
+      $remove_link = $vars['url'].'action/izap_ecommerce/remove_attrib?r_type=group&g_key=' . $key . '&guid=' . $product->guid;
 
       $remove_html = elgg_view('output/confirmlink', array('href' => $remove_link, 'text' => ' X '));
     ?>
@@ -81,28 +73,21 @@ if(is_array($attrib_groups) && sizeof($attrib_groups)) {
     </table>
         <?php
         $form_body = ob_get_clean();
-        $action = func_get_actions_path_byizap(array(
-                'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-                )) . 'add_attrib';
+        $action =  $vars['url']. 'action/izap_ecommerce/add_attrib';
         echo elgg_view('input/form', array(
-        'body' => $form_body,
-        'internalid' => 'attrib_add_form_' . $key,
-        'action' => func_get_actions_path_byizap(array(
-                'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-                )) . 'add_attrib'
-        )
-        );
+          'body' => $form_body,
+          'internalid' => 'attrib_add_form_' . $key,
+          'action' => $action
+          ) );
         ?>
   </div>
   <div class="clearfloat"></div>
-  <div id="izap-product_attrib_<?php echo $key?>"><?php echo $IZAPTEMPLATE->render('product/attributes', array(
+  <div id="izap-product_attrib_<?php echo $key?>"><?php echo elgg_view($IZAP_ECOMMERCE->product .'attributes', array(
     'type' => $group['type'], 'attribs' => $pro_attribs[$key], 'entity' => $product, 'group_id' => $key));?></div>
   <script type="text/javascript">
     $(document).ready(function(){
       $('#<?php echo 'attrib_add_form_'.$key?>').submit(function(){
-        var action = '<?php echo func_get_actions_path_byizap(array(
-            'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-            )) . 'add_attrib';?>';
+        var action = '<?php echo $action;?>';
               $.ajax({
                 type: 'POST',
                 url: action,

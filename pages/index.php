@@ -30,7 +30,7 @@ $context = get_context();
 set_context('search');
 $list =elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
 if($list == '') {
-  $list = $IZAPTEMPLATE->render('views/no_data');
+  $list = $IZAPTEMPLATE->render($IZAP_ECOMMERCE->views.'/no_data');
 }
 $body .= $list;
 set_context($context);

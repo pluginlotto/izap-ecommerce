@@ -523,7 +523,7 @@ class IzapEcommerce extends ElggFile {
     return TRUE;
   }
 
-  public function draw_page($title, $body, $remove_cart = FALSE) {
+  public static function draw_page($title, $body, $remove_cart = FALSE) {
     global $CONFIG, $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 
     $categories = '<div class="contentWrapper">'.
@@ -540,8 +540,8 @@ class IzapEcommerce extends ElggFile {
   }
 
   public static function createAttributes($array = array()) {
-    $IZAPTEMPLATE = new IzapTemplate(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
-    return $IZAPTEMPLATE->render('product/attributes', $array);
+    global $IZAP_ECOMMERCE;
+    return elgg_view($IZAP_ECOMMERCE->product . 'attributes', $array);
   }
 
   public function izap_get_plugin_entity() {
@@ -574,7 +574,7 @@ function izap_view_cart($full = FALSE) {
   if(is_array($cart) && sizeof($cart)) {
     return elgg_view($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full' => $full));
   }else {
-    return '';
+    return null;
   }
 }
 
@@ -887,6 +887,6 @@ function save_order_with_user_izap_ecommerce($order) {
             'purchased_' . $order->$item_guid => 'yes',
             'purchased_' . $order->$item_code => 'yes',
     );
-    func_izap_update_metadata($provided);
+    IzapBase::updateMetadata($provided);
   }
 }

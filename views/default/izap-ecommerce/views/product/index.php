@@ -13,13 +13,11 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
-$product = $vars['entity'];
-echo elgg_view_title($product->title);
-?>
+global $IZAP_ECOMMERCE;
+$product = $vars['entity']; ?>
 <div class="contentWrapper">
 <?php
-echo $IZAPTEMPLATE->render('product/info', $vars);
-echo $IZAPTEMPLATE->render('product/tabs', $vars);
+echo elgg_view($IZAP_ECOMMERCE->product.'info', $vars);
+echo elgg_view($IZAP_ECOMMERCE->product.'tabs', $vars);
 ?>
 </div>

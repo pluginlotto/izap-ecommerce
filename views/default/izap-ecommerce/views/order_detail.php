@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $IZAP_PAYMENT_GATEWAYS;
 $order = $vars['entity'];
 $order_owner = $order->getOwnerEntity();
 if(is_plugin_enabled('messages')) {
@@ -70,10 +70,7 @@ if(is_plugin_enabled('messages')) {
           $method = ($order->payment_method) ? $order->payment_method : 'paypal';
         }else{
           $method = ($order->payment_method) ? $order->payment_method : 'paypal';
-          $info = func_get_custom_value_byizap(array(
-            'plugin' => GLOBAL_IZAP_PAYMENT_PLUGIN,
-            'var' => 'gateways_info',
-          ));
+          $info = $IZAP_PAYMENT_GATEWAYS->custom['gateways_info'];
 
           $method = $info[$method]['title'];
         }

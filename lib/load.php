@@ -16,29 +16,29 @@
 global $IZAP_ECOMMERCE, $CONFIG;
 $IZAP_ECOMMERCE = new stdClass();
 
-$main_array = $CONFIG->plugin_conf_byizap['izap-ecommerce'];
-
 // paths and names
-$IZAP_ECOMMERCE->plugin_name = $main_array['plugin']['name'];
-$IZAP_ECOMMERCE->plugin_path = $main_array['path']['dir']['plugin'];
-$IZAP_ECOMMERCE->libs = $main_array['path']['dir']['lib'];
-$IZAP_ECOMMERCE->gateways = $main_array['path']['dir']['gateways'];
+$IZAP_ECOMMERCE->plugin_name = "izap-ecommerce";
+$IZAP_ECOMMERCE->plugin_path = dirname(dirname(__FILE__))."/";
+$IZAP_ECOMMERCE->libs = dirname(__FILE__) . '/';
+$IZAP_ECOMMERCE->gateways = dirname(__FILE__) . '/gateways/';
 
 $IZAP_ECOMMERCE->object_name = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
 $IZAP_ECOMMERCE->class_name = 'IzapEcommerce';
 $IZAP_ECOMMERCE->graphics_path = $CONFIG->pluginspath . $IZAP_ECOMMERCE->plugin_name . '/_graphics/';
-$IZAP_ECOMMERCE->default_image = $main_array['plugin']['custom']['default_image'];
+$IZAP_ECOMMERCE->default_image = $CONFIG->pluginspath . 'izap-ecommerce/_graphics/no_image.jpg';
 
-$IZAP_ECOMMERCE->page_handler = $main_array['plugin']['url_title'];
-$IZAP_ECOMMERCE->link = $main_array['path']['www']['page'];
+$IZAP_ECOMMERCE->page_handler = GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER;
+$IZAP_ECOMMERCE->link = $CONFIG->wwwroot . 'pg/store/';
 $IZAP_ECOMMERCE->full_url = $CONFIG->wwwroot . 'mod/' . $IZAP_ECOMMERCE->plugin_name . '/';
-$IZAP_ECOMMERCE->_graphics = $main_array['path']['www']['images'];
+$IZAP_ECOMMERCE->_graphics = $CONFIG->wwwroot . 'mod/'.GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/_graphics/';
 
-$IZAP_ECOMMERCE->pages = func_get_pages_path_byizap();
-$IZAP_ECOMMERCE->actions = $main_array['path']['dir']['actions'];
-$IZAP_ECOMMERCE->views = func_get_template_path_byizap(array('type'=>'views', 'plugin' => 'izap-ecommerce'));
-$IZAP_ECOMMERCE->product = func_get_template_path_byizap(array('type'=>'product', 'plugin' => 'izap-ecommerce'));
-$IZAP_ECOMMERCE->forms = func_get_template_path_byizap(array('type'=>'forms', 'plugin' => 'izap-ecommerce'));
+$IZAP_ECOMMERCE->pages = dirname(dirname(__FILE__)).'/pages/';
+$IZAP_ECOMMERCE->actions = $CONFIG->pluginspath. GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/actions/';
+$IZAP_ECOMMERCE->views = GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/views/";
+$IZAP_ECOMMERCE->product = GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/';
+$IZAP_ECOMMERCE->forms = GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/forms/";
+$IZAP_ECOMMERCE->river = "river/" . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/';
 
-$IZAP_ECOMMERCE->currency = $main_array['plugin']['custom']['currency'];
-$IZAP_ECOMMERCE->currency_sign = $main_array['plugin']['custom']['currency_sign'];
+$IZAP_ECOMMERCE->currency = 'USD';
+$IZAP_ECOMMERCE->currency_sign = '$';
+$IZAP_ECOMMERCE->show_not_confirmed_orders = 'no';

@@ -13,11 +13,11 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
+global $IZAP_ECOMMERCE;
 if(get_input('search_viewtype') == 'gallery') {
-  echo $IZAPTEMPLATE->render('views/gallery', $vars);
+  echo elgg_view($IZAP_ECOMMERCE->views.'gallery', $vars);
 }elseif($vars['full']) {
-  echo $IZAPTEMPLATE->render('product/index', $vars);
+  echo elgg_view($IZAP_ECOMMERCE->product.'index', $vars);
 }else {
   if(elgg_view_exists('output/entity_row')) {
 
@@ -38,9 +38,9 @@ if(get_input('search_viewtype') == 'gallery') {
               .'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a><br />';
     }
 
-    $extra .= $IZAPTEMPLATE->render('product/edit_delete', array('entity' => $vars['entity']));
-    echo $IZAPTEMPLATE->render('output/entity_row', array('entity' => $vars['entity'], 'extra' => $extra));
+    $extra .= elgg_view($IZAP_ECOMMERCE->product.'edit_delete', array('entity' => $vars['entity']));
+    echo elgg_view('output/entity_row', array('entity' => $vars['entity'], 'extra' => $extra));
   }else {
-    echo $IZAPTEMPLATE->render('views/listing', $vars);
+    echo elgg_view($IZAP_ECOMMERCE->views.'listing', $vars);
   }
 }

@@ -18,16 +18,95 @@ define('GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER', 'store');
 define('GLOBAL_IZAP_ECOMMERCE_SUBTYPE', 'izap_ecommerce');
 
 function izap_ecommerce_init() {
+  include_once( dirname(__FILE__) . '/lib/load.php' );
+  include_once( dirname(__FILE__) . '/lib/izap_ecommerce.php' );
   if(is_plugin_enabled('izap-elgg-bridge')) {
-    func_init_plugin_byizap(array('plugin'=>array('name'=>GLOBAL_IZAP_ECOMMERCE_PLUGIN)));
+    izap_plugin_init(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
   }else {
     register_error(GLOBAL_IZAP_ECOMMERCE_PLUGIN . ' plugin, needs izap-elgg-bridge');
     disable_plugin(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
   }
+
+  elgg_register_menu_item('site', array(
+    'name'=>elgg_echo('izap-ecommerce:store'),
+    'text'=>elgg_echo('izap-ecommerce:store'),
+    'href'=>$CONFIG->wwwroot . 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'
+  ));
+
+  if(get_context()=='store') {
+    $submenu = array(
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
+
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/add' => array ('title' => 'izap-ecommerce:add_product','admin_only'=>TRUE, 'groupby' => 'my'),
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/' . get_loggedin_user()->username . '/' =>array('title'=>"izap-ecommerce:my_products",'admin_only'=>TRUE, 'groupby' => 'my'),
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/orders/'=>array('title'=>"izap-ecommerce:my_orders",'public'=>false, 'groupby' => 'my'),
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'public' => FALSE, 'groupby' => 'my'),
+                'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/all_orders/'=>array('title'=>"izap-ecommerce:all_orders",'admin_only'=>TRUE, 'groupby' => 'all'),
+              );
+    foreach($submenu as $url=>$options) {
+      if( isset($options['public']) && $options['public']==TRUE && !isloggedin() ) {
+        continue;
+      } else if( isset($options['admin_only']) && $options['admin_only']==true && !isadminloggedin() ) {
+        continue;
+      } else {
+        elgg_register_menu_item('page', array(
+          'name'=>elgg_echo($options['title']),
+          'text'=>elgg_echo($options['title']),
+          'href'=>$url,
+          'section'=>$options['groupby']
+        ));
+      }
+    }
+  }
+  
+  elgg_register_widget_type('latest_product', elgg_echo('izap-ecommerce:widgets:latest_products:name'), elgg_echo('izap-ecommerce:widgets:latest_products:description'));
+  // Extend hover-over menu
+  elgg_extend_view('profile/menu/links', GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/menu");
+  elgg_register_page_handler(GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
+  elgg_register_entity_type('object', 'izap_ecommerce');
+  elgg_register_entity_type('object', 'izap_order');
+  elgg_register_entity_url_handler('object', 'izap_ecommerce', 'izap_ecommerce_getUrl');
+  elgg_register_entity_url_handler('object', 'izap_order', 'izap_order_getUrl');
+  add_subtype('object', 'izap_ecommerce', 'IzapEcommerce');
+  
+  $actions_arr = array(
+      'admin'=>array(
+          'izap_ecommerce/save_settings'=>"save_settings.php",
+          'izap_ecommerce/add_attrib'=>"add_attrib.php",
+          'izap_ecommerce/add_attrib_group'=>"add_attrib_group.php",
+          'izap_ecommerce/remove_attrib'=>"remove_attrib.php",
+          'izap_ecommerce/delete'=>"delete.php",
+          'izap_ecommerce/add'=>"add_edit.php",
+          'izap_ecommerce/add_screenshots'=>"add_screenshots.php"
+      ),
+      'public'=>array(
+          'izap_ecommerce/add_to_cart'=>"add_to_cart.php",
+          'izap_ecommerce/remove_from_cart'=>"remove_from_cart.php",
+          'izap_ecommerce/buy'=>"buy.php",
+          'izap_ecommerce/sendtofriend'=>"send_to_friends.php",
+          'izap_ecommerce/delete_screenshot'=>"delete_screenshot.php",
+          'izap_ecommerce/paypal_notify'=>"paypal_notify.php",
+      ),
+      'logged_in'=>array(
+          'izap_ecommerce/add_to_wishlist'=>"add_to_wishlist.php",
+          'izap_ecommerce/remove_from_wishlist'=>"remove_from_wishlist.php",
+          'izap_ecommerce/download'=>"download.php",
+      ) );
+  foreach($actions_arr as $access_id => $actions) {
+    foreach($actions as $action=>$filename) {
+      elgg_register_action($action, $CONFIG->pluginspath. GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/actions/' . $filename, $access_id );
+      elgg_register_plugin_hook_handler('action', $action, GLOBAL_IZAP_ACTIONHOOK);
+    }
+  }
+  elgg_register_event_handler('logout', 'user', 'func_save_cart_izap_ecommerce');
+  elgg_register_plugin_hook_handler('izap_payment_gateway', 'IPN_NOTIFY_ALERTPAY:SUCCESS', 'izap_alertpay_process_order');
+  elgg_register_plugin_hook_handler('izap_payment_gateway', 'IPN_NOTIFY_ALERTPAY:FAIL', 'izap_alertpay_fail');
+
+  elgg_register_js('jquery.md5', 'mod/izap-elgg-bridge/vendors/jquery.md5.js');
 }
 
 function izap_ecommerce_page_handler($page) {
-  global $CONFIG;
+  global $IZAP_ECOMMERCE, $CONFIG;
   if(get_user_by_username($page[1])) {
     set_input('username', $page[1]);
   }else {
@@ -39,7 +118,7 @@ function izap_ecommerce_page_handler($page) {
     $mode = 'elgg16/';
   }
 
-  $intial_path = func_get_pages_path_byizap();
+  $intial_path = $IZAP_ECOMMERCE->pages;
   $filename = $intial_path . $mode . $page[0] . '.php';
   if(!file_exists($filename)) {
     $filename = $intial_path . $page[0] . '.php';
@@ -53,24 +132,12 @@ function izap_ecommerce_page_handler($page) {
 }
 
 function izap_ecommerce_getUrl($entity) {
-
-  return func_set_href_byizap(array(
-          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-          'page_owner' => get_user($entity->container_guid)->username,
-          'page' => 'product',
-          'vars' => array($entity->guid, $entity->slug)
-  ));
+  return GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/product/' . get_user($entity->container_guid)->username . '/' . $entity->guid . '/' . $entity->slug;
 }
 
 
 function izap_order_getUrl($entity) {
-
-  return func_set_href_byizap(array(
-          'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-          'page_owner' => FALSE,
-          'page' => 'order_detail',
-          'vars' => array($entity->guid)
-  ));
+  return GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/order/' . $entity->guid;
 }
 
 register_elgg_event_handler('init', 'system', 'izap_ecommerce_init');
@@ -98,7 +165,7 @@ function izap_alertpay_process_order($hook, $entity_type, $returnvalue, $params)
 
   $provided['entity'] = $order;
   $provided['metadata'] = $main_array;
-  func_izap_update_metadata($provided);
+  IzapBase::updateMetadata($provided);
 
   // save purchased product info with user
   save_order_with_user_izap_ecommerce($order);
@@ -119,7 +186,7 @@ function izap_alertpay_fail($hook, $entity_type, $returnvalue, $params) {
 
   $provided['entity'] = $order;
   $provided['metadata'] = $main_array;
-  func_izap_update_metadata($provided);
+  IzapBase::updateMetadata($provided);
 
   notify_user(
           $order->owner_guid,
@@ -127,4 +194,102 @@ function izap_alertpay_fail($hook, $entity_type, $returnvalue, $params) {
           elgg_echo('izap-ecommerce:order_processe_error'),
           elgg_echo('izap-ecommerce:order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
   );
+}
+
+// Functions from izap-elgg-bridge 1.7
+function izap_load_file($file, $options = array()) {
+  global $IZAPTEMPLATE, $CONFIG;
+
+  // statring the global template render class
+  $IZAPTEMPLATE = new IzapTemplate;
+
+  if(include_once ($file)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function izap_plugin_settings($supplied_array) {
+  $default = array(
+          'override' => FALSE,
+          'make_array' => FALSE,
+  );
+
+  extract(array_merge($default, (array) $supplied_array));
+
+  if(isset ($plugin) && !empty ($plugin)) {
+    $plugin_name = $plugin;
+  }
+
+  // get the old value
+  $old_setting = get_plugin_setting($setting_name, $plugin_name);
+
+  if(is_array($value)) {
+    $plugin_values = implode('|', $value);
+  }else {
+    $plugin_values = $value;
+  }
+  // if it is not set yet
+  if((is_null($old_setting) && !empty($plugin_values)) || $override) {
+    if(!set_plugin_setting($setting_name, $plugin_values, $plugin_name)) {
+      return FALSE;
+    }else {
+      $return_val = $value;
+    }
+  }
+
+  if($old_setting !== FALSE) {
+    $old_array = explode('|', $old_setting);
+    if(count($old_array) > 1) {
+      $return_val = $old_array;
+    }else {
+      $return_val = $old_setting;
+    }
+  }
+
+  if(!is_array($return_val) && $make_array) {
+    $new_return_val[] = $return_val;
+    $return_val = $new_return_val;
+  }
+
+  return $return_val;
+}
+
+function func_generate_unique_id($input = '') {
+  $microtime = md5(microtime(TRUE));
+  $rand = rand(rand(43, 1985), time());
+  $input = md5($input);
+
+  return md5($microtime . $rand . $input . rand(43, 1985));
+}
+
+function isAjax() {
+  return izap_is_ajax_request();
+}
+
+function izap_is_ajax_request() {
+  return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+                  ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
+}
+function izap_cache_headers($options = array()) {
+  $sessions_start_time = (int)$_SESSION['start_time'];
+  if(!$sessions_start_time) {
+    $_SESSION['start_time'] = time();
+  }
+  $defaults = array(
+          'expire_time' => 86400, // one day
+          'content_type' => 'text/html',
+          'file_name' => current_page_url(),
+          'filemtime' => $sessions_start_time,
+  );
+
+  $working = array_merge($defaults, $options);
+  extract($working);
+
+  header("Pragma: public");
+  header("Cache-Control: maxage=".$expire_time . " must-revalidate");
+  header('Expires: ' . gmdate('D, d M Y H:i:s', $sessions_start_time + $expire_time) . ' GMT');
+  header("Last-Modified: " . gmdate('D, d M Y H:i:s', $filemtime) . ' GMT');
+  header("Content-type: {$content_type}");
+  header("Content-Disposition: inline; filename=\"{$file_name}\"");
 }

@@ -45,7 +45,7 @@ $params['msg']="
     {$CONFIG->post_byizap->attributes['email']}.
   ";
 //func_printarray_byizap($params);
-$success=func_send_mail_byizap($params);
+$success=IzapBase::sendMail($params);
 // send email
 
 // Success message

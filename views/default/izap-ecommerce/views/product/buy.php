@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
+global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?guid=' . $product->guid);
 $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_wishlist?guid=' . $product->guid);
@@ -24,15 +24,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
 <div class="contentWrapper izap-product-buy">
   <?php if(!$product->isArchived()) {?>
   <div class="izap-product-float-left izap-product-buy-rate">
-    <b>
-        <?php
-        echo elggb_echo('rateit');
-        ?>
-    </b>
-    <br />
-    <span id="rate_stars">
-        <?php echo elgg_view('input/rate', array('entity' => $product));?>
-    </span>
+    <?php echo elgg_view('likes/display', array('entity'=>$product)) ?>
   </div>
 
   <div class="izap-product-float-left izap-product-buy-price">
@@ -54,12 +46,12 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
   </div>
   <div class="clearfloat"></div>
 </div>
-<div class="izap-product-buy-buynow">
+<div class="izap-product-buy-buynow" >
     <?php if($product->isAvailable()) {
       if($product->canEdit()) {
-        $form = $IZAPTEMPLATE->render('forms/add_attribute', array('entity'=> $product));
+        $form = elgg_view($IZAP_ECOMMERCE->forms.'add_attribute', array('entity'=> $product));
       }else {
-        $form = $IZAPTEMPLATE->render('product/view_attributes', array('entity' => $product));
+        $form = elgg_view($IZAP_ECOMMERCE->product.'view_attributes', array('entity' => $product));
       }
       if($product->canDownload()) {
         $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
@@ -75,7 +67,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
 
           if(IzapEcommerce::isInWishlist($product->guid)) {
             $form .= '
-            <a class="button" href="'.elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
+            <a class="button" href="'.elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/' .
                     'remove_from_wishlist?guid=' . $product->guid).'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a>
           ';
           }elseif(isloggedin()) {
@@ -86,9 +78,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
 
           $form .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:buynow')));
         }
-        echo elgg_view('input/form', array('body' => $form, 'action' => func_get_actions_path_byizap(array(
-                'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-                )) . 'add_to_cart'));
+        echo elgg_view('input/form', array('body' => $form, 'action' => $vars['url'] . 'action/izap_ecommerce/' . 'add_to_cart'));
       }
       ?>
       <?php
@@ -104,9 +94,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
   if(IzapEcommerce::isInWishlist($product->guid)) {
     ?>
 <div class="add_new_version">
-  <a href="<?php echo elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
-      'remove_from_wishlist?guid=' . $product->guid);
-         ?>">
+  <a href="<?php echo elgg_add_action_tokens_to_url($IZAP_ECOMMERCE->actions . 'remove_from_wishlist?guid=' . $product->guid); ?>">
            <?php echo elgg_echo('izap-ecommerce:remove_from_wishlist');?>
   </a>
 </div>

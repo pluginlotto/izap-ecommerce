@@ -23,7 +23,7 @@ $tabs_array = array(
                 ),
                 array(
                         'title'=>elggb_echo('send_to_friend'),
-                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product)),
+                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product, 'guid'=>$product->guid)),
                 ),
                 array(
                         'title'=>elggb_echo('terms'),
@@ -40,7 +40,7 @@ $tabs_array['tabsArray'][] = array(
           'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/archives',array('entity'=>$product)),
 );
 
-echo izap_elgg_bridge_view('tabs',$tabs_array);
+echo elgg_view('izap-elgg-bridge/views/tabs',$tabs_array);
 ?>
 <script type="text/javascript">
     $(document).ready(function(){

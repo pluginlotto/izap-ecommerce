@@ -55,7 +55,7 @@ if($order->guid !== 0) {
 
     IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));
-    forward($IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid);
+    forward($IZAP_ECOMMERCE->link . 'order/' . $order->guid);
   }else {
     // delete the not processed order
     $order->delete();

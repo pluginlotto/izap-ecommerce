@@ -38,9 +38,9 @@ if($error) {
 }else {
 
   // update the  total download count
-  func_hook_access_over_ride_byizap(array('status' => TRUE));
+  IzapBase::getAllAccess();
   $product->total_downloads = (int) ($product->total_downloads) +1;
-  func_hook_access_over_ride_byizap(array('status' => TRUE));
+  IzapBase::removeAccess();
   
   $file_name = basename($product->file_path);
   $size = strlen($content);

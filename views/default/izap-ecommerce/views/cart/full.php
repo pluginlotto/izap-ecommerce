@@ -61,7 +61,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         <br />
         <br />
         <a href="<?php echo elgg_add_action_tokens_to_url($remove_lnk . $product->guid)?>" title="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>">
-          <img src="<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images'))?>remove_from_cart.png" alt="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>"/>
+          <img src="<?php echo $IZAP_ECOMMERCE->_graphics?>remove_from_cart.png" alt="<?php echo elgg_echo('izap-ecommerce:remove_from_cart')?>"/>
         </a>
       </div>
 
@@ -120,5 +120,4 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 //update session
 add_to_session_izap_ecommerce('total_cart_items', $total_products);
 add_to_session_izap_ecommerce('total_cart_price', $total_price);
-add_to_session_izap_ecommerce('items', $item);
-?>
+add_to_session_izap_ecommerce('items', $item); ?>

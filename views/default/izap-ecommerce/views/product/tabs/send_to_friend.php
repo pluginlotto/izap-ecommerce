@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-global $IZAP_ECOMMERCE;
+global $IZAP_ECOMMERCE, $CONFIG;
 $product = $vars['entity'];
 ?>
 
@@ -22,8 +22,7 @@ $product = $vars['entity'];
   <form action="<?php echo $vars['url']?>action/izap_ecommerce/sendtofriend" method="post">
     <?php
     echo elgg_view('input/securitytoken');
-    echo $vars['guid']?elgg_view('input/hidden', array('internalname' => 'attributes[guid]', 'value' => $product->guid)):"";
-    ?>
+    echo $vars['guid']?elgg_view('input/hidden', array('internalname' => 'attributes[guid]', 'value' => $product->guid)):""; ?>
 
     <p>
       <label for="name" ><?php echo elgg_echo('izap-ecommerce:your_name');?></label>
@@ -47,7 +46,7 @@ $product = $vars['entity'];
 
     <p>
       <label for="msg"><?php echo elgg_echo('izap-ecommerce:message');?></label
-      <?php echo elgg_view('input/longtext', array('internalname' => 'attributes[_msg]', 'value' => $vars['postArray']['msg'], 'internalid'=>"msg"));?>
+      <?php echo elgg_view('input/plaintext', array('internalname' => 'attributes[_msg]', 'value' => $vars['postArray']['msg'], 'internalid'=>"msg"));?>
     </p>
 
     <p>
