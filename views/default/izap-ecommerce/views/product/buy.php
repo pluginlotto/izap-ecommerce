@@ -19,66 +19,87 @@ $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecomm
 $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_wishlist?guid=' . $product->guid);
 ?>
 <div class="contentWrapper izap-product-buy">
+  <?php if(!$product->isArchived()) {?>
   <div class="izap-product-float-left izap-product-buy-rate">
     <b>
-      <?php
-      echo elggb_echo('rateit');
-      ?>
+        <?php
+        echo elggb_echo('rateit');
+        ?>
     </b>
     <br />
     <span id="rate_stars">
-      <?php echo elgg_view('input/rate', array('entity' => $product));?>
+        <?php echo elgg_view('input/rate', array('entity' => $product));?>
     </span>
   </div>
 
   <div class="izap-product-float-left izap-product-buy-price">
-    <?php $price = $product->getPrice(false);
-    if($price) {?>
+      <?php $price = $product->getPrice(false);
+      if($price) {?>
     <b>
-        <?php
-        echo elgg_echo('izap-ecommerce:price');
-        ?>
+          <?php
+          echo elgg_echo('izap-ecommerce:price');
+          ?>
     </b><br />
-      <?php
-      echo '<b>' . $product->getPrice() . '</b>';
-    }
-    ?>
+        <?php
+        echo '<b>' . $product->getPrice() . '</b>';
+      }
+      ?>
   </div>
 
   <div class="izap-product-float-right izap-product-buy-buynow">
-    <?php if($product->isAvailable()) {
-      $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
-      if(isadminloggedin()) {
-        ?>
+      <?php if($product->isAvailable()) {
+        if($product->canDownload()) {
+          $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
+          ?>
     <a href="<?php echo $donwload_link?>">
-          <?php echo elgg_echo('izap-ecommerce:download');?>
+            <?php echo elgg_echo('izap-ecommerce:download');?>
     </a>
-        <?php
-      }
-      if(!$price) {
-        ?>
-    <a href="<?php echo $donwload_link?>">
-          <?php echo elgg_echo('izap-ecommerce:download');?>
-    </a>
-        <?php
-      }else {
-        ?>
+          <?php
+        }else {
+          ?>
     <a href="<?php echo $add_cart_link?>">
-          <?php echo elgg_echo('izap-ecommerce:buynow');?>
+            <?php echo elgg_echo('izap-ecommerce:buynow');?>
     </a>
-        <?php }
-    }else {?>
+          <?php }
+      }else {?>
     <a href="#">
-        <?php echo elgg_echo('izap-ecommerce:comming soon');?>
+          <?php echo elgg_echo('izap-ecommerce:comming soon');?>
     </a>
-      <?php }?>
-    <?php if(isloggedin()) {?>
-      &nbsp;
+        <?php }?>
+      <?php if(isloggedin()) {?>
+    &nbsp;
     <a href="<?php echo $add_wishlist_link;?>">
-      <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
+          <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
     </a>
-      <?php }?>
+        <?php }?>
   </div>
 
   <div class="clearfloat"></div>
+    <?php
+  }else {
+    $new_version = get_product_izap_ecommerce($product->parent_guid);
+    if($new_version) {
+      ?>
+  <div class="add_new_version">
+    <a href="<?php echo $new_version->getURL();?>"><?php echo 
+          elgg_echo('izap-ecommerce:get_latest_version')?></a>
+  </div>
+      <?php }
+
+    if($product->canDownload()) {
+      $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
+      ?>
+  <div class="old_version_download">
+  <a href="<?php echo $donwload_link?>">
+        <?php echo elgg_echo('izap-ecommerce:download');?>
+  </a></div>
+      <?php
+    }
+
+    ?>
+  <div class="clearfloat"></div>
+    <?php
+  }
+
+  ?>
 </div>

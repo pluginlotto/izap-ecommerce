@@ -6,12 +6,32 @@
 ***************************************************
 * @author iZAP Team "<support@izap.in>"
 * @link http://www.izap.in/
-* @version 1.0
+* @version {version} $Revision: {revision}
 * Under this agreement, No one has rights to sell this script further.
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
+
+$archived_products = get_archived_products_izap_ecommerce($vars['entity']);
 ?>
-<script type="text/javascript" language="javascript" src="<?php echo $vars['url']?>mod/izap-ecommerce/vendors/jquery-lightbox-0.5/js/jquery.lightbox-0.5.pack.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo $vars['url']?>mod/izap-ecommerce/vendors/jquery-lightbox-0.5/css/jquery.lightbox-0.5.css">
+<div class="izap_terms_conditions">
+<?php
+if($archived_products) {
+  echo '<ol type="1">';
+  foreach($archived_products as $product) {
+    ?>
+  <li style="list-style-type: decimal;">
+  <a href="<?php echo $product->getUrl();?>">
+        <?php echo $product->title?>
+  </a>
+    <br />
+      <?php $description  = filter_var($product->description, FILTER_SANITIZE_STRIPPED); echo substr($description, 0, 75);?>...
+    
+</li>
+    <?php
+  }
+  echo '</ol>';
+}
+?>
+</div>

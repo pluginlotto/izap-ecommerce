@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
 
@@ -43,9 +43,13 @@ if($error) {
 
   if($izap_product->save()) {
     if(!$izap_product->saveFiles($edit_mode)) {
-      delete_entity($izap_product->guid);
+      $izap_product->delete();
       register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
+
+      if(isset ($posted_data->parent_of)) {
+        $izap_product->archiveOldProduct($posted_data->parent_of);
+      }
       // add to river
       add_to_river(
               func_get_template_path_byizap(

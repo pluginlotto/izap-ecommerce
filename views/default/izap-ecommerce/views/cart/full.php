@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
- */
+*/
 
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
@@ -88,8 +88,10 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
           'internalname' => 'owner_guid',
           'value' => $user_guid,
         ));
+        if(is_plugin_enabled(GLOBAL_IZAP_PAYMENT_PLUGIN)) {
         ?>
         <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" />
+        <?php }?>
       </form>
     </div>
 

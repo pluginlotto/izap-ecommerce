@@ -18,6 +18,16 @@ $product = $vars['entity'];
 ?>
 <div>
   <div class="izap-product-description">
+    <?php if($product->canEdit() && !$product->isArchived()) {?>
+    <div align="right" class="add_new_version">
+      <a href="<?php echo func_set_href_byizap(array(
+        'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+        'page' => 'new_version',
+        'vars' => array($product->guid)
+           ));?>"><?php echo elgg_echo('izap_ecommerce:add_new_version'); ?></a>
+    </div>
+    <div class="clearfloat"></div>
+      <?php }?>
     <div align="center">
       <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" class="izap-product-image"/>
     </div>

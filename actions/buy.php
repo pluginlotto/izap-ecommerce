@@ -43,6 +43,14 @@ if($order->guid !== 0) {
   if($processed['status'] === TRUE) {
     $order->confirmed = 'yes';
     $order->payment_transaction_id = $payment->getTransactionId();
+
+    // save purchased product info with user
+    for($i=0; $i<$order->total_items; $i++) {
+      $item_guid = 'item_guid_' . $i;
+      $purchased = 'purchased_' . $order->$item_guid;
+      get_loggedin_user()->$purchased = 'yes';
+    }
+    
     IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));
     forward($IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid);

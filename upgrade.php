@@ -6,12 +6,34 @@
 ***************************************************
 * @author iZAP Team "<support@izap.in>"
 * @link http://www.izap.in/
-* @version 1.0
+* @version {version} $Revision: {revision}
 * Under this agreement, No one has rights to sell this script further.
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
+
+require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
+admin_gatekeeper();
+ob_start();
 ?>
-<script type="text/javascript" language="javascript" src="<?php echo $vars['url']?>mod/izap-ecommerce/vendors/jquery-lightbox-0.5/js/jquery.lightbox-0.5.pack.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo $vars['url']?>mod/izap-ecommerce/vendors/jquery-lightbox-0.5/css/jquery.lightbox-0.5.css">
+<h1>
+  Upgrading old products
+</h1>
+<?php
+ob_flush();
+if(is_callable('elgg_get_entities')) {
+  $all_products = elgg_get_entities(array('type' => 'object', 'subtype' => GLOBAL_IZAP_ECOMMERCE_SUBTYPE));
+}else{
+  $all_products = get_entities('object', GLOBAL_IZAP_ECOMMERCE_SUBTYPE);
+}
+
+if($all_products) {
+  foreach($all_products as $product) {
+    $product->archived = 'no';
+  }
+}
+forward(func_set_href_byizap(array(
+  'pluign' => GLOBAL_IZAP_ECOMMERCE_PLUGIN
+)));
+exit;

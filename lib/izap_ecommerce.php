@@ -122,6 +122,35 @@ class IzapEcommerce extends ElggFile {
     return $return;
   }
 
+  public function archiveOldProduct($old_guid) {
+    $old_product = get_entity($old_guid);
+    if($old_product) {
+      $old_childs = $old_product->children;
+      if(!empty($old_childs)) {
+        if(!is_array($old_childs)) {
+          $old_childs = array($old_childs);
+        }
+      }
+      $new_childs = array_merge((array) $old_childs, (array) $old_product->guid);
+      $old_product->archived = 'yes';
+      $old_product->parent_guid = $this->guid;
+      $old_product->save();
+
+      $this->children = $new_childs;
+      $this->archived = 'no';
+    }
+
+    return FALSE;
+  }
+
+  public function isArchived() {
+    if($this->archived == 'yes') {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+  
   public function delete() {
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
     $items = glob($dir . '*.*');
@@ -134,6 +163,35 @@ class IzapEcommerce extends ElggFile {
     return parent::delete();
   }
 
+  public function canDownload($user = FALSE) {
+      if(!$user) {
+        $user = get_loggedin_user();
+      }
+
+      // if it is free
+      if(!$this->getPrice()) {
+        return TRUE;
+      }
+      
+      // check for user then
+      if(!$user) {
+        return FALSE;
+      }
+
+      // if admin loggeding
+      if(isadminloggedin()) {
+        return TRUE;
+      }
+
+      // if the user have already bought it
+      $purchased = 'purchased_' . $this->guid;
+      if($user->$purchased == 'yes') {
+        return TRUE;
+      }
+      
+      return FALSE;
+  }
+  
   public function makeImageSize($size) {
     switch ($size) {
       case "tiny":
@@ -568,4 +626,33 @@ function func_remove_from_wishlist_izap_ecommerce($products, $user = FALSE) {
   $user->izap_wishlist = $new_wishlist;
 
   return TRUE;
+}
+
+function get_archived_products_izap_ecommerce($product) {
+  global $IZAP_ECOMMERCE;
+
+  $children = (array) $product->children;
+
+  if(sizeof($children)) {
+    foreach($children as $child) {
+      $return_array[$child] = get_entity($child);
+    }
+  }
+
+  krsort($return_array);
+  return $return_array;
+}
+
+function get_default_listing_options_izap_ecommerce() {
+  $options['type'] = 'object';
+  $options['subtype'] = 'izap_ecommerce';
+  $options['limit'] = 10;
+  $options['full_view'] = FALSE;
+  $options['offset'] = get_input('offset', 0);
+  $options['view_type_toggle'] = TRUE;
+  $options['pagination'] = TRUE;
+  $options['metadata_name'] = 'archived';
+  $options['metadata_value'] = 'no';
+
+  return $options;
 }

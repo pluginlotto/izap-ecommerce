@@ -6,7 +6,7 @@
 
 ?>
 <p>
-		<?php echo __("widgets:num_to_display"); ?>:
+		<?php echo elgg_echo('izap-ecommerce:widgets:num_to_display'); ?>:
 		<select name="params[num_display]">
 		    <option value="1" <?php if($vars['entity']->num_display == 1) echo "SELECTED"; ?>>1</option>
 		    <option value="2" <?php if($vars['entity']->num_display == 2) echo "SELECTED"; ?>>2</option>

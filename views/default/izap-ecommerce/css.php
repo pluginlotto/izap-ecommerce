@@ -128,7 +128,8 @@ color: #E01F1F;
 .izap-product-buy-buynow a{
 padding:10px;
 margin-left:10px;
--moz-border-radius: 8px 8px 8px 8px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
 background-color: #4690D6;
 color: #FFFFFF;
 text-decoration: none;
@@ -241,4 +242,55 @@ padding:10px;
   background-color: #C80000;
   color: #FCED00;
   text-decoration:none;
+}
+
+.screeshot_thumb {
+float:left;
+margin:4px;
+}
+
+.add_new_version {
+background-color: #0054A7;
+float: right;
+padding: 10px;
+margin:0px 10px 0px 10px;
+font-size:1em;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+.add_new_version:hover {
+background-color: #02417F;
+}
+
+.add_new_version a{
+color: #FFFFFF;
+font-weight: bold;
+}
+
+.add_new_version a:hover{
+text-decoration: none;
+color: #FFFFFF;
+font-weight: bold;
+}
+
+.old_version_download {
+background-color: #FF0000;
+float: right;
+padding: 10px;
+margin:0px 10px 0px 10px;
+font-size:1em;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+.old_version_download a{
+color: #FFFFFF;
+font-weight: bold;
+}
+
+.old_version_download a:hover{
+text-decoration: none;
+color: #FFFFFF;
+font-weight: bold;
 }

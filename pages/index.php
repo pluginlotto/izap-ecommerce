@@ -17,23 +17,13 @@ global $IZAP_ECOMMERCE;
 $list_param = izap_get_params(1);
 
 $title = elgg_echo('izap-ecommerce:welcome_to_store');
-$body = elgg_view_title($title);
-$options['type'] = 'object';
-$options['subtype'] = 'izap_ecommerce';
-//if($list_param != 'all') {
-//  $options['container_guid'] = page_owner();
-//}
-$options['limit'] = 10;
-$options['full_view'] = FALSE;
-$options['offset'] = get_input('offset', 0);
-$options['view_type_toggle'] = TRUE;
-$options['pagination'] = TRUE;
+$body = elgg_view_title($title); 
 
 $context = get_context();
 set_context('search');
-$list =elgg_list_entities($options);
+$list =elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
 if($list == '') {
-  $list = func_izap_bridge_view('views/no_data');
+  $list = func_izap_bridge_view('views/no_data', array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
 }
 $body .= $list;
 set_context($context);

@@ -51,7 +51,7 @@ return array(
 
                 'title'=>"E-commerce",
 
-                'url_title'=>"store",
+                'url_title' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
 
                 'objects'=>array(
                         'izap_ecommerce'=>array(
@@ -79,6 +79,16 @@ return array(
                         'izap_ecommerce/sendtofriend' => array(
                                 'file' => 'send_to_friends.php',
                                 'public' => TRUE,
+                        ),
+
+                        'izap_ecommerce/add_screenshots' => array(
+                          'file' => 'add_screenshots.php',
+                          'public' => FALSE,
+                        ),
+
+                        'izap_ecommerce/delete_screenshot' => array(
+                          'file' => 'delete_screenshot.php',
+                          'public' => FALSE,
                         ),
                 ),
 

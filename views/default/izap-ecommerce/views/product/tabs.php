@@ -15,22 +15,32 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
-echo izap_elgg_bridge_view('tabs',array(
-'tabsArray'=>array(
-        array(
-                'title'=>elggb_echo('comments'),
-                'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
-        ),
-        array(
-                'title'=>elggb_echo('send_to_friend'),
-                'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product)),
-        ),
-        array(
-                'title'=>elggb_echo('terms'),
-                'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/terms',array('entity'=>$product)),
-        ),
-)
-));
+$tabs_array = array(
+        'tabsArray'=>array(
+                array(
+                        'title'=>elggb_echo('comments'),
+                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
+                ),
+                array(
+                        'title'=>elggb_echo('send_to_friend'),
+                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product)),
+                ),
+                array(
+                        'title'=>elggb_echo('terms'),
+                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/terms',array('entity'=>$product)),
+                ),
+        )
+);
+$tabs_array['tabsArray'][] = array(
+          'title'=>elgg_echo('izap-ecommerce:screenshots'),
+          'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/screenshots',array('entity'=>$product)),
+);
+$tabs_array['tabsArray'][] = array(
+          'title'=>elgg_echo('izap-ecommerce:archives'),
+          'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/archives',array('entity'=>$product)),
+);
+
+echo izap_elgg_bridge_view('tabs',$tabs_array);
 ?>
 <script type="text/javascript">
     $(document).ready(function(){

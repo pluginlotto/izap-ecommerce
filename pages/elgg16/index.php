@@ -27,8 +27,18 @@ $options['full_view'] = FALSE;
 $options['toggleview'] = TRUE;
 $options['pagination'] = TRUE;
 
+$options = get_default_listing_options_izap_ecommerce();
 $context = get_context();
 set_context('search');
-$body .= list_entities($options['type'], $options['subtype'], $options['container_guid'], $options['limit'], $options['full_view'], $options['toggleview'], $options['pagination']);
+$body .= list_entities_from_metadata(
+        $options['metadata_name'],
+        $options['metadata_value'],
+        $options['type'],
+        $options['subtype'],
+        $options['container_guid'],
+        $options['limit'],
+        $options['full_view'],
+        $options['toggleview'],
+        $options['pagination']);
 set_context($context);
 IzapEcommerce::draw_page($title, $body);

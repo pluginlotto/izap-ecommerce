@@ -36,6 +36,16 @@ if($variables['status'] === TRUE) {
   $provided['metadata'] = $main_array;
   func_izap_update_metadata($provided);
 
+  // save purchased product info with user
+  for($i=0; $i<$order->total_items; $i++) {
+    $item_guid = 'item_guid_' . $i;
+    $provided['guid'] = $order->owner_guid;
+    $provided['metadata'] = array(
+      'purchased_' . $order->$item_guid => 'yes',
+    );
+    func_izap_update_metadata($provided);
+  }
+  
   IzapEcommerce::sendOrderNotification($order);
 }else {
   $order_id = $variables['ipn_data']['custom'];
