@@ -14,10 +14,11 @@
 */
 
 global $IZAP_ECOMMERCE;
-if($vars['full']) {
+if(get_input('search_viewtype') == 'gallery') {
+  echo $IZAP_ECOMMERCE->product . 'gallery';
+  echo elgg_view($IZAP_ECOMMERCE->product . 'gallery', $vars);
+}elseif($vars['full']) {
   echo elgg_view($IZAP_ECOMMERCE->product . 'index', $vars);
-}elseif(get_context() == 'search') {
-  echo elgg_view($IZAP_ECOMMERCE->views . 'listing', $vars);
 }else {
   if(elgg_view_exists('output/entity_row')) {
 

@@ -19,6 +19,11 @@ $body = elgg_view_title($title);
 $options['type'] = 'object';
 $options['subtype'] = 'izap_ecommerce';
 $options['full_view'] = FALSE;
+$options['toggleview'] = TRUE;
+$options['pagination'] = TRUE;
 
-$body .= list_entities($options['type'], $options['subtype'], 0, 10, $options['full_view'], FALSE, TRUE);
+$context = get_context();
+set_context('search');
+$body .= list_entities($options['type'], $options['subtype'], 0, 10, $options['full_view'], $options['toggleview'], $options['pagination']);
+set_context($context);
 IzapEcommerce::draw_page($title, $body);
