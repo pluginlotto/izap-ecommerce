@@ -13,6 +13,8 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
+include_once dirname(dirname(__FILE__)) . '/gateways/paypal/paypal.php';
+
 global $IZAP_ECOMMERCE;
 $cart_id = time();
 $cart = get_from_session_izap_ecommerce('izap_cart');

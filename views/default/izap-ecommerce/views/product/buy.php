@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
@@ -31,23 +31,39 @@ $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecomm
   </div>
 
   <div class="izap-product-float-left izap-product-buy-price">
+    <?php $price = $product->getPrice(false);
+    if($price) {?>
     <b>
-      <?php
-      echo __('price');
-      ?>
+        <?php
+        echo __('price');
+        ?>
     </b><br />
-    <?php echo '<b class="color_red">'.((!isloggedin()) ? 'Not more than ' : '').'' . $product->getPrice() . '</b>'; ?>
+      <?php
+      echo '<b class="color_red">'.((!isloggedin()) ? 'Not more than ' : '').'' . $product->getPrice() . '</b>';
+    }
+    ?>
   </div>
 
   <div class="izap-product-float-right izap-product-buy-buynow">
-    <?php if($product->isAvailable()) {?>
-    <a href="<?php echo $add_cart_link?>">
-        <?php _e('buynow');?>
+    <?php if($product->isAvailable()) {
+      if(!$price) {
+        $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
+        ?>
+    <a href="<?php echo $donwload_link?>">
+          <?php _e('download');?>
     </a>
-      <?}else {?>
+        <?php
+      }else {
+        ?>
+    <a href="<?php echo $add_cart_link?>">
+          <?php _e('buynow');?>
+    </a>
+        <?}
+    }
+    else {?>
     <a href="#">
-      <?php _e('comming soon');?>
-      </a>
+        <?php _e('comming soon');?>
+    </a>
       <?php }?>
   </div>
 
