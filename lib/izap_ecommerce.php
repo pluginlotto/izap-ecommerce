@@ -95,6 +95,7 @@ class IzapEcommerce extends ElggFile {
       }
 
       $this->image_extension = $file_extension;
+      $this->image_mime_type = $_FILES['image']['type'];
       if(in_array($this->image_extension, $this->allowed_image_types)) {
         $this->image_path = $this->file_prefix . 'icon.' . $this->image_extension;
         $image = get_uploaded_file('image');

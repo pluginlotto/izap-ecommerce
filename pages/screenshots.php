@@ -25,12 +25,10 @@ if($product) {
   $file_handler->open('read');
 
   if(file_exists($file_handler->getFilenameOnFilestore())) {
-    $expires = 60*60;
-    header("Pragma: public");
-    header("Cache-Control: maxage=".$expires);
-    header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
-    header("Content-type: image/jpeg");
-    header("Content-Disposition: inline; filename=\"{$file_name}\"");
+    izap_cache_headers(array(
+            'content_type' => image/jpeg,
+            'file_name' => $file_name,
+    ));
     echo $file_handler->grabFile();
   }
 }
