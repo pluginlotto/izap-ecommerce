@@ -39,11 +39,15 @@ function izap_ecommerce_page_handler($page) {
     $mode = 'elgg16/';
   }
 
-  if(!include_once func_get_pages_path_byizap() . $mode . $page[0] . '.php') {
-    if(!include_once func_get_pages_path_byizap() . $page[0] . '.php') {
-      include_once func_get_pages_path_byizap() . $mode .'index.php';
+  $intial_path = func_get_pages_path_byizap();
+  $filename = $intial_path . $mode . $page[0] . '.php';
+  if(!file_exists($filename)) {
+    $filename = $intial_path . $page[0] . '.php';
+    if(!file_exists($filename)) {
+      $filename = $intial_path . 'index.php';
     }
   }
+  izap_load_file($filename);
 }
 
 function izap_ecommerce_getUrl($entity) {
