@@ -22,6 +22,11 @@ global $IZAP_ECOMMERCE;
 float:left;
 }
 
+.izapcontentWrapper:hover{
+background-color:#EEEEEE;
+}
+
+
 .izap-product-float-right{float:right}
 .listing-image {float: left; padding: 2px; margin: 2px; width: 16%}
 .listing-description {float: left; padding: 2px; margin: 2px; width: 59%}

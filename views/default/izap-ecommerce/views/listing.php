@@ -32,6 +32,8 @@ $product = $vars['entity'];
     <p align="justify">
       <?php
       echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);
+      echo '<br />';
+      echo elgg_view('output/tags', array('tags' => $product->tags));
       ?>
     </p>
   </div>
@@ -45,7 +47,7 @@ $product = $vars['entity'];
   <div class="clearfloat"></div>
     <p>
       <?php
-      echo elgg_view('output/tags', array('tags' => $product->tags));
+      
       ?>
     </p>
   </div>
