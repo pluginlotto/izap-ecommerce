@@ -351,7 +351,7 @@ class IzapEcommerce extends ElggFile {
   public function getPrice($format = TRUE) {
     global $IZAP_ECOMMERCE;
 
-    if(isloggedin()) {
+    if(elgg_is_logged_in()) {
       $price = $this->getUserPrice();
     }else {
       $price = $this->makePrice('max');
@@ -402,11 +402,16 @@ class IzapEcommerce extends ElggFile {
   }
 
   public function getUserPrice($user) {
-    if($user instanceof ElggUser) {
+    // send max price as new version will not have variable price for different users
+    return $this->makePrice('max');
+
+    // we'll delete this section once tested TODO: delete this code
+    if(elgg_instanceof($user,ElggUser)) {
       $user_guid = $user->guid;
     }else {
       $user_guid = elgg_get_logged_in_user_guid();
     }
+    echo $user_guid;exit;
 
     $price_array = (array) unserialize($this->user_pirce_array);
 
