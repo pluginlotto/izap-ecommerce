@@ -247,19 +247,45 @@ class IzapEcommerce extends ElggFile {
     }
 
     // if the user have already bought it
-    $purchased = 'purchased_' . $this->guid;
-    if($user->$purchased == 'yes') {
+    if($this->hasUserPurched($user)) {
       return TRUE;
     }
 
-    $purchased = 'purchased_' . $this->code;
-    if(get_plugin_setting('allow_to_download_upgraded_version', GLOBAL_IZAP_ECOMMERCE_PLUGIN) == 'yes' && $user->$purchased == 'yes') {
+    // if admin has set to download the product
+    if(get_plugin_setting('allow_to_download_upgraded_version', GLOBAL_IZAP_ECOMMERCE_PLUGIN) == 'yes' && $this->hasUserPurchasedOldVersion($user)) {
       return TRUE;
     }
 
     return FALSE;
   }
 
+  public function hasUserPurched($user = NULL) {
+    if(!($user instanceof ElggUser)) {
+      $user = get_loggedin_user();
+    }
+    
+    $purchased = 'purchased_' . $this->guid;
+    if($user->$purchased == 'yes') {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+  
+  public function hasUserPurchasedOldVersion($user = NULL) {
+    if(!($user instanceof ElggUser)) {
+      $user = get_loggedin_user();
+    }
+
+    
+    $purchased = 'purchased_' . $this->code;
+    if($user->$purchased == 'yes') {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+  
   public function makeImageSize($size) {
     switch ($size) {
       case "tiny":
@@ -323,6 +349,9 @@ class IzapEcommerce extends ElggFile {
       $price = $this->makePrice('max');
     }
 
+    // calculate the discount if any
+    $price = $this->calculateDiscountedPrice($price);
+    
     if($format) {
       return $IZAP_ECOMMERCE->currency_sign . (int)$price;
     }else {
@@ -330,6 +359,17 @@ class IzapEcommerce extends ElggFile {
     }
   }
 
+  public function calculateDiscountedPrice($price) {
+    if($this->hasUserPurchasedOldVersion()) {
+      $disount = $this->discount;
+      if(strpos($disount, '%')) {
+        $disount = ($disount/100 * $price);
+      }
+    }
+
+    return $price - $disount;
+  }
+  
   public function getDownloads() {
     return (int) $this->total_downloads;
   }
