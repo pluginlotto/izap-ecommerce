@@ -14,10 +14,10 @@
 */
 
 gatekeeper();
-verify_order_izap_ecommerce($order);
 global $IZAP_ECOMMERCE, $IZAPTEMPLATE;
 $guid = izap_get_params(1);
 $order = get_entity($guid);
+verify_order_izap_ecommerce($order);
 $title = elgg_echo('izap-ecommerce:order_number') . ' - #' . $guid;
 $body = elgg_view_title($title);
 $body .= $IZAPTEMPLATE->render($IZAP_ECOMMERCE->views . 'order_detail', array('entity' => $order));
