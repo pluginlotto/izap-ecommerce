@@ -15,8 +15,7 @@
 
 global $IZAP_ECOMMERCE;
 if(get_input('search_viewtype') == 'gallery') {
-  echo $IZAP_ECOMMERCE->product . 'gallery';
-  echo elgg_view($IZAP_ECOMMERCE->product . 'gallery', $vars);
+  echo elgg_view($IZAP_ECOMMERCE->views . 'gallery', $vars);
 }elseif($vars['full']) {
   echo elgg_view($IZAP_ECOMMERCE->product . 'index', $vars);
 }else {

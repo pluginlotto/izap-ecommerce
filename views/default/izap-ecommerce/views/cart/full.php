@@ -33,10 +33,15 @@ $buy_link = $vars['url'] . 'action/izap_ecommerce/buy';
     <div class=" contentWrapper <?php echo $class?>">
       <div class="izap-product-float-left">
         <a href="<?php echo $product->getUrl()?>" title="<?php echo $product->title; ?>">
-          <b><?php echo $product->title;?></b>
+          <img src="<?php echo $product->getIcon()?>" alt="<?php echo $product->title?>" />
         </a>
       </div>
 
+      <div class="izap-product-cart-descrption izap-product-float-left">
+        <h3><a href="<?php echo $product->getUrl()?>"><?php echo $product->title?></a></h3>
+        <?php echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);?>
+      </div>
+      
       <div class="izap-product-float-right">
         <b><?php echo $product->getPrice();?></b>
       </div>

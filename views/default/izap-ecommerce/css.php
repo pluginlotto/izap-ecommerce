@@ -170,12 +170,11 @@ overflow: auto;
 border:2px solid #DEDEDE;
 }
 
-.izap_ecommerce_product_gallery{
-float:left;
-padding: 10px;
-margin: 10px;
+.izap_ecommerce_product_gallery:hover a{
+color: #FFFFFF;
 }
 
-.izap_ecommerce_product_gallery:hover{
-background-color: #000000;
+.izap-product-cart-descrption {
+  margin: 0px 0px 0px 10px;
+  width: 70%;
 }
