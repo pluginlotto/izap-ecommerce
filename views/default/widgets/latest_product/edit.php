@@ -17,6 +17,7 @@
 		    <option value="7" <?php if($vars['entity']->num_display == 7) echo "SELECTED"; ?>>7</option>
 		    <option value="8" <?php if($vars['entity']->num_display == 8) echo "SELECTED"; ?>>8</option>
 		    <option value="9" <?php if($vars['entity']->num_display == 9) echo "SELECTED"; ?>>9</option>
+        <option value="10" <?php if($vars['entity']->num_display == 10) echo "SELECTED"; ?>>10</option>
 		</select>
 </p>
 <p>
