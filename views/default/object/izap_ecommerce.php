@@ -28,6 +28,15 @@ if(get_input('search_viewtype') == 'gallery') {
     }else{
       $extra .=  '<b>' . elgg_echo('izap-ecommerce:free') . '</b><br />';
     }
+
+    if(IzapEcommerce::isInWishlist($vars['entity']->guid)) {
+      $extra .= '<a href="'.
+      elgg_add_action_tokens_to_url(
+              func_get_actions_path_byizap(array(
+                'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
+                'remove_from_wishlist?guid=' . $vars['entity']->guid)
+      .'">'.elgg_echo('izap-ecommerce:remove_from_wishlist').'</a><br />';
+    }
     
     $extra .= elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $vars['entity']));
     echo elgg_view('output/entity_row', array('entity' => $vars['entity'], 'extra' => $extra));
