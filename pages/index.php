@@ -23,7 +23,7 @@ if(izap_plugin_settings(array(
   'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
   'setting_name' => 'default_list_view',
   'value' => 'list'
-)) == 'gallery') {
+)) == 'gallery' && !isset ($_REQUEST['search_viewtype'])) {
   set_input('search_viewtype', 'gallery');
 }
 $context = get_context();
