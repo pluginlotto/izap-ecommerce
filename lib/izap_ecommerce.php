@@ -190,36 +190,11 @@ class IzapEcommerce extends ElggFile {
   public function getPrice($format = TRUE) {
     global $IZAP_ECOMMERCE;
 
-    if(isloggedin()) {
-      $price = $this->getUserPrice();
-    }else {
-      $price_range_array = explode('-', $this->price);
-      $price = ($price_range_array[1]) ? $price_range_array[1] : $price_range_array[0];
-    }
-
     if($format) {
-      return $IZAP_ECOMMERCE->currency_sign . (int)$price;
+      return $IZAP_ECOMMERCE->currency_sign . (int)$this->price;
     }else {
-      return (int)$price;
+      return (int)$this->price;
     }
-  }
-
-  public function getUserPrice($user) {
-    $user_guid = get_loggedin_userid();
-
-    $price_array = (array) unserialize($this->user_pirce_array);
-    if(!isset ($price_array[$user_guid])) {
-      $price_range_array = explode('-', $this->price);
-      $current_price = rand((int) $price_range_array[0], (int) $price_range_array[1]);
-      $price_array[$user_guid] = $current_price;
-      self::get_access();
-      $this->user_pirce_array = serialize((array) $price_array);
-      self::remove_access();
-    }else {
-      $current_price = $price_array[$user_guid];
-    }
-
-    return $current_price;
   }
 
   public function getRating() {

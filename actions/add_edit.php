@@ -36,9 +36,6 @@ if($error) {
     }
   }
 
-  // set the price array
-  $izap_product->user_pirce_array = '';
-
   if(isset($posted_data->comming_soon[0]) && $posted_data->comming_soon[0] == 'yes') {
     $izap_product->comming_soon = 'yes';
   }else {

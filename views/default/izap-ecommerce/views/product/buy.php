@@ -39,7 +39,7 @@ $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecomm
         ?>
     </b><br />
       <?php
-      echo '<b class="color_red">'.((!isloggedin()) ? 'Not more than ' : '').'' . $product->getPrice() . '</b>';
+      echo '<b>' . $product->getPrice() . '</b>';
     }
     ?>
   </div>
