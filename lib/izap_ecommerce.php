@@ -209,12 +209,12 @@ class IzapEcommerce extends ElggFile {
     $wishlist = $user->izap_wishlist;
     if(!is_array($wishlist) && (int) $wishlist) {
       $wishlist = array($wishlist);
+    }
       foreach($wishlist as $pro) {
         if(get_entity($pro)) {
           $return[] = $pro;
         }
       }
-    }
 
     return $return;
   }
@@ -516,8 +516,9 @@ function func_save_wishlist_izap_ecommerce($products = array(), $user = FALSE) {
     return FALSE;
   }
 
-  $old_wishlist = $user->izap_wishlist;
+  $old_wishlist = IzapEcommerce::getWishList($user);
   $new_wishlist = array_unique(array_merge((array) $old_wishlist, (array) $products));
+  
   $user->izap_wishlist = $new_wishlist;
   return TRUE;
 }

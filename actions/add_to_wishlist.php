@@ -19,7 +19,6 @@ $product = get_product_izap_ecommerce(get_input('guid'));
 $forward_url = $IZAP_ECOMMERCE->link . 'wishlist';
 $forward_url = $_SERVER['HTTP_REFERER'];
 if($product) {
-  $old_cart[] = $product->guid;
   if(func_save_wishlist_izap_ecommerce($product->guid)) {
     system_message(elgg_echo('izap-ecommerce:added_to_wishlist'));
   }

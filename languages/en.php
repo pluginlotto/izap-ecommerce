@@ -19,6 +19,7 @@ $english = array(
   'item:object:izap_order' => 'Orders',
   'izap_ecommerce:river:annotate' => 'comment on',
   'izap-ecommerce:nothing_to_display' => 'There no product to display right now, check back soon.',
+  'izap-ecommerce:deleted' => 'Deleted',
   
   // admin settings
   'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
@@ -135,7 +136,7 @@ $english = array(
   'izap-ecommerce:order_comfirmed' => 'Confirmed',
   'izap-ecommerce:payment_method' => 'Payment method',
   'izap-ecommerce:by' => 'by',
-  'izap-ecommerce:' => '',
+  'izap-ecommerce:order_transction_id' => 'Transction id',
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
 

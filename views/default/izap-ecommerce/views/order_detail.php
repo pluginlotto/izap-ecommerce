@@ -82,6 +82,14 @@ if(is_plugin_enabled('messages')) {
       </b>
       <br />
 
+      <?php
+      if(isadminloggedin()) {
+      echo elgg_echo('izap-ecommerce:order_transction_id'); ?>:
+      <b>
+        <?php echo $order->payment_transaction_id;?>
+      </b>
+      <br />
+      <?php } ?>
     </div>
 
   </div>
@@ -102,10 +110,11 @@ echo elgg_view_title(elgg_echo('izap-ecommerce:order_details'));
 
     $product = get_entity($order->$item_guid);
     if($product) {
-
       $product_url = $product->getURL();
+      $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
     }else {
       $product_url = '#';
+      $download_link = '#';
     }
     ?>
   <div class="izap-order-detait-<?php echo $class;?>">
@@ -113,10 +122,15 @@ echo elgg_view_title(elgg_echo('izap-ecommerce:order_details'));
       <a href="<?php echo $product_url?>">
           <?php echo $order->$item_name ?>
       </a>
+      <?php
+      if($product_url == '#') {
+        echo '<em>' . elgg_echo('izap-ecommerce:deleted') . '</em>';
+      }
+      ?>
     </div>
 
     <div class="izap-product-float-left" style="width: 20%">
-      <a href="<?php echo create_product_download_link_izap_ecommerce($order, $order->$item_guid)?>">
+      <a href="<?php echo $download_link?>">
           <?php _e('download');?>
       </a>
     </div>
