@@ -36,13 +36,7 @@ if($variables['status'] === TRUE) {
   $provided['metadata'] = $main_array;
   func_izap_update_metadata($provided);
 
-  notify_user(
-          $order->owner_guid,
-          $CONFIG->site->guid,
-          __('order_processed'),
-          __('order_processed_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
-  );
-  IzapEcommerce::notifyAdminForNewOrder($order);
+  IzapEcommerce::sendOrderNotification($order);
 }else {
   $order_id = $variables['ipn_data']['custom'];
   $order = get_entity($order_id);

@@ -61,7 +61,7 @@ function izap_order_getUrl($entity) {
 
   return func_set_href_byizap(array(
           'plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
-          'page_owner' => get_user($entity->container_guid)->username,
+          'page_owner' => FALSE,
           'page' => 'order_detail',
           'vars' => array($entity->guid)
   ));

@@ -48,4 +48,4 @@ $order_owner = $order->getOwnerEntity();
     </div>
     <div class="clearfloat"></div>
   </a>
-</div
+</div>

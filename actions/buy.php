@@ -43,6 +43,7 @@ if($order->guid !== 0) {
   if($processed['status'] === TRUE) {
     $order->confirmed = 'yes';
     $order->payment_transaction_id = $payment->getTransactionId();
+    IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));
     forward($IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid);
   }else {

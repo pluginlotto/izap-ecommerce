@@ -229,11 +229,25 @@ class IzapEcommerce extends ElggFile {
     if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
       $site_admin = func_get_admin_entities_byizap(array('limit' => 1));
       notify_user(
-              $site_admin->guid,
+              $site_admin[0]->guid,
               get_loggedin_userid(),
               elgg_echo('izap-ecommerce:new_order'),
               sprintf(elgg_echo('izap-ecommerce:new_order_description'), $order->getURL(), $order->getURL())
       );
+    }
+  }
+
+  public static function sendOrderNotification($order) {
+    global $CONFIG;
+    if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
+      notify_user(
+              $order->owner_guid,
+              $CONFIG->site->guid,
+              __('order_processed'),
+              __('order_processed_message') . $order->getURL()
+      );
+
+      self::notifyAdminForNewOrder($order);
     }
   }
 
