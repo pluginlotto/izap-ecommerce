@@ -27,7 +27,7 @@ if(!$product) {
   $error = TRUE;
 }
 $content = $product->getFile();
-if(!$content) {
+if($content == '') {
   $error = TRUE;
 }
 
@@ -35,19 +35,10 @@ if(!$content) {
 if($error) {
   register_error(__('invalid_link'));
   forward();
-}
+}else{
 
 $file_name = end(explode('/', $product->file_path));
 $size = strlen($content);
-
-//header("Cache-Control: no-cache, must-revalidate");
-//header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-//header("Content-Transfer-Encoding: binary");
-//header("Content-Length: $size;\n");
-//header("Content-Disposition: attachment; filename=\"$file_name\";\n\n");
-//
-//echo $content;
-
 
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
@@ -57,5 +48,7 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Pragma: public');
 header('Content-Length: ' . $size );
+
 echo $content;
+}
 exit;

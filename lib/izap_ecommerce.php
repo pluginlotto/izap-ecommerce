@@ -76,7 +76,7 @@ class IzapEcommerce extends ElggFile {
       }
 
       $this->file_extension = $file_extension;
-      $this->file_path = $this->file_prefix . $this->slug . '.' . $this->file_extension;
+      $this->file_path = $this->file_prefix . $_FILES['file']['name'];
       $this->setFilename($this->file_path);
       $this->open("write");
       $file_written = $this->write($content);
@@ -167,7 +167,7 @@ class IzapEcommerce extends ElggFile {
   
   public function getIcon($size) {
     global $IZAP_ECOMMERCE;
-    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/'.time().'.jpg';
+    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/'.friendly_title($this->title).'.jpg';
     return $url;
   }
 

@@ -17,16 +17,6 @@ $plugin = $vars['entity'];
 ?>
 <div class="contentWrapper">
   <form action="<?php echo $vars['url']?>action/izap_ecommerce/save_settings" method="POST">
-    <!--
-    <p>
-      <label>
-        <?php
-        _e('download_link_expire_time') . '<br />';
-        echo elgg_view('input/text', array('internalname' => 'params[link_expire_time]', 'value' => $plugin->link_expire_time));
-        ?>
-      </label>
-    </p>
-    -->
     <p>
       <label>
         <?php
@@ -46,6 +36,7 @@ $plugin = $vars['entity'];
         ?>
       </label>
     </p>
+    
     <?php
       echo elgg_view('input/hidden', array ('internalname' => 'guid', 'value' => (int) $plugin->guid));
       echo elgg_view('input/securitytoken');

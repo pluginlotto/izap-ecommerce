@@ -113,6 +113,16 @@ $english = array(
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
 
+  // order
+  'izap-ecommerce:order_processed' => 'Order has been confirmed',
+  'izap-ecommerce:order_processed_message' => 'Your order has been confirmed. Please check here: ',
+  'izap-ecommerce:order_processe_error' => 'Error processing error',
+  'izap-ecommerce:order_processe_error_message' => 'There was an error processing your order, Please contact the administratror for more info.',
+  'izap-ecommerce:' => '',
+  'izap-ecommerce:' => '',
+  'izap-ecommerce:' => '',
+  'izap-ecommerce:' => '',
+
   // send to friend
   'izap-ecommerce:your_name' => 'Your name*',
   'izap-ecommerce:your_email' => 'Your email*',
