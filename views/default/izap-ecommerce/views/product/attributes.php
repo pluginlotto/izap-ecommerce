@@ -16,20 +16,22 @@ global $IZAP_ECOMMERCE;
 ?>
 <script type="text/javascript">
   function update_price_field() {
-    var extra = product_price;
-    var selected_options = '';
-    
+    var extra = parseInt(<?php echo $vars['entity']->getPrice(FALSE);?>);
+
     $("input[type='radio']:checked").each(function () {
-      extra += parseInt($(this).val());
+      if($(this).val() != '' && $(this).attr('name').search('product_attribs') >= 0) {
+        extra += parseInt($(this).val());
+      }
     });
 
+
     $("input[type='checkbox']:checked").each(function () {
-      extra += parseInt($(this).val());
-      selected_options += $(this).html() + '|';
+      if($(this).val() != '' && $(this).attr('name').search('product_attribs') >= 0) {
+        extra += parseInt($(this).val());
+      }
     });
-    
+
     $('#product_price_html').html('$' + extra);
-    $('input[name="product_attribs[selected_options]"]').val(selected_options);
   }
 </script>
 <?php
