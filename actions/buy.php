@@ -24,7 +24,7 @@ $data_array['grandTotal'] = get_from_session_izap_ecommerce('total_cart_price');
 
 if(get_input('payment_option') == 'paypal') {
   $data_array['return'] = $IZAP_ECOMMERCE->link . 'pay_return';
-  $data_array['notify_url'] = $IZAP_ECOMMERCE->link . 'paypal_notify';
+  $data_array['notify_url'] = $IZAP_ECOMMERCE->link . 'paypal_notify?owner_guid=' . get_input('owner_guid', 0);
 }
 
 // save order first but disable it
@@ -34,7 +34,11 @@ if($guid) {
   $data_array['custom'] = $guid;
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
-  if($payment->process((int) get_input('owner_guid'))) {
+  $processed = $payment->process((int) get_input('owner_guid'));
+  if(get_input('payment_option') == 'paypal') {
+    exit;
+  }
+  if($processed) {
     $order = get_entity($guid);
     $order->confirmed = 'yes';
     $order->payment_transaction_id = $payment->getTransactionId();

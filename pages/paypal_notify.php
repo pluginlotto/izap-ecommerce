@@ -18,18 +18,14 @@
 
 global $IZAP_ECOMMERCE;
 
+$payment = new IzapPayment('paypal');
 $debug = FALSE;
-if(get_plugin_setting('sandbox', $IZAP_ECOMMERCE->plugin_name) == 'yes') {
+if(get_plugin_usersetting('paypal_test_mode', get_input('owner_guid'), GLOBAL_IZAP_PAYMENT_PLUGIN) == 'yes') {
   $debug = TRUE;
 }
+$variables = $payment->validate($debug);
 
-//$gateway = new gateway('paypal', '', $debug);
-//$variables = $gateway->gopaypal();
-
-$payment = new IzapPayment('paypal', $debug);
-$variables = $payment->validate();
-var_dump($variables);
-if($variables['status']) {
+if($variables['status'] === TRUE) {
   global $IZAP_ECOMMERCE;
 
   $paypal_invoice_id = $variables['invoiceid'];
