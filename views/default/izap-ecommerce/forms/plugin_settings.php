@@ -29,7 +29,7 @@ $plugin = $vars['entity'];
     <p>
       <label>
         <?php
-          echo '<br />' . elgg_view('input/checkboxes', array('internalname' => 'params[sandbox]', 'options' => array(
+          echo '<br />' . elgg_view('input/checkboxes', array('internalname' => 'sandbox', 'options' => array(
             __('enable_testing_mode') => 'yes'),
             'value' => $plugin->sandbox,
             ));

@@ -19,6 +19,12 @@ $defalt_values = array(
         'sandbox' => 'no',
 );
 $posted_values = get_input('params');
+
+$sandbox = get_input('sandbox', FALSE);
+if($sandbox) {
+  $posted_values['sandbox'] = $sandbox[0];
+}
+
 $posted_values = array_merge($defalt_values, $posted_values);
 $plugin = new ElggPlugin($guid);
 $plugin->access_id = ACCESS_PUBLIC;
