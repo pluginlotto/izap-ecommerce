@@ -31,7 +31,7 @@ if(get_input('payment_option') == 'paypal') {
 $order = save_order_izap_ecommerce($data_array['items'], $cart_id);
 $order->payment_method = $payment_method;
 
-if($order) {
+if($order->guid !== 0) {
   add_to_session_izap_ecommerce('cart_id', $cart_id);
   $data_array['custom'] = $order;
   $payment = new IzapPayment($payment_method);
@@ -46,6 +46,8 @@ if($order) {
     system_message(elgg_echo('izap-ecommerce:order_success'));
     forward($IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid);
   }else {
+    // delete the not processed order
+    $order->delete();
     $response = $payment->getResponse();
     register_error(__('unable_to_process_payment') . ': ' . $response['error_msg']);
     forward($_SERVER['HTTP_REFERER']);
