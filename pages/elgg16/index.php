@@ -17,16 +17,6 @@ global $IZAP_ECOMMERCE;
 $list_param = izap_get_params(1);
 $title = elgg_echo('izap-ecommerce:welcome_to_store');
 $body = elgg_view_title($title);
-$options['type'] = 'object';
-$options['subtype'] = 'izap_ecommerce';
-if($list_param != 'all') {
-  $options['container_guid'] = page_owner();
-}
-$options['limit'] = 10;
-$options['full_view'] = FALSE;
-$options['toggleview'] = TRUE;
-$options['pagination'] = TRUE;
-
 $options = get_default_listing_options_izap_ecommerce();
 $context = get_context();
 set_context('search');

@@ -45,11 +45,7 @@ if($order->guid !== 0) {
     $order->payment_transaction_id = $payment->getTransactionId();
 
     // save purchased product info with user
-    for($i=0; $i<$order->total_items; $i++) {
-      $item_guid = 'item_guid_' . $i;
-      $purchased = 'purchased_' . $order->$item_guid;
-      get_loggedin_user()->$purchased = 'yes';
-    }
+    save_order_with_user_izap_ecommerce($order);
     
     IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));

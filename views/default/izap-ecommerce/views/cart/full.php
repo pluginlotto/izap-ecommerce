@@ -58,6 +58,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         $item[$total_products]['name'] = $product->title;
         $item[$total_products]['amount'] = $product->getPrice(FALSE);
         $item[$total_products]['guid'] = $product->guid;
+        $item[$total_products]['code'] = $product->code;
 
         $total_products++;
         $total_price += $product->getPrice(FALSE);

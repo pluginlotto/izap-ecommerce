@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
 admin_gatekeeper();
@@ -22,18 +22,67 @@ ob_start();
 </h1>
 <?php
 ob_flush();
+
+$options['type'] = 'object';
+
+// updating products
+$options['subtype'] = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
+$options['limit'] = 9999;
+
 if(is_callable('elgg_get_entities')) {
-  $all_products = elgg_get_entities(array('type' => 'object', 'subtype' => GLOBAL_IZAP_ECOMMERCE_SUBTYPE));
-}else{
-  $all_products = get_entities('object', GLOBAL_IZAP_ECOMMERCE_SUBTYPE);
+  $all_products = elgg_get_entities($options);
+}else {
+  $all_products = get_entities($options['type'], $options['subtype'], 0, '', $options['limit']);
 }
 
 if($all_products) {
   foreach($all_products as $product) {
     $product->archived = 'no';
+    if(empty ($product->code)) {
+      $product->code = func_generate_unique_id();
+    }
   }
 }
+// end of updating products
+
+
+// updating orders
+$options['subtype'] = 'izap_order';
+$options['limit'] = 9999;
+$options['metadata_name'] = 'confirmed';
+$options['metadata_value'] = 'yes';
+
+if(is_callable('elgg_get_entities_from_metadata')) {
+  $all_orders = elgg_get_entities_from_metadata($options);
+}else {
+  $all_orders = get_entities_from_metadata($options['metadata_name'], $options['metadata_value'], $options['type'], $options['subtype'], 0, $options['limit']);
+}
+
+if($all_orders) {
+  foreach($all_orders as $order) {
+    $owner = $order->getOwnerEntity();
+    for($i = 0; $i < $order->total_items; $i++) {
+      $item_guid = 'item_guid_' . $i;
+      $product = get_entity($order->$item_guid);
+      if($product) {
+        $purchased_guid = 'purchased_' . $product->guid;
+        $purchased_code = 'purchased_' . $product->code;
+        $owner->$purchased_guid = 'yes';
+        $owner->$purchased_code = 'yes';
+      }
+    }
+  }
+}
+
+// end of updating orders
+
+echo func_set_href_byizap(array(
+        'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+        'page' => 'index',
+));
+
 forward(func_set_href_byizap(array(
-  'pluign' => GLOBAL_IZAP_ECOMMERCE_PLUGIN
+        'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+        'page' => 'index',
 )));
 exit;

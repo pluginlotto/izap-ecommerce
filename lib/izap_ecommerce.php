@@ -138,6 +138,10 @@ class IzapEcommerce extends ElggFile {
 
       // save some imp data
       $this->children = $new_childs;
+      if(empty ($old_product->code)) {
+        $old_product->code = func_generate_unique_id();
+      }
+      $this->code = $old_product->code;
       if((string)$this->image_path == '') {
         $this->copyOldFiles($old_product);
       }
@@ -203,6 +207,14 @@ class IzapEcommerce extends ElggFile {
   }
 
   public function delete() {
+    // check for the child products
+    $childers = get_archived_products_izap_ecommerce($this);
+    if($childers) {
+      foreach($childers as $child) {
+        $child->delete();
+      }
+    }
+    
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
     $items = glob($dir . '*.*');
     if(is_array($items) && sizeof($items)) {
@@ -240,6 +252,11 @@ class IzapEcommerce extends ElggFile {
       return TRUE;
     }
 
+    $purchased = 'purchased_' . $this->code;
+    if(get_plugin_setting('allow_to_download_upgraded_version', GLOBAL_IZAP_ECOMMERCE_PLUGIN) == 'yes' && $user->$purchased == 'yes') {
+      return TRUE;
+    }
+    
     return FALSE;
   }
 
@@ -555,10 +572,12 @@ function save_order_izap_ecommerce($items, $cart_id) {
     $item_name = 'item_name_' . $i;
     $item_price = 'item_price_' . $i;
     $item_guid = 'item_guid_' . $i;
+    $item_code = 'item_code_' . $i;
 
     $order->$item_name = $product['name'];
     $order->$item_price = $product['amount'];
     $order->$item_guid = $product['guid'];
+    $order->$item_code = $product['code'];
 
     $i++;
     $total_price += (int)$product['amount'];
@@ -699,7 +718,7 @@ function get_archived_products_izap_ecommerce($product) {
 
 function get_default_listing_options_izap_ecommerce($array = array()) {
   $options['type'] = 'object';
-  $options['subtype'] = 'izap_ecommerce';
+  $options['subtype'] = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
   $options['limit'] = 10;
   $options['full_view'] = FALSE;
   $options['offset'] = get_input('offset', 0);
@@ -710,4 +729,17 @@ function get_default_listing_options_izap_ecommerce($array = array()) {
 
 
   return array_merge($options, $array);
+}
+
+function save_order_with_user_izap_ecommerce($order) {
+  for($i=0; $i<$order->total_items; $i++) {
+    $item_guid = 'item_guid_' . $i;
+    $item_code = 'item_code_' . $i;
+    $provided['guid'] = $order->owner_guid;
+    $provided['metadata'] = array(
+      'purchased_' . $order->$item_guid => 'yes',
+      'purchased_' . $order->$item_code => 'yes',
+    );
+    func_izap_update_metadata($provided);
+  }
 }
