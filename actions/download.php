@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 $error = FALSE;
 $order_id = get_input('o');
@@ -35,22 +35,27 @@ if($content == '') {
 if($error) {
   register_error(__('invalid_link'));
   forward();
-}else{
+}else {
 
-$file_name = basename($product->file_path);
-$size = strlen($content);
+  // update the  total download count
+  func_hook_access_over_ride_byizap(array('status' => TRUE));
+  $product->total_downloads = (int) $product->total_downloads +1;
+  func_hook_access_over_ride_byizap(array('status' => TRUE));
+  
+  $file_name = basename($product->file_path);
+  $size = strlen($content);
 
-header('Content-Description: File Transfer');
-header("Pragma: public");
-header("Expires: 0");
-header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("Content-Type: application/force-download");
-header("Content-Type: application/octet-stream");
-header("Content-Type: " . $product->getMimeType());
-header("Content-Disposition: attachment; filename=".$file_name.";");
-header("Content-Transfer-Encoding: binary");
-header("Content-Length: ".$size);
+  header('Content-Description: File Transfer');
+  header("Pragma: public");
+  header("Expires: 0");
+  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+  header("Content-Type: application/force-download");
+  header("Content-Type: application/octet-stream");
+  header("Content-Type: " . $product->getMimeType());
+  header("Content-Disposition: attachment; filename=".$file_name.";");
+  header("Content-Transfer-Encoding: binary");
+  header("Content-Length: ".$size);
 
-echo $content;
+  echo $content;
 }
 exit;

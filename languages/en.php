@@ -18,6 +18,7 @@ $english = array(
   'item:object:izap_ecommerce' => 'Store',
   'item:object:izap_order' => 'Orders',
   'izap_ecommerce:river:annotate' => 'comment on',
+  'izap-ecommerce:nothing_to_display' => 'There no product to display right now, check back soon.',
   
   // admin settings
   'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
@@ -52,7 +53,7 @@ $english = array(
   'izap-ecommerce:products' => 'Products',
   'izap-ecommerce:edit_settings' => 'Edit store settings',
   'izap-ecommerce:my_orders' => 'My orders',
-  'izap-ecommerce:' => '',
+  'izap-ecommerce:wishlist' => 'Wishlist',
   'izap-ecommerce:' => '',
 
   // titles and others
@@ -60,6 +61,7 @@ $english = array(
   'izap-ecommerce:free' => 'Free',
   'izap-ecommerce:rate_it' => 'Rate it: ',
   'izap-ecommerce:buynow' => 'Add to cart',
+  'izap-ecommerce:add_to_wishlist' => 'Add to wishlist',
   'izap-ecommerce:my_cart' => 'My cart',
   'izap-ecommerce:total' => 'Total',
   'izap-ecommerce:cart' => 'Cart',

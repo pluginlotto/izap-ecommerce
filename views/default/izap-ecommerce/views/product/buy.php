@@ -16,6 +16,7 @@
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?guid=' . $product->guid);
+$add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_wishlist?guid=' . $product->guid);
 ?>
 <div class="contentWrapper izap-product-buy">
   <div class="izap-product-float-left izap-product-buy-rate">
@@ -63,6 +64,12 @@ $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecomm
     else {?>
     <a href="#">
         <?php _e('comming soon');?>
+    </a>
+      <?php }?>
+    <?php if(isloggedin()) {?>
+      <br /><br /><br />
+    <a href="<?php echo $add_wishlist_link;?>">
+      <?php _e('add_to_wishlist');?>
     </a>
       <?php }?>
   </div>

@@ -13,11 +13,12 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
-$old_cart = get_from_session_izap_ecommerce('izap_cart', TRUE);
+global $CONFIG, $IZAP_ECOMMERCE;
+
 $product = get_product_izap_ecommerce(get_input('guid'));
+$forward_url = $IZAP_ECOMMERCE->link . 'wishlist';
 if($product) {
   $old_cart[] = $product->guid;
-  func_remove_from_wishlist_izap_ecommerce($product->guid);
+  func_save_wishlist_izap_ecommerce($product->guid);
 }
-add_to_session_izap_ecommerce('izap_cart', array_unique($old_cart));
-forward($_SERVER['HTTP_REFERER']);
+forward($forward_url);

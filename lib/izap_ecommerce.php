@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 class IzapEcommerce extends ElggFile {
   public $required_fields = array(
@@ -55,7 +55,7 @@ class IzapEcommerce extends ElggFile {
 
     // set some default values so that we can.. make things work proper
     if($edit_mode) {
-    $file_written = TRUE;
+      $file_written = TRUE;
     }
     $image_written = TRUE;
     $dir = dirname($this->getFilenameOnFilestore($this->file_prefix))."/";
@@ -108,7 +108,7 @@ class IzapEcommerce extends ElggFile {
       return TRUE; // return if there is no content to upload and it is edit mode
     }elseif($edit_mode) {
       return $file_written || $image_written;
-    }else{
+    }else {
       return $edit_mode;
     }
   }
@@ -133,7 +133,7 @@ class IzapEcommerce extends ElggFile {
     rmdir($dir);
     return parent::delete();
   }
-  
+
   public function makeImageSize($size) {
     switch ($size) {
       case "tiny":
@@ -165,7 +165,7 @@ class IzapEcommerce extends ElggFile {
         break;
     }
   }
-  
+
   public function getIcon($size) {
     global $IZAP_ECOMMERCE;
     $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/'.friendly_title($this->title).'.jpg';
@@ -174,7 +174,7 @@ class IzapEcommerce extends ElggFile {
 
   public function getFile() {
     global $IZAP_ECOMMERCE;
-    
+
     $file_handler = new ElggFile();
     $file_handler->owner_guid = $this->owner_guid;
     $file_handler->setFilename($this->file_path);
@@ -209,14 +209,14 @@ class IzapEcommerce extends ElggFile {
 
     return TRUE;
   }
-  
+
   public function draw_page($title, $body, $remove_cart = FALSE) {
     if($remove_cart) {
       $body = elgg_view_layout('two_column_left_sidebar', '', $body);
     }else {
       $body = elgg_view_layout('two_column_left_sidebar', izap_view_cart(), $body);
     }
-    
+
     page_draw($title, $body);
   }
 
@@ -457,4 +457,52 @@ function verify_order_izap_ecommerce($order) {
   if($cart_id == $order->cart_id) {
     remove_from_session_izap_ecommerce('izap_cart');
   }
+}
+
+function func_save_cart_izap_ecommerce($event, $object_type, $object) {
+  return func_save_wishlist_izap_ecommerce();
+}
+
+function func_save_wishlist_izap_ecommerce($products = array(), $user = FALSE) {
+  if(!($user instanceof ElggUser)) {
+    $user = get_loggedin_user();
+    if(!$user) {
+      return FALSE;
+    }
+  }
+
+  if(!is_array($products) && (int)$products > 0) {
+    $products = array($products);
+  }
+  if(!sizeof($products)) {
+    $products = get_from_session_izap_ecommerce('izap_cart');
+  }
+
+  if(!sizeof($products)) {
+    return TRUE;
+  }
+  
+  $old_wishlist = $user->izap_wishlist;
+  $new_wishlist = array_unique(array_merge((array) $old_wishlist, (array) $products));  
+  $user->izap_wishlist = $new_wishlist;
+  return TRUE;
+}
+
+function func_remove_from_wishlist_izap_ecommerce($products, $user = FALSE) {
+  if(!($user instanceof ElggUser)) {
+    $user = get_loggedin_user();
+    if(!$user) {
+      return FALSE;
+    }
+  }
+
+  if(!is_array($products)) {
+    $products = array($products);
+  }
+
+  $old_wishlist = $user->izap_wishlist;
+  $new_wishlist = array_unique(array_diff((array)$old_wishlist, $products));
+  $user->izap_wishlist = $new_wishlist;
+
+  return TRUE;
 }
