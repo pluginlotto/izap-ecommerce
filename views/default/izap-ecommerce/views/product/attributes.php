@@ -37,11 +37,11 @@ global $IZAP_ECOMMERCE;
 <?php
 if(sizeof($vars['attribs'])) {
   foreach($vars['attribs'] as $key => $attrib) {
-    $options[$attrib['name'] . '('.$IZAP_ECOMMERCE->currency_sign.$attrib['value'].') ' . $tooltip . $remove_html] = $attrib['value'] . '|' . $key;
+    $options[ucfirst($attrib['name']) . '('.$IZAP_ECOMMERCE->currency_sign.$attrib['value'].') ' . $tooltip . $remove_html] = $attrib['value'] . '|' . $key;
   }
 
   if($vars['type'] == 'radio') {
-    $options['none'] = 0;
+    $options['None'] = 0;
   }
   
   echo elgg_view('input/' . $vars['type'], array(

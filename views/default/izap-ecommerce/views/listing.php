@@ -45,8 +45,7 @@ $product = $vars['entity'];
   <div class="clearfloat"></div>
     <p>
       <?php
-      echo elgg_echo('izap-ecommerce:tags');
-      echo ': ' . elgg_view('output/tags', array('tags' => $product->tags));
+      echo elgg_view('output/tags', array('tags' => $product->tags));
       ?>
     </p>
   </div>

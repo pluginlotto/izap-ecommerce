@@ -32,6 +32,7 @@ $product = $vars['entity'];
       </div>
 
       <?php
+      if($product->getprice(false)>0)
           echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/view_attributes', array('entity' => $product));
       ?>
         </div>
