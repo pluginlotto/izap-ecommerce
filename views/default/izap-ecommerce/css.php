@@ -323,7 +323,7 @@ margin-left:20px;
 
 .izap-product-buy {
 width:385px;
-height:80px;
+height:100px;
 background-color: #FBFBF5;
 border: 2px solid #dadada;
 -moz-border-radius: 8px;
