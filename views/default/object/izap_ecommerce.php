@@ -20,10 +20,14 @@ if($vars['full']) {
   echo elgg_view($IZAP_ECOMMERCE->views . 'listing', $vars);
 }else {
   if(elgg_view_exists('output/entity_row')) {
-    
+
+    if($vars['entity']->getPrice(FALSE)) {
     $extra .=  '<b>' . __('price') . '</b>: ' . $vars['entity']->getPrice() . '<br />';
-    $extra .= elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $vars['entity']));
+    }else{
+      $extra .=  '<b>' . __('free') . '</b><br />';
+    }
     
+    $extra .= elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $vars['entity']));
     echo elgg_view('output/entity_row', array('entity' => $vars['entity'], 'extra' => $extra));
   }else {
     echo elgg_view($IZAP_ECOMMERCE->views . 'listing', $vars);
