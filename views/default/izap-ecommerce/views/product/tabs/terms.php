@@ -11,7 +11,10 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 $product = $vars['entity'];
-echo $product->terms;
+?>
+<div class="izap_products_terms">
+  <?php echo $product->terms; ?>
+</div>

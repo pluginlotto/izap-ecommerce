@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 ?>
 
 .izap-product-image {
@@ -158,4 +158,14 @@ text-decoration: none;
 .izap_ecommerce_widget_view:hover {
 border: 1px solid #000000;
 background-color: #000000;
+}
+
+.izap_products_terms {
+background-color: #FFFFFF;
+margin-left:30px;
+padding:5px;
+width:90%;
+height: 150px;
+overflow: auto;
+border:2px solid #DEDEDE;
 }
