@@ -72,7 +72,7 @@ return array(
                         'izap_ecommerce/add_to_cart'=>array('file' => "add_to_cart.php",'public'=>true),
                         'izap_ecommerce/add_to_wishlist'=>array('file' => "add_to_wishlist.php",'public'=>FALSE),
                         'izap_ecommerce/remove_from_wishlist'=>array('file' => "remove_from_wishlist.php",'public'=>FALSE),
-                  
+
                         'izap_ecommerce/remove_from_cart'=>array('file' => "remove_from_cart.php",'public'=>true),
                         'izap_ecommerce/buy'=>array('file' => "buy.php",'public'=>true),
                         'izap_ecommerce/download'=>array('file' => "download.php",'public'=>false),
@@ -83,13 +83,13 @@ return array(
                         ),
 
                         'izap_ecommerce/add_screenshots' => array(
-                          'file' => 'add_screenshots.php',
-                          'public' => FALSE,
+                                'file' => 'add_screenshots.php',
+                                'public' => FALSE,
                         ),
 
                         'izap_ecommerce/delete_screenshot' => array(
-                          'file' => 'delete_screenshot.php',
-                          'public' => FALSE,
+                                'file' => 'delete_screenshot.php',
+                                'public' => FALSE,
                         ),
                 ),
 
@@ -118,9 +118,9 @@ return array(
                                 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/wishlist' => array ('title' => 'izap-ecommerce:wishlist', 'extra_title' => ' (' . IzapEcommerce::countWishtlistItems() . ')', 'publid' => FALSE, 'groupby' => 'my'),
 
                                 'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/all_orders/'=>array('title'=>"izap-ecommerce:all_orders",'admin_only'=>TRUE, 'groupby' => 'all'),
-                          
-                                //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/[PAGE_OWNER_USERNAME]/' =>array('title'=>"izap-ecommerce:page_owner_products",'public'=>true, 'groupby' => 'others'),
-                                //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/settings' => array ('title' => 'izap-ecommerce:edit_settings', 'admin_only' => TRUE, 'groupby' => 'admin'),
+
+                        //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/[PAGE_OWNER_USERNAME]/' =>array('title'=>"izap-ecommerce:page_owner_products",'public'=>true, 'groupby' => 'others'),
+                        //'pg/'.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/settings' => array ('title' => 'izap-ecommerce:edit_settings', 'admin_only' => TRUE, 'groupby' => 'admin'),
                         ),
                 ),
 
@@ -136,6 +136,20 @@ return array(
                                 'user' => array(
                                         'func_save_cart_izap_ecommerce'
                                 ),
+                        ),
+                ),
+
+                'hooks' => array(
+                        'izap_payment_gateway' => array(
+                                'IPN_NOTIFY_ALERTPAY:SUCCESS' => array(
+                                        'izap_alertpay_process_order',
+                                )
+                        ),
+
+                        'izap_payment_gateway' => array(
+                                'IPN_NOTIFY_ALERTPAY:FAIL' => array(
+                                        'izap_alertpay_fail',
+                                )
                         ),
                 ),
         ),

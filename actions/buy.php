@@ -22,9 +22,15 @@ $payment_method = get_input('payment_option');
 $data_array['items'] = get_from_session_izap_ecommerce('items');
 $data_array['grandTotal'] = get_from_session_izap_ecommerce('total_cart_price');
 
-if(get_input('payment_option') == 'paypal') {
-  $data_array['return'] = $IZAP_ECOMMERCE->link . 'pay_return';
-  $data_array['notify_url'] = $IZAP_ECOMMERCE->link . 'paypal_notify?owner_guid=' . get_input('owner_guid', 0);
+switch ($payment_method) {
+  case "paypal":
+    $data_array['return'] = $IZAP_ECOMMERCE->link . 'pay_return';
+    $data_array['notify_url'] = $IZAP_ECOMMERCE->link . 'paypal_notify?owner_guid=' . get_input('owner_guid', 0);
+    break;
+
+  case "alertpay":
+    $data_array['ap_returnurl'] = $IZAP_ECOMMERCE->link . 'pay_return';
+    break;
 }
 
 // save order first but disable it
@@ -37,7 +43,7 @@ if($order->guid !== 0) {
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
   $processed = $payment->process((int) get_input('owner_guid'));
-  if(get_input('payment_option') == 'paypal') {
+  if($payment_method == 'paypal' || $payment_method == 'alertpay') {
     exit;
   }
   if($processed['status'] === TRUE) {
@@ -46,7 +52,7 @@ if($order->guid !== 0) {
 
     // save purchased product info with user
     save_order_with_user_izap_ecommerce($order);
-    
+
     IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));
     forward($IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid);

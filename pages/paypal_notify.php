@@ -20,6 +20,7 @@ $debug = FALSE;
 if(get_plugin_usersetting('paypal_test_mode', get_input('owner_guid'), GLOBAL_IZAP_PAYMENT_PLUGIN) == 'yes') {
   $debug = TRUE;
 }
+
 $variables = $payment->validate($debug);
 
 if($variables['status'] === TRUE) {
