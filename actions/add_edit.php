@@ -51,7 +51,9 @@ if($error) {
       register_error(elgg_echo('izap-ecommerce:error_uploading_file'));
     }else {
       $product->user_pirce_array = array();
-      $product->code = func_generate_unique_id();
+      if(!(bool)$product->code) {
+        $product->code = func_generate_unique_id();
+      }
       // check if it is new version
       if(isset ($posted_data->parent_of)) {
         $product->archiveOldProduct($posted_data->parent_of);

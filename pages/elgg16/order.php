@@ -13,6 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
+gatekeeper();
 global $CONFIG;
 $title = elgg_echo('izap-ecommerce:my_orders');
 $body = elgg_view_title($title);

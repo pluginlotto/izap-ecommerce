@@ -32,16 +32,16 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
 
     <p>
       <label>
-          <?php
-          echo elgg_echo('izap-ecommerce:file') . '<br />';
-          echo '<br />' . elgg_view('input/file', array(
-                  'internalname' => 'file',
-                  'value' => $loaded_data->file,
-          ));
-          ?>
+        <?php
+        echo elgg_echo('izap-ecommerce:file') . '<br />';
+        echo '<br />' . elgg_view('input/file', array(
+                'internalname' => 'file',
+                'value' => $loaded_data->file,
+        ));
+        ?>
       </label>
     </p>
-    
+
     <p>
       <label>
         <?php
@@ -73,6 +73,21 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         echo elgg_view('input/text', array(
         'internalname' => 'izap_product[price]',
         'value' => $loaded_data->price,
+        ));
+        ?>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <?php
+        echo elgg_echo('izap-ecommerce:izap_product_discount') . '<br />';
+        echo elgg_view('input/text', array(
+        'internalname' => 'izap_product[discount]',
+        'value' => (($loaded_data->discount) ? $loaded_data->discount : izap_plugin_settings(array(
+        'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+        'setting_name' => 'izap_product_discount',
+        ))),
         ));
         ?>
       </label>
