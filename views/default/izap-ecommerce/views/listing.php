@@ -19,7 +19,7 @@ $product = $vars['entity'];
 <div class="izap-contentWrapper">
   <div class="listing-image">
     <a href="<?php echo $product->getUrl()?>">
-      <img src="<?php echo $product->getIconUrl();?>" alt="<?php echo $product->title?>" align="left"/>
+      <img src="<?php echo $product->getIcon();?>" alt="<?php echo $product->title?>" align="left"/>
     </a>
   </div>
 
