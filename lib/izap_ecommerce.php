@@ -1,19 +1,23 @@
 <?php
 /**************************************************
-* iZAP Web Solutions                              *
-* Copyrights (c) 2005-2009. iZAP Web Solutions.   *
+* PluginLotto.com                                 *
+* Copyrights (c) 2005-2010. iZAP                  *
 * All rights reserved                             *
 ***************************************************
 * @author iZAP Team "<support@izap.in>"
 * @link http://www.izap.in/
+* @version 1.0
 * Under this agreement, No one has rights to sell this script further.
-* For more information. Contact "Tarun Kumar<tarun@izap.in>"
- */
+* For more information. Contact "Tarun Jangra<tarun@izap.in>"
+* For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
+* Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
+*/
 
 class IzapEcommerce extends ElggFile {
   public $required_fields = array(
           'title', 'description', 'file'
   );
+
   public $allowed_image_types = array(
           'jpeg', 'jpg', 'gif', 'png'
   );
@@ -21,6 +25,7 @@ class IzapEcommerce extends ElggFile {
   public $allowed_file_types = array(
           'zip', 'gz', 'tar', 'tgz'
   );
+
   public $file_prefix;
 
   function  __construct($guid = NULL) {
@@ -463,6 +468,7 @@ function verify_order_izap_ecommerce($order) {
   global $IZAP_ECOMMERCE;
 
   if($order->confirmed == 'no') {
+    register_error(__('not_processed_properly'));
     forward($IZAP_ECOMMERCE->link . 'order');
   }
 

@@ -1,14 +1,18 @@
 <?php
 /**************************************************
-* iZAP Web Solutions                              *
-* Copyrights (c) 2005-2009. iZAP Web Solutions.   *
+* PluginLotto.com                                 *
+* Copyrights (c) 2005-2010. iZAP                  *
 * All rights reserved                             *
 ***************************************************
 * @author iZAP Team "<support@izap.in>"
 * @link http://www.izap.in/
+* @version 1.0
 * Under this agreement, No one has rights to sell this script further.
-* For more information. Contact "Tarun Kumar<tarun@izap.in>"
- */
+* For more information. Contact "Tarun Jangra<tarun@izap.in>"
+* For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
+* Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
+*/
+
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 $add_cart_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?guid=' . $product->guid);
