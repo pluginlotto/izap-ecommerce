@@ -27,3 +27,27 @@ $plugin = $vars['entity'];
     ));?>
   </label>
 </p>
+<br />
+<p>
+  <label>
+    <?php echo elgg_echo('izap-ecommerce:default_list_view');?>
+    <?php echo elgg_view('input/pulldown', array(
+      'internalname' => 'params[default_list_view]',
+      'options_values' => array(
+				'list' => elgg_echo('izap-ecommerce:list'),
+				'gallery' => elgg_echo('izap-ecommerce:gallery'),
+			),
+			'value' => $plugin->default_list_view,
+    ));?>
+  </label>
+</p>
+<br />
+<p>
+  <label>
+    <?php echo elgg_echo('izap-ecommerce:izap_product_limit');?>
+    <?php echo elgg_view('input/text', array(
+      'internalname' => 'params[izap_product_limit]',
+      'value' => $plugin->izap_product_limit,
+    ));?>
+  </label>
+</p>

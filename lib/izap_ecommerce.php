@@ -788,7 +788,11 @@ function get_archived_products_izap_ecommerce($product, $return_array = FALSE) {
 function get_default_listing_options_izap_ecommerce($array = array()) {
   $options['type'] = 'object';
   $options['subtype'] = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
-  $options['limit'] = 10;
+  $options['limit'] = izap_plugin_settings(array(
+    'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+    'setting_name' => 'izap_product_limit',
+    'value' => 10
+  ));
   $options['full_view'] = FALSE;
   $options['offset'] = get_input('offset', 0);
   $options['view_type_toggle'] = TRUE;

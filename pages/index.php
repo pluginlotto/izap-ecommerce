@@ -19,6 +19,13 @@ $list_param = izap_get_params(1);
 $title = elgg_echo('izap-ecommerce:welcome_to_store');
 $body = elgg_view_title($title); 
 
+if(izap_plugin_settings(array(
+  'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+  'setting_name' => 'default_list_view',
+  'value' => 'list'
+)) == 'gallery') {
+  set_input('search_viewtype', 'gallery');
+}
 $context = get_context();
 set_context('search');
 $list =elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
