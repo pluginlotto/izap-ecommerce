@@ -19,8 +19,8 @@
 global $IZAP_ECOMMERCE;
 $cart_id = time();
 $cart = get_from_session_izap_ecommerce('izap_cart');
-
-$data_array['business'] = get_plugin_setting('paypal_account', $IZAP_ECOMMERCE->plugin_name);
+$payment_method = get_input('payment_option');
+//$data_array['business'] = get_plugin_setting('paypal_account', $IZAP_ECOMMERCE->plugin_name);
 $data_array['items'] = get_from_session_izap_ecommerce('items');
 $data_array['grandTotal'] = get_from_session_izap_ecommerce('total_cart_price');
 $data_array['return'] = $IZAP_ECOMMERCE->link . 'pay_return';
@@ -37,10 +37,19 @@ if($guid) {
   $data_array['custom'] = $guid;
 //  $gateway = new gateway('paypal', '', $debug);
 //  $gateway->paypal($data_array);
-  $payment = new IzapPayment('paypal', $debug);
+  $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
-  $payment->process();
+  if($payment->process()) {
+    $order = get_entity($guid);
+    $order->confirmed = 'yes';
+    $order->payment_transaction_id = $payment->getTransactionId();
+    system_message(elgg_echo('izap-ecommerce:order_success'));
+  }else{
+    register_error(__('unable_to_process_payment'));
+    forward($_SERVER['HTTP_REFERER']);
+  }
 }else {
   register_error(__('unable_to_save_order'));
   forward($_SERVER['HTTP_REFERER']);
 }
+exit;

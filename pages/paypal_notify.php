@@ -13,8 +13,8 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
-include_once dirname(dirname(__FILE__)) . '/lib/gateways/clsGateway.php';
+//include_once dirname(dirname(__FILE__)) . '/lib/gateways/paypal/paypal.php';
+//include_once dirname(dirname(__FILE__)) . '/lib/gateways/clsGateway.php';
 
 global $IZAP_ECOMMERCE;
 
@@ -23,9 +23,12 @@ if(get_plugin_setting('sandbox', $IZAP_ECOMMERCE->plugin_name) == 'yes') {
   $debug = TRUE;
 }
 
-$gateway = new gateway('paypal', '', $debug);
-$variables = $gateway->gopaypal();
+//$gateway = new gateway('paypal', '', $debug);
+//$variables = $gateway->gopaypal();
 
+$payment = new IzapPayment('paypal', $debug);
+$variables = $payment->validate();
+var_dump($variables);
 if($variables['status']) {
   global $IZAP_ECOMMERCE;
 
@@ -34,7 +37,7 @@ if($variables['status']) {
   $order = get_entity($order_id);
   
   $main_array['confirmed'] = 'yes';
-  $main_array['paypal_invoice_id'] = $paypal_invoice_id;
+  $main_array['payment_transaction_id'] = $paypal_invoice_id;
 
   $provided['entity'] = $order;
   $provided['metadata'] = $main_array;

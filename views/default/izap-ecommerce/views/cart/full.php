@@ -11,7 +11,7 @@
 * For more information. Contact "Tarun Jangra<tarun@izap.in>"
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
-*/
+ */
 
 global $IZAP_ECOMMERCE;
 $cart = $vars['cart'];
@@ -40,9 +40,9 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
 
       <div class="izap-product-cart-descrption izap-product-float-left">
         <h3><a href="<?php echo $product->getUrl()?>"><?php echo $product->title?></a></h3>
-        <?php echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);?>
+            <?php echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);?>
       </div>
-      
+
       <div class="izap-product-float-right">
         <b><?php echo $product->getPrice();?></b>
         <br />
@@ -62,15 +62,13 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         $total_products++;
         $total_price += $product->getPrice(FALSE);
         $odd_even++;
+
+        $user_guid = $product->owner_guid;
       }
     }
     ?>
   </div>
   <br />
-
-  <?php
-  //echo elgg_view($IZAP_ECOMMERCE->forms . 'billing_info');
-  ?>
 
   <div class="contentWrapper izap-product-buy">
     <p align="right" style="margin:0;padding:0;">
@@ -79,8 +77,13 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
       </b><br />
     </p>
     <div class="izap-product-float-right">
-      <form action="<?php echo $buy_link?>" method="GET">
+      <form action="<?php echo $buy_link?>" method="POST">
         <?php echo elgg_view('input/securitytoken');?>
+        <?php
+        echo elgg_view('input/payment_options', array(
+        'user_guid' => $user_guid,
+        ));
+        ?>
         <input type="submit" value="<?php _e('pay_now')?>" />
       </form>
     </div>

@@ -436,7 +436,7 @@ function save_order_izap_ecommerce($items, $cart_id) {
   $order->title = $title;
   $order->description = $description;
   $order->confirmed = 'no';
-  $order->paypal_invoice_id = 'no';
+  $order->payment_transaction_id = 'no';
   $order->cart_id = $cart_id;
 
   if($order->save()) {
