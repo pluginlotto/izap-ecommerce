@@ -75,6 +75,15 @@ return array(
                         'pg/store/'=>array('title'=>"izap-ecommerce:store",'public'=>true),
                 ),
 
+                'widget' => array(
+                  
+                  'latest_product' => array(
+                    'name' => __('widgets:latest_products:name'),
+                    'description' => __('widgets:latest_products:description'),
+                  ),
+                  
+                ),
+
                 'submenu'=>array(
                   'store' => array(
                         'pg/store/'=>array('title'=>"izap-ecommerce:products",'public'=>true),

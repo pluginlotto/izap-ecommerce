@@ -141,3 +141,21 @@ background: url("<?php echo func_get_www_path_byizap(array('plugin' => 'izap-eco
 .river_object_izap_ecommerce_updated{
 background: url("<?php echo func_get_www_path_byizap(array('plugin' => 'izap-ecommerce', 'type' => 'images')); ?>river_post.png") no-repeat scroll left -1px transparent;
 }
+
+.izap_ecommerce_widget_view{
+float: left;
+margin:2px;
+padding: 2px;
+border: 1px solid #DEDEDE;
+background-color: #DEDEDE;
+}
+
+.izap_ecommerce_widget_view:hover a {
+color:#FFFFFF;
+text-decoration: none;
+}
+
+.izap_ecommerce_widget_view:hover {
+border: 1px solid #000000;
+background-color: #000000;
+}

@@ -22,7 +22,7 @@ $english = array(
   // admin settings
   'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
   'izap-ecommerce:download_link_expire_time' => 'Link expire time (in Hrs)',
-  'izap-ecommerce:plugin_settings' => 'Plugin settings',
+  'izap-ecommerce:plugin_settings' => 'Product settings',
   'izap-ecommerce:save_settings' => 'Save settings',
   'izap-ecommerce:settings_saved' => 'Settings saved successfully',
   'izap-ecommerce:error_saving_settings' => 'Error saving settings',
@@ -47,9 +47,9 @@ $english = array(
 
   // menu and submenu
   'izap-ecommerce:store' => 'Store',
-  'izap-ecommerce:add_product' => 'Add plugin',
+  'izap-ecommerce:add_product' => 'Add product',
   'izap-ecommerce:edit_product' => '',
-  'izap-ecommerce:products' => 'Plugins',
+  'izap-ecommerce:products' => 'Products',
   'izap-ecommerce:edit_settings' => 'Edit store settings',
   'izap-ecommerce:my_orders' => 'My orders',
   'izap-ecommerce:' => '',
@@ -75,7 +75,7 @@ $english = array(
   'izap-ecommerce:edit' => 'Edit',
   'izap-ecommerce:delete' => 'Delete',
   'izap-ecommerce:product_deleted' => 'Pluign deleted successfully.',
-  'izap-ecommerce:product_not_deleted' => 'Error deleting plugin.',
+  'izap-ecommerce:product_not_deleted' => 'Error deleting product.',
   'izap-ecommerce:comments' => 'Comments',
   'izap-ecommerce:send_to_friends' => 'Send to friend',
   'izap-ecommerce:terms' => 'Terms and conditions',
@@ -86,7 +86,7 @@ $english = array(
   'izap-ecommerce:' => '',
   
   // add form
-  'izap-ecommerce:add_new_product' => 'Add new plugin',
+  'izap-ecommerce:add_new_product' => 'Add new product',
   'izap-ecommerce:save' => 'Save',
   'izap-ecommerce:title' => 'Name*',
   'izap-ecommerce:description' => 'Description*',
@@ -96,9 +96,9 @@ $english = array(
   'izap-ecommerce:tags' => 'Tags',
   'izap-ecommerce:missing_required_info' => 'Missing required fields, fields marked "*" are complusory.',
   'izap-ecommerce:error_saving' => 'Error saving the information, Please try again.',
-  'izap-ecommerce:saved_successfully' => 'Plugin saved successfully',
+  'izap-ecommerce:saved_successfully' => 'Product saved successfully',
   'izap-ecommerce:access_id' => 'Access id',
-  'izap-ecommerce:file' => 'Plugin file* (Only \'zip\', \'gz\', \'tar\', \'tgz\')',
+  'izap-ecommerce:file' => 'Product file* (Only \'zip\', \'gz\', \'tar\', \'tgz\')',
   'izap-ecommerce:error_uploading_file' => 'Did you miss the file ? If not then either the file is corrupted or not supported. Please upload \'zip\', \'gz\', \'tar\', \'tgz\' only.',
 
   // billing info
@@ -137,6 +137,12 @@ $english = array(
   'izap-ecommerce:' => '',
   'izap-ecommerce:' => '',
 
+  'izap-ecommerce:widgets:latest_products:name' => 'Latest products',
+  'izap-ecommerce:widgets:latest_products:description' => 'Lists the latest product.',
+  'izap-ecommerce:widgets:num_to_display' => 'Numbers of product to display',
+  'izap-ecommerce:widgets:thumb_size' => 'Thumb size',
+  'izap-ecommerce:widgets:thumb_size_small' => 'small',
+  'izap-ecommerce:widgets:thumb_size_medium' => 'medium',
 );function __($key) {
   return elgg_echo('izap-ecommerce:' . $key);
 }function _e($key) {

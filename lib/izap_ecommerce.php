@@ -63,6 +63,7 @@ class IzapEcommerce extends ElggFile {
     // start uploading product file
     $content = get_uploaded_file('file');
     if($content != '' && $_FILES['file']['error'] == 0) {
+      $this->setMimeType($_FILES['file']['type']);
       $file_extension = get_extension_izap_ecommerce($_FILES['file']['name']);
       if(!in_array($file_extension, $this->allowed_file_types)) {
         return $edit_mode;
