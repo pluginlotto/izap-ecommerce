@@ -32,8 +32,9 @@ function izap_ecommerce_init() {
     'text'=>elgg_echo('izap-ecommerce:store'),
     'href'=>  IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-        'action' => 'all',
-        'page_owner' => false
+        'action' => 'list',
+        'page_owner' => false,
+        'vars' => array('all')
   ))));
 
   if(get_context()=='store') {
