@@ -80,6 +80,7 @@ class IzapStoreController extends IzapController {
       $menu_edit = new ElggMenuItem('edit_product', elgg_echo('izap-ecommerce:edit'), IzapBase::setHref(array(
                           'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
                           'action' => 'edit',
+                          'page_owner' => false,
                           'vars' => array($izap_product->guid),
                       )));
       $menu_edit->setSection('IMP');
@@ -96,7 +97,7 @@ class IzapStoreController extends IzapController {
                       )));
       $menu_delete->setSection('IMP');
       $menu_delete->setLinkClass('izap_pro_menu');
-      $menu_delete->setConfirmText('ARe you Sure');
+      $menu_delete->setConfirmText('Are you Sure');
       elgg_register_menu_item('page', $menu_delete);
 
       if ($izap_product->getPrice(false) > 0) {
@@ -175,10 +176,10 @@ class IzapStoreController extends IzapController {
 
     $file_friendly_name = elgg_get_friendly_title($izap_product->title . '.' . $izap_product->image_extension);
     IzapBase::cacheHeaders(array(
-        'content_type' => $izap_product->image_mime_type,
-        'file_name' => $file_friendly_name,
-        'filemtime' => filemtime($file_name),
-    ));
+                'content_type' => $izap_product->image_mime_type,
+                'file_name' => $file_friendly_name,
+                'filemtime' => filemtime($file_name),
+            ));
     echo $contents;
   }
 

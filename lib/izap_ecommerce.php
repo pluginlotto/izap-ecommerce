@@ -411,9 +411,7 @@ class IzapEcommerce extends ElggFile {
     }else {
       $user_guid = elgg_get_logged_in_user_guid();
     }
-    echo $user_guid;exit;
-
-    $price_array = (array) unserialize($this->user_pirce_array);
+       $price_array = (array) unserialize($this->user_pirce_array);
 
     if(!isset ($price_array[$user_guid])) {
       $price_array[$user_guid] = $this->makePrice();

@@ -15,22 +15,27 @@
 
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
+$delete_img='<img src="'.$vars['url'].'mod/'.GLOBAL_IZAP_ELGG_BRIDGE.'/_graphics/delete.png" />';
+?>
+<div class="edit"><?php
 if($product->canEdit() && !$product->isArchived()) {
   ?>
-<div class="edit">
+
 <a href="<?php echo $IZAP_ECOMMERCE->link?>edit/<?php echo $product->guid?>">
-    <?php echo elgg_echo('izap-ecommerce:edit');?>
-</a></div>
-/
+    <img src="<?php echo $vars['url'].'mod/'.GLOBAL_IZAP_ELGG_BRIDGE.'/_graphics/edit.png'?>" />
+</a>
+
   <?php
   echo elgg_view('output/confirmlink', array(
-  'text' => elgg_echo('izap-ecommerce:delete'),
+  'text' => $delete_img,
   'href' => elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/delete?guid=' . $product->guid),
   ));
 
 }elseif($product->canEdit()) {
   echo elgg_view('output/confirmlink', array(
-  'text' => elgg_echo('izap-ecommerce:delete'),
+  'text' => $delete_img,
   'href' => elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/delete?guid=' . $product->guid),
   ));
 }
+?>
+</div>
