@@ -33,8 +33,8 @@ $english = array(
         'izap-ecommerce:testing_mode' => 'Testing mode',
         'izap-ecommerce:comming soon' => 'Coming soon ..',
         'izap_ecommerce:add_new_version' => 'Add new versions',
-        'izap-ecommerce:allow_to_download_upgraded_version' => 'Allow the user to download the upgraded version,
-          if he/she has purched the old version',
+        'izap-ecommerce:allow_to_download_upgraded_version' => 'Allow the user to download all the versions, if
+          he/she has purchased a product once.',
         'izap-ecommerce:yes' => 'Yes',
         'izap-ecommerce:no' => 'No',
         'izap-ecommerce:upgraded' => 'Products upgraded successfully.',
@@ -94,7 +94,7 @@ $english = array(
         'izap-ecommerce:price_not_more' => 'Not more than',
         'izap-ecommerce:' => '',
         'izap-ecommerce:' => '',
-        'izap-ecommerce:' => '',
+        'izap-ecommerce:remove_from_wishlist' => 'Remove from wishlist',
         'izap-ecommerce:get_latest_version' => 'Newer version is available',
         'izap-ecommerce:invalid_product' => 'Invalid product',
         'izap-ecommerce:unable_to_process_payment' => 'Unable to process the payment.',
@@ -139,7 +139,7 @@ $english = array(
         'izap-ecommerce:order_comfirmed' => 'Confirmed',
         'izap-ecommerce:payment_method' => 'Payment method',
         'izap-ecommerce:by' => 'by',
-        'izap-ecommerce:order_transction_id' => 'Transction id',
+        'izap-ecommerce:order_transction_id' => 'Transaction id',
         'izap-ecommerce:new_order' => 'New order',
         'izap-ecommerce:new_order_description' => 'A new order has been palced. <a href="%s">%s</a>',
 

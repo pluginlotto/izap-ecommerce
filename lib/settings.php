@@ -71,7 +71,8 @@ return array(
                         'izap_ecommerce/add'=>array('file' => "add_edit.php",'public'=>false),
                         'izap_ecommerce/add_to_cart'=>array('file' => "add_to_cart.php",'public'=>true),
                         'izap_ecommerce/add_to_wishlist'=>array('file' => "add_to_wishlist.php",'public'=>FALSE),
-
+                        'izap_ecommerce/remove_from_wishlist'=>array('file' => "remove_from_wishlist.php",'public'=>FALSE),
+                  
                         'izap_ecommerce/remove_from_cart'=>array('file' => "remove_from_cart.php",'public'=>true),
                         'izap_ecommerce/buy'=>array('file' => "buy.php",'public'=>true),
                         'izap_ecommerce/download'=>array('file' => "download.php",'public'=>false),

@@ -38,8 +38,8 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
     <b>
           <?php
           if(isloggedin()) {
-          echo elgg_echo('izap-ecommerce:price');
-          }else{
+            echo elgg_echo('izap-ecommerce:price');
+          }else {
             echo elgg_echo('izap-ecommerce:price_not_more');
           }
           ?>
@@ -64,12 +64,22 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
     <a href="<?php echo $add_cart_link?>">
             <?php echo elgg_echo('izap-ecommerce:buynow');?>
     </a>
-    <?php if(isloggedin()) {?>
+          <?php
+
+          if(IzapEcommerce::isInWishlist($product->guid)) {
+            ?>
+    <a href="<?php echo elgg_add_action_tokens_to_url(func_get_actions_path_byizap(array('plugin' => GLOBAL_IZAP_ECOMMERCE_PLUGIN)) .
+            'remove_from_wishlist?guid=' . $product->guid);
+               ?>">
+                 <?php echo elgg_echo('izap-ecommerce:remove_from_wishlist');?>
+    </a>
+            <?php
+          }elseif(isloggedin()) {?>
     &nbsp;
     <a href="<?php echo $add_wishlist_link;?>">
-          <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
+              <?php echo elgg_echo('izap-ecommerce:add_to_wishlist');?>
     </a>
-        <?php }?>
+            <?php }?>
           <?php }
       }else {?>
     <a href="#">
@@ -94,9 +104,9 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
       $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
       ?>
   <div class="old_version_download">
-  <a href="<?php echo $donwload_link?>">
-        <?php echo elgg_echo('izap-ecommerce:download');?>
-  </a></div>
+    <a href="<?php echo $donwload_link?>">
+          <?php echo elgg_echo('izap-ecommerce:download');?>
+    </a></div>
       <?php
     }
 
@@ -104,6 +114,5 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
   <div class="clearfloat"></div>
     <?php
   }
-
   ?>
 </div>
