@@ -15,9 +15,6 @@
 ?>
 
 .izap-product-image {
-float: left;
-padding: 2px;
-margin: 2px;
 }
 
 .izap-product-description{

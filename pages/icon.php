@@ -51,13 +51,14 @@ if($size[0] != 'na' && $size[1] != 'na') {
 }else {
   $contents = $file_handler->grabFile();
 }
-if($contents) {
-  header("Expires: Mon, 20 Dec 1998 01:00:00 GMT");
-  header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-  header("Cache-Control: no-cache, must-revalidate");
-  header("Pragma: no-cache");
-  header("Content-type: {$izap_product->getMimeType()}");
-  header("Content-Disposition: inline; filename=\"{$file_name}\"");
-  echo $contents;
+if(!$contents) {
+  $contents = file_get_contents($IZAP_ECOMMERCE->default_image);
 }
+header("Expires: Mon, 20 Dec 1998 01:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+header("Content-type: {$izap_product->getMimeType()}");
+header("Content-Disposition: inline; filename=\"{$file_name}\"");
+echo $contents;
 exit;

@@ -18,9 +18,14 @@ $product = $vars['entity'];
 ?>
 <div>
   <div class="izap-product-description">
-    <a href="<?php echo $product->getIcon('orignal');?>" target="_blank">
-      <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" align="left" class="izap-product-image"/>
-    </a>
+    <div align="center">
+      <a href="#" onclick="javascript: window.open(
+        '<?php echo $product->getIcon('orignal');?>',
+        '<?php echo friendly_title($product->title)?>',
+        'toolbar=no,directories=no,status=no,menubar=no')">
+        <img src="<?php echo $product->getIcon('master');?>" alt="<?php $product->title?>" class="izap-product-image"/>
+      </a>
+    </div>
     <?php
     echo $product->description;
     ?>
@@ -36,3 +41,4 @@ $product = $vars['entity'];
     <?php echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product));?>
   </p>
 </div>
+  
