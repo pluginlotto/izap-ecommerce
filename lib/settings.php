@@ -159,10 +159,8 @@ return array(
                         'izap_payment_gateway' => array(
                                 'IPN_NOTIFY_ALERTPAY:SUCCESS' => array(
                                         'izap_alertpay_process_order',
-                                )
-                        ),
+                                ),
 
-                        'izap_payment_gateway' => array(
                                 'IPN_NOTIFY_ALERTPAY:FAIL' => array(
                                         'izap_alertpay_fail',
                                 )

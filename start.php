@@ -81,6 +81,50 @@ function izap_set_params($array) {
     set_input('izap_param_' . $key, $value);
   }
 }
+
 function izap_get_params($key, $default = '') {
   return get_input('izap_param_' . $key, $default);
+}
+
+function izap_alertpay_process_order($hook, $entity_type, $returnvalue, $params) {
+  global $IZAP_ECOMMERCE;
+
+  $reference_num = $params['transactionReferenceNumber'];
+  $order_id = $params['myCustomField_3'];
+  $order = get_entity($order_id);
+
+  $main_array['confirmed'] = 'yes';
+  $main_array['payment_transaction_id'] = $reference_num;
+
+  $provided['entity'] = $order;
+  $provided['metadata'] = $main_array;
+  func_izap_update_metadata($provided);
+
+  // save purchased product info with user
+  save_order_with_user_izap_ecommerce($order);
+
+  IzapEcommerce::sendOrderNotification($order);
+}
+
+function izap_alertpay_fail($hook, $entity_type, $returnvalue, $params) {
+  global $IZAP_ECOMMERCE;
+
+  $order_id = $params['myCustomField_3'];
+  $order = get_entity($order_id);
+
+  $main_array['confirmed'] = 'no';
+  $main_array['error_status'] = 'Error while Payment';
+  $main_array['error_time'] = time();
+  $main_array['return_response'] = serialize($params);
+
+  $provided['entity'] = $order;
+  $provided['metadata'] = $main_array;
+  func_izap_update_metadata($provided);
+
+  notify_user(
+          $order->owner_guid,
+          $CONFIG->site->guid,
+          elgg_echo('izap-ecommerce:order_processe_error'),
+          elgg_echo('izap-ecommerce:order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
+  );
 }
