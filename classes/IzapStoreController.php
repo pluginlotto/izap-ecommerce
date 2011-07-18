@@ -100,17 +100,17 @@ class IzapStoreController extends IzapController {
       $menu_delete->setConfirmText('Are you Sure');
       elgg_register_menu_item('page', $menu_delete);
 
-      if ($izap_product->getPrice(false) > 0) {
-        $menu_add_attrib = new ElggMenuItem('add_attrib', elgg_echo('izap-ecommerce:add_attrib'), IzapBase::setHref(array(
-                            'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-                            'action' => 'attrib',
-                            'vars' => array($izap_product->guid)
-                        )));
-        $menu_add_attrib->setSection('IMP');
-        $menu_add_attrib->setLinkClass('izap_pro_menu');
-        elgg_register_menu_item('page', $menu_add_attrib);
-      }
+
+      $menu_add_attrib = new ElggMenuItem('add_attrib', elgg_echo('izap-ecommerce:add_attrib'), IzapBase::setHref(array(
+                          'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
+                          'action' => 'attrib',
+                          'vars' => array($izap_product->guid)
+                      )));
+      $menu_add_attrib->setSection('IMP');
+      $menu_add_attrib->setLinkClass('izap_pro_menu');
+      elgg_register_menu_item('page', $menu_add_attrib);
     }
+
 
 
 
@@ -357,4 +357,5 @@ class IzapStoreController extends IzapController {
     forward('/' . GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/orders');
     exit;
   }
+
 }

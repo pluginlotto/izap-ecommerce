@@ -16,11 +16,7 @@
 global $IZAP_ECOMMERCE, $IZAP_PAYMENT_GATEWAYS;
 $order = $vars['entity'];
 $order_owner = $order->getOwnerEntity();
-if (is_plugin_enabled('messages')) {
-  $notify_link = $vars['url'] . 'mod/messages/send.php?send_to=' . $order_owner->guid;
-} else {
-  $notify_link = 'mailto:' . $order_owner->email;
-}
+$notify_link = 'mailto:' . $order_owner->email;
 ?>
 
 <div class="izapcontentWrapper">
@@ -124,8 +120,8 @@ if (is_plugin_enabled('messages')) {
       ?>
             <p>
             <ul type="disc">
-        <?php
-            foreach ($order->$item_attributes as $key) {
+        <?php 
+              foreach ($order->$item_attributes as $key) {
               echo '<li>';
               echo $key;
               echo'</li>';

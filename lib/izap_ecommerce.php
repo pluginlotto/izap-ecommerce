@@ -495,24 +495,42 @@ class IzapEcommerce extends ElggFile {
     global $CONFIG;
     if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
       $site_admin = func_get_admin_entities_byizap(array('limit' => 1));
-      notify_user(
-              $site_admin[0]->guid,
-              $CONFIG->site->guid,
-              elgg_echo('izap-ecommerce:new_order'),
-              sprintf(elgg_echo('izap-ecommerce:new_order_description'), $order->getURL(), $order->getURL())
-      );
+
+      IzapBase::sendMail(array(
+          'to' => get_user($site_admin[0]->guid)->email,
+          'from' => $CONFIG->site->email,
+          'from_username' => $CONFIG->site->name,
+          'subject' =>elgg_echo('izap-ecommerce:new_order'),
+          'msg' => elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/views/email_template',array('entity' =>$order))
+      ));
+//      notify_user(
+//              $site_admin[0]->guid,
+//              $CONFIG->site->guid,
+//              elgg_echo('izap-ecommerce:new_order'),
+//               elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/views/email_template',array('entity' =>$order))
+//              //sprintf(elgg_echo('izap-ecommerce:new_order_description'), $order->getURL(), $order->getURL())
+//      );
     }
   }
 
   public static function sendOrderNotification($order) {
     global $CONFIG;
     if(($order instanceof ElggObject) && $order->getSubtype() == 'izap_order') {
-      notify_user(
-              $order->owner_guid,
-              $CONFIG->site->guid,
-              elgg_echo('izap-ecommerce:order_processed'),
-              elgg_echo('izap-ecommerce:order_processed_message') . $order->getURL()
-      );
+//      notify_user(
+//              $order->owner_guid,
+//              $CONFIG->site->guid,
+//              elgg_echo('izap-ecommerce:order_processed'),
+//              elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/views/email_template',array('entity' =>$order))
+////              elgg_echo('izap-ecommerce:order_processed_message') . $order->getURL()
+  //    );
+
+      IzapBase::sendMail(array(
+          'to' =>  get_user($order->owner_guid)->email,
+          'from' => $CONFIG->site->email,
+          'from_username' => $CONFIG->site->name,
+          'subject' =>elgg_echo('izap-ecommerce:order_processed'),
+          'msg' => elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/views/email_template',array('entity' =>$order))
+      ));
 
       self::notifyAdminForNewOrder($order);
     }
@@ -641,6 +659,7 @@ function add_to_session_izap_ecommerce($key, $data) {
 }
 
 function get_from_session_izap_ecommerce($key, $remove = FALSE) {
+//c($_SESSION);exit;
   if(isset ($_SESSION['izap'][$key])) {
     $data = $_SESSION['izap'][$key];
     if($remove) {
@@ -708,6 +727,7 @@ function get_full_access_IZAP($hook, $entity_type, $returnvalue, $params) {
 }
 
 function save_order_izap_ecommerce($items, $cart_id) {
+
   $cart = get_from_session_izap_ecommerce('izap_cart');
   $order = new ElggObject();
   $order->subtype = 'izap_order';
@@ -729,7 +749,8 @@ function save_order_izap_ecommerce($items, $cart_id) {
 
       $item_attribs = array();
         foreach($product['attributes'] as $key=>$value){
-        $item_attribs[]=$key;
+          if((int)$value > 0)
+          $item_attribs[]=$key;
       }
       $item_attributes = $item_name.'_attribs';
       $order->$item_attributes = $item_attribs;

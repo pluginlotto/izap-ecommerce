@@ -32,16 +32,17 @@ background-color:#EEEEEE;
 .listing-description {float: left; padding: 2px; margin: 2px; width: 59%}
 .listing-options {float: right; padding: 2px; margin: 7px; }
 
-.listing-options .price {
+.price {
 font-weight:bold;
 color:#fff;
-moz-border-radius:8px;
-webkikt-border-radius:8px;
-border-radius:8px;
-padding:5px;
-margin:5px;
+moz-border-radius:5px;
+webkikt-border-radius:px;
+border-radius:5px;
+padding:5px 3px 5px 3px;
+margin:3px;
 text-align:center;
 width:90px;
+
 }
 
 .listing-options .edit {
@@ -201,15 +202,15 @@ font-size: 15px;
 .izap-product-info {
 }
 .izap-product-info .left {
-width: 55%;
+float:left;
+width: 57%;
 }
-
 
 .izap-product-info .right {
 }
 
 .izap-product-image {
-padding:5px;
+padding:2px;
 border:2px solid black;
 }
 
@@ -226,27 +227,34 @@ float:left;
 }
 
 .comingsoon, .comingsoon:hover {
-display: block;
-margin: 30px;
-font-size:38px;
+padding:5px;
 font-weight:bolder;
 font-family:arial;
-color:#AE7D3D;
+color:#fff;
 text-decoration: none;
+background-color:#C25050;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
 }
 
 
 .izap-product-extra {
-  font-size: 16px;
-  font-weight:bold;
-  margin:10px;
-}
-
-.wishlist {
 float:right;
+  font-size:12px;
+  font-weight:bold;
+ width:40%;
+ }
+
+#post_cart_1 {
 
 }
 
+
+.product-all {
+float:left;
+width:90%
+}
 .wishlist a {
 text-decoration:none;
 }
@@ -261,18 +269,13 @@ text-decoration: none;
 }
 
 .download_desc {
-font-size:25px;
-}
- #product_price_html {
- font-size:38px;
- font-weight:bolder;
-font-family:arial;
-color:#AE7D3D;
+font-size:14px;
 
- }
+}
+
 
  .add_to_cart {
-font-size:25px;
+font-size:14px;
 }
 
 .add_attrib {
@@ -334,14 +337,11 @@ margin-left:20px;
 }
 
 .izap-product-buy {
-width:385px;
-height:100px;
-background-color: #FBFBF5;
-border: 2px solid #dadada;
--moz-border-radius: 8px;
--webkit-border-radius: 8px;
-padding: 5px;
-margin:2px,0px,2px,0px;
+border:2px #4690D6 solid;
+background-color:#C6C7CC;
+padding:5px;
+margin:5px;
+float:left;
 }
 
 
@@ -360,7 +360,6 @@ margin:2px,0px,2px,0px;
 
 .izap-product-info  fieldset {
 border: 2px #BCDEFD solid;
-padding: 10px;
 background-color: #E4F2FF;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
@@ -370,7 +369,6 @@ margin-bottom: 10px;
 .izap-product-info fieldset legend {
 font-size: 1.2em;
 font-weight: bold;
-margin: 8px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
 padding: 2px 5px 2px 5px;
@@ -451,11 +449,11 @@ height:8px;
 }
 
 a.izap_pro_menu {
-background: #AE7D3D;
+background: #4690D6;
 color: #FFFFFF;
 }
 
 a.izap_pro_menu:hover {
 background: #FFFFFF;
-color: #AE7D3D;
+color: #4690D6;
 }

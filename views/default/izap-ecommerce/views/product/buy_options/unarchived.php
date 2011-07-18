@@ -14,11 +14,10 @@
 $product = elgg_extract('entity', $vars);
 if ($product->isAvailable()) {
 ?>
-  <div class="izap-product-buy-buynow" >
+  
 <?php
-  echo $form = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/download', array('entity' => $product));
-  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/add_to_cart', array('entity' => $product));
+echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/add_to_cart', array('entity' => $product));
+echo $form = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/download', array('entity' => $product));
 ?>
-</div>
 <?php
 }

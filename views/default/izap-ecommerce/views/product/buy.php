@@ -17,7 +17,7 @@
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 ?>
-<div class="izap-product-buy">
+<!--<div class="izap-product-buy">-->
 <?php
 // if is comming soon
 if (!$product->isAvailable()) {
@@ -31,7 +31,7 @@ else
   echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/archived', array('entity' => $product));
 }
 ?>
-</div>
+<!--</div><div class="clearfloat"></div>-->
 <script type="text/javascript">
   $(document).ready(function() {
     $('#post_cart_1, #post_cart_2').click(function (){

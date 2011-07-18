@@ -36,7 +36,7 @@ if($size == 'small') {
 <div class="contentWrapper">
   <?php
   foreach($products as $product) {
-    $icon = $product->getIconUrl($size);
+    $icon = $product->getIcon($size);
 
     ?>
   <div class="izap_ecommerce_widget_view">

@@ -39,7 +39,7 @@ function izap_ecommerce_init() {
 
   if(elgg_get_context()=='store') {
     $submenu = array(
-                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>true, 'groupby' => 'all'),
+                ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/all/'=>array('title'=>"izap-ecommerce:all_products",'public'=>false, 'groupby' => 'all'),
 
                 ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/add' => array ('title' => 'izap-ecommerce:add_product','admin_only'=>TRUE, 'groupby' => 'my'),
                 ''.GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER.'/list/' . get_loggedin_user()->username . '/' =>array('title'=>"izap-ecommerce:my_products",'admin_only'=>TRUE, 'groupby' => 'my'),
@@ -49,9 +49,9 @@ function izap_ecommerce_init() {
 
               );
     foreach($submenu as $url=>$options) {
-      if( isset($options['public']) && $options['public']==TRUE && !isloggedin() ) {
+      if( isset($options['public']) && $options['public']==TRUE && !elgg_is_logged_in() ) {
         continue;
-      } else if( isset($options['admin_only']) && $options['admin_only']==true && !isadminloggedin() ) {
+      } else if( isset($options['admin_only']) && $options['admin_only']==true && !elgg_is_admin_logged_in() ) {
         continue;
       } else {
         elgg_register_menu_item('page', array(
@@ -69,7 +69,6 @@ function izap_ecommerce_init() {
   elgg_extend_view('profile/menu/links', GLOBAL_IZAP_ECOMMERCE_PLUGIN . "/menu");
   elgg_register_page_handler(GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
   elgg_register_entity_type('object', 'izap_ecommerce');
-  elgg_register_entity_type('object', 'izap_order');
   elgg_register_entity_url_handler('object', 'izap_ecommerce', 'izap_ecommerce_getUrl');
   elgg_register_entity_url_handler('object', 'izap_order', 'izap_order_getUrl');
   add_subtype('object', 'izap_ecommerce', 'IzapEcommerce');

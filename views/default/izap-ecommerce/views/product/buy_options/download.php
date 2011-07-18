@@ -15,17 +15,19 @@ $product = elgg_extract('entity', $vars);
 if ($product->canDownload()) {
   $donwload_link = create_product_download_link_izap_ecommerce(rand(0, 1000), $product->guid);
 ?>
-  <div class="download">
-    <a href="<?php echo $donwload_link ?>" class="img">
-      <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/download.png' ?>" />
-    </a>
+<!--  <div class="download">-->
+<!--    <a href="<?php //echo $donwload_link ?>" >-->
+<!--      <img src="<?php //echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/download.png' ?>" />-->
+<!--    </a>-->
 
-    <a href="<?php echo $donwload_link ?>" class="text">
-    <?php echo elgg_echo('izap-ecommerce:download'); ?>
-    <span class="download_desc"><?php echo '(' . IzapBase::byteToMb($product->size()) . ' Mb)' ?></span>
+    <a href="<?php echo $donwload_link ?>" class="elgg-button elgg-button-action" style="margin-bottom:5px;">
+<!--      <img src="<?php //echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/download.png' ?>" />-->
+    <span class="download_desc">
+      <?php echo elgg_echo('izap-ecommerce:download'); ?>
+    
+    <?php //echo '(' . IzapBase::byteToMb($product->size()) . ' Mb)' ?></span>
   </a>
-  <div class="clearfloat"></div>
-</div>
+<!--</div>-->
 
 <?php
   }

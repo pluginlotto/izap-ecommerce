@@ -31,6 +31,9 @@ global $IZAP_ECOMMERCE;
       }
     });
 
+    if(extra > 0) {
+      $('#price_span').show()
+    }
     $('#product_price_html').html('$' + extra);
   }
 </script>
@@ -50,5 +53,6 @@ if(sizeof($vars['attribs'])) {
     'js' => 'onclick="update_price_field();"'
   )
   );
+  if( $vars['entity']->comming_soon=='no')
   define('show_buy_now', 'yes');
 }

@@ -45,7 +45,7 @@ $product = $vars['entity'];
     </p>
 
     <p>
-      <label for="msg"><?php echo elgg_echo('izap-ecommerce:message');?></label
+      <label for="msg"><?php echo elgg_echo('izap-ecommerce:message');?></label>
       <?php echo elgg_view('input/plaintext', array('internalname' => 'attributes[_msg]', 'value' => $vars['postArray']['msg'], 'internalid'=>"msg"));?>
     </p>
 

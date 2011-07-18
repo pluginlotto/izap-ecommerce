@@ -13,26 +13,19 @@
  */
 
 $product = elgg_extract('entity', $vars);
-if($product->getPrice(FALSE) <= 0 || elgg_is_admin_logged_in()) {
-  return '';
-}
-$cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?product_guid=' . $product->guid);
-$cart_url = '#';
-define('show_buy_now', 'yes');
+//if($product->getPrice(FALSE) <= 0 || elgg_is_admin_logged_in()) {
+//  return '';
+//}
+//$cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/add_to_cart?product_guid=' . $product->guid);
+//$cart_url = '#';
+//if( $product->comming_soon == 'no')
+//define('show_buy_now', 'yes');
+$color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
+
 ?>
-<div class="download">
-<!--  <a href="<?php //echo $cart_url;?>" class="img" id="post_cart_1">-->
-<!--    <img src ="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/add_to_cart.png' ?>" />-->
-<!--  </a>-->
-<!--  <a href="<?php //echo $cart_url;?>" class="text" id="post_cart_2">-->
-    <?php //echo elgg_echo('izap-ecommerce:add_to_cart');
-    ?>
-<span class="text">
+
+<span class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
-</span>
-    <span class="download_desc">
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
-    </span>
-<!--  </a>-->
-</div>
+</span>

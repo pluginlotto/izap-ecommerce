@@ -12,7 +12,6 @@
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-
 gatekeeper();
 global $IZAP_ECOMMERCE;
 $cart_id = time();
