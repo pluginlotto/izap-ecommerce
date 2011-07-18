@@ -19,7 +19,7 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
 ?>
 <div class="izap-product-info">
   <div class="left">
-    <!--    <div class="">-->
+    
     <?php
     echo elgg_view($IZAP_ECOMMERCE->product . 'buy', array('entity' => $product));
     ?>
@@ -29,7 +29,7 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
     if (show_buy_now == 'yes') {
     ?>
       <a href="<?php echo $cart_url ?>" id="post_cart_1" class="elgg-button elgg-button-action">
-<!--        <img src ="<?php //echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/add_to_cart.png' ?>" />-->
+
         <span class="add_to_cart">
         <?php echo elgg_echo('izap-ecommerce:add_to_cart') ?>
       </span>
@@ -38,21 +38,15 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
       }
     ?>
 
-      <!--        <div class="izap-product-extra">-->
-    
-<!--      <span class="wishlist">-->
+      
       <?php
       echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product));
       ?>
-<!--    </span>-->
+
 <?php
       echo elgg_view('likes/display', array('entity' => $product));
     ?><br/><br/>
-    <!--      </div>-->
-<!--    <div class="clearfloat"></div>-->
-    <!--    </div>-->
-
-
+   
     <?php if ($product->comming_soon == 'no')
         echo $attrib_html; ?>
     </div>
