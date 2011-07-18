@@ -16,6 +16,6 @@ $product = elgg_extract('entity', $vars);
 //echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product));
 ?>
 
-<a href="#" class="comingsoon">
+<span class="comingsoon">
   <?php echo elgg_echo('izap-ecommerce:comming_soon')?>
-</a>
+</span>

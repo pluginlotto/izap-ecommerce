@@ -247,7 +247,7 @@ class IzapStoreController extends IzapController {
     $options['type'] = 'object';
     $options['subtype'] = 'izap_order';
     $options['owner_guid'] = elgg_get_logged_in_user_guid();
-    if ($IZAP_ECOMMERCE->show_not_confirmed_orders == 'no') {
+    if (!elgg_is_admin_logged_in ()) {
       $options['metadata_names'] = 'confirmed';
       $options['metadata_values'] = 'yes';
     }
