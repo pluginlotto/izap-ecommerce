@@ -45,6 +45,9 @@ if($error) {
     $product->comming_soon = 'no';
   }
 
+  if(isset($posted_data->categories)){
+      $product->categories = $posted_data->categories;
+  }
   if($product->save()) {
     if(!$product->saveFiles($edit_mode)) {
       delete_entity($product->guid);
@@ -63,7 +66,7 @@ if($error) {
       add_to_river(
               $IZAP_ECOMMERCE->river.$river_action ,
               $river_action,
-              get_loggedin_userid(),
+              elgg_get_logged_in_user_entity(),
               $product->guid
       );
       unset_posted_data_izap_ecommerce('izap_product');

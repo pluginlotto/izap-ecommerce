@@ -118,7 +118,12 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         ?>
       </label>
     </p>
-
+    <p><label>
+        <?php echo elgg_echo('izap-elgg-bridge:select_categories')?>
+        <br/>
+      </label>
+      <?php echo elgg_view('input/izap_categories', array('internalname' => 'izap_product[categories][]','plugin_id' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'multiple' => TRUE));?>
+    </p>
     <p>
       <label>
         <?php
