@@ -16,8 +16,8 @@ global $IZAP_ECOMMERCE;
 ?>
 
 
-.izap-product-description{padding: 2px; margin: 2px}
-
+.izap-product-description{padding: 2px; margin: 2px;
+}
 .izap-product-float-left {
 float:left;
 }
@@ -42,7 +42,6 @@ padding:5px 3px 5px 3px;
 margin:3px;
 text-align:center;
 width:90px;
-
 }
 
 .listing-options .edit {
@@ -66,7 +65,7 @@ border:1px solid black;}
 .izap-partial-cart-product {color: #000000}
 .izap-partial-cart-product a{color: #4690D6}
 .izap-partial-cart-product .izap-product-remove-from-cart:hover{color: #E01F1F}
-.izap-product-buy-buynow a.button{padding:4.5px; -moz-border-radius: 4px; -webkit-border-radius: 4px; background-color: #4690D6; color: #FFFFFF; text-decoration: none}
+.izap-product-buy-buynow a.button{padding:4.5px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius:4px; background-color: #4690D6; color: #FFFFFF; text-decoration: none}
 .izap-product-buy-buynow a.button:hover{background-color: #0054A8}
 .river_object_izap_ecommerce_created{ background: url("<?php echo $IZAP_ECOMMERCE->_graphics; ?>river_post.png") no-repeat scroll left -1px transparent}
 .river_object_izap_ecommerce_updated{ background: url("<?php echo $IZAP_ECOMMERCE->_graphics; ?>river_post.png") no-repeat scroll left -1px transparent}
@@ -290,6 +289,7 @@ padding: 10px;
 background-color: #E4F2FF;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+border-radius:8px;
 margin-bottom: 10px;
 }
 
@@ -299,6 +299,7 @@ font-weight: bold;
 margin-left: 8px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+border-radius:8px;
 padding: 2px 5px 2px 5px;
 background-color: #E4F2FF;
 border: 2px #BCDEFD solid;
@@ -308,6 +309,7 @@ border: 2px #BCDEFD solid;
 border:1px black solid;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
+border-radius:5px;
 padding:10px;
 margin:3px;
 }
@@ -363,7 +365,9 @@ border: 2px #BCDEFD solid;
 background-color: #E4F2FF;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+border-radius:8px;
 margin-bottom: 10px;
+padding:10px;
 }
 
 .izap-product-info fieldset legend {
@@ -371,6 +375,7 @@ font-size: 1.2em;
 font-weight: bold;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+border-radius:8px;
 padding: 2px 5px 2px 5px;
 background-color: #E4F2FF;
 border: 2px #BCDEFD solid;
@@ -388,6 +393,8 @@ border: 2px #DADADA solid;
 background: #FBFBF5;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+border-radius:8px;
+border-radius:8px;
 }
 
 .add_attrib_button {
