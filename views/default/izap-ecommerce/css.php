@@ -110,6 +110,7 @@ background-color: #036100;
 color: #FFFFFF;
 -moz-border-radius:8px 8px 8px 8px;
 -webkit-border-radius:8px 8px 8px 8px;
+border-radius:8px 8px 8px 8px;
 margin:0 10px 10px;
 padding:10px;
 }
@@ -136,6 +137,7 @@ background-color: #FF0000;
 color: #FCED00;
 -moz-border-radius:8px 8px 8px 8px;
 -webkit-border-radius:8px 8px 8px 8px;
+border-radius:8px 8px 8px 8px;
 margin:0 10px 10px;
 padding:10px;
 }
@@ -394,7 +396,7 @@ background: #FBFBF5;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
 border-radius:8px;
-border-radius:8px;
+
 }
 
 .add_attrib_button {
