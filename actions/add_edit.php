@@ -14,7 +14,6 @@
  */
 
 $posted_data = get_posted_data_izap_ecommerce('izap_product');
-
 $product = new IzapEcommerce($posted_data->guid);
 if(!$posted_data->guid) {
   $product->archived = 'no';
