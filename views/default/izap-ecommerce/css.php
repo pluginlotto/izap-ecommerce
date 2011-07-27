@@ -466,3 +466,10 @@ a.izap_pro_menu:hover {
 background: #FFFFFF;
 color: #4690D6;
 }
+
+
+.get_latest {
+margin-top: 18px;
+margin-right:5px;
+float:left;
+}

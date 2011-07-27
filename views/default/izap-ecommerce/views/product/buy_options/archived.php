@@ -15,11 +15,9 @@ $product = elgg_extract('entity', $vars);
 $new_version = get_product_izap_ecommerce($product->parent_guid);
 if ($new_version) {
 ?>
-  <div class="download">
-    <a href="<?php echo $new_version->getURL(); ?>" class="img">
-      <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/_graphics/latest.png'; ?>" />
-    </a>
-    <a href="<?php echo $new_version->getURL(); ?>" class="text"><?php echo
+  <div class="get_latest">
+    <a href="<?php echo $new_version->getURL(); ?>" class="elgg-button elgg-button-action">
+      <?php echo
   elgg_echo('izap-ecommerce:get_latest_version') ?></a>
 </div>
 <?php
