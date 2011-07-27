@@ -204,7 +204,7 @@ font-size: 15px;
 }
 .izap-product-info .left {
 float:left;
-width: 57%;
+width: 55%;
 }
 
 .izap-product-info .right {
