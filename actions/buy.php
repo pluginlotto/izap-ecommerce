@@ -30,7 +30,6 @@ switch ($payment_method) {
     $data_array['ap_returnurl'] = $IZAP_ECOMMERCE->link . 'pay_return';
     break;
 }
-
 // save order first but disable it
 $order = save_order_izap_ecommerce($data_array['items'], $cart_id);
 $order->payment_method = $payment_method;
@@ -50,7 +49,9 @@ if($order->guid !== 0) {
 
     // save purchased product info with user
     save_order_with_user_izap_ecommerce($order);
-
+    
+      remove_from_session_izap_ecommerce('izap_cart');
+      
     IzapEcommerce::sendOrderNotification($order);
     system_message(elgg_echo('izap-ecommerce:order_success'));
     forward($IZAP_ECOMMERCE->link . 'order/' . $order->guid);
@@ -58,9 +59,11 @@ if($order->guid !== 0) {
     // delete the not processed order
     $order->delete();
     $response = $payment->getResponse();
-    register_error(elgg_echo('izap-ecommerce:unable_to_process_payment') . ': ' .
-            (empty($response['error_msg']) ? elgg_echo('izap-ecommerce:no_response') : $response['error_msg']));
-    forward($_SERVER['HTTP_REFERER']);
+    $error = (empty($response['error_msg']) ?'No response from the remote server' : $response['error_msg']);
+    //    ECHO elgg_echo('izap-ecommerce:unable_to_process_payment') . ': ' .
+//            (empty($response['error_msg']) ? elgg_echo('izap-ecommerce:no_response') : $response['error_msg']);EXIT;
+    register_error(elgg_echo('izap-ecommerce:unable_to_process_payment').$error);
+    forward(REFERER);
   }
 }else {
   register_error(elgg_echo('izap-ecommerce:unable_to_save_order'));

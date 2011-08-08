@@ -126,7 +126,7 @@ class IzapStoreController extends IzapController {
     $product = get_entity($this->url_vars[2]);
     if (elgg_instanceof($product, 'object', GLOBAL_IZAP_ECOMMERCE_SUBTYPE)) {
       $title = '<a href="' . $product->getURL() . '">' . $product->title . '</a>';
-      $this->page_elements['title'] = elgg_view_title(elgg_echo('izap-ecommerce:add_attribute:adding_for') . ' : ' . $title);
+      $this->page_elements['title'] = elgg_echo('izap-ecommerce:add_attribute:adding_for') . ' : ' . $title;
       $this->render(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/forms/add_attribute', array('entity' => $product));
     }
   }

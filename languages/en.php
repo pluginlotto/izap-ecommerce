@@ -45,10 +45,7 @@ $english = array(
     'izap-ecommerce:izap_product_limit' => 'Number of products to display in listing',
     'izap-ecommerce:izap_product_discount' => 'Enter discount you want to give to the user who have
           purchased the older version. (This will only be aplicable, if they are not allowed to download the product)',
-    'izap-ecommerce:' => '',
-    'izap-ecommerce:' => '',
-    'izap-ecommerce:' => '',
-    'izap-ecommerce:' => '',
+    'item:object:izap_order' => 'izap-orders',
     // menu and submenu
     'izap-ecommerce:store' => 'Store',
     'izap-ecommerce:add_product' => 'Add product',
