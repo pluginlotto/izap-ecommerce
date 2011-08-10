@@ -77,31 +77,6 @@ class IzapStoreController extends IzapController {
         elgg_register_menu_item('page', $menu);
       }
 
-      // EDIT LINK
-      $menu_edit = new ElggMenuItem('edit_product', elgg_echo('izap-ecommerce:edit'), IzapBase::setHref(array(
-                          'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-                          'action' => 'edit',
-                          'page_owner' => false,
-                          'vars' => array($izap_product->guid),
-                      )));
-      $menu_edit->setSection('IMP');
-      $menu_edit->setLinkClass('izap_pro_menu');
-      elgg_register_menu_item('page', $menu_edit);
-
-      // DELETE LINK
-      $menu_delete = new ElggMenuItem('delete_product', elgg_echo('izap-ecommerce:delete'), IzapBase::deleteLink(array(
-                          'only_url' => TRUE,
-                          'rurl' => IzapBase::setHref(array(
-                              'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
-                              'action' => 'all'
-                          )),
-                      )));
-      $menu_delete->setSection('IMP');
-      $menu_delete->setLinkClass('izap_pro_menu');
-      $menu_delete->setConfirmText('Are you Sure');
-      elgg_register_menu_item('page', $menu_delete);
-
-
       $menu_add_attrib = new ElggMenuItem('add_attrib', elgg_echo('izap-ecommerce:add_attrib'), IzapBase::setHref(array(
                           'context' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER,
                           'action' => 'attrib',

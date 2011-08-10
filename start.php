@@ -22,8 +22,6 @@ if(elgg_is_active_plugin('izap-elgg-bridge'))
 
 function izap_ecommerce_init() {
   global $CONFIG;
-//  include_once( dirname(__FILE__) . '/lib/load.php' );
-//  include_once( dirname(__FILE__) . '/lib/izap_ecommerce.php' );
   izap_plugin_init(GLOBAL_IZAP_ECOMMERCE_PLUGIN);
   IzapBase::loadLib(array('lib' =>'load','plugin'=>GLOBAL_IZAP_ECOMMERCE_PLUGIN));
   IzapBase::loadLib(array('lib' =>'izap_ecommerce','plugin' =>GLOBAL_IZAP_ECOMMERCE_PLUGIN));

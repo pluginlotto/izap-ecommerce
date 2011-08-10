@@ -29,16 +29,20 @@ $product = $vars['entity'];
         <?php echo $product->title; ?>
       </a>
     </h3>
-    <p align="justify">
+    <p>
       <?php
         echo substr(filter_var($product->description, FILTER_SANITIZE_STRING), 0, 200);
         echo '<br />';
         echo elgg_view('output/tags', array('tags' => $product->tags));
       ?>
       </p>
+       <?php
+      echo IzapBase::controlEntityMenu(array('page_owner' => false,'entity' => $product, 'handler' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER));
+      ?>
     </div>
 
     <div class="listing-options">
+     
     <?php
         if ($product->isAvailable()) {
     ?>
@@ -53,7 +57,7 @@ $product = $vars['entity'];
       <?php echo elgg_echo('izap-ecommerce:comming_soon') ?>
         </div>
     <?php }
-        echo elgg_view($IZAP_ECOMMERCE->product . 'edit_delete', array('entity' => $product)); ?>
+       ?>
       </div>
 
       <div class="clearfloat"></div>

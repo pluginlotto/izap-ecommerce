@@ -39,7 +39,7 @@ moz-border-radius:5px;
 webkikt-border-radius:px;
 border-radius:5px;
 padding:5px 3px 5px 3px;
-margin:3px;
+margin: 0 3px 3px 0;
 text-align:center;
 width:90px;
 }
@@ -227,7 +227,7 @@ float:left;
 .download a.img {
 }
 
-.comingsoon, .comingsoon:hover {
+.comingsoon {
 padding:5px;
 font-weight:bolder;
 font-family:arial;
@@ -236,7 +236,9 @@ text-decoration: none;
 background-color:#C25050;
 -moz-border-radius:5px;
 -webkit-border-radius:5px;
+margin: 0 3px 3px 0;
 border-radius:5px;
+width:90px;
 }
 
 
