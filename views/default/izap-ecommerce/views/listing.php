@@ -36,14 +36,14 @@ $tags = elgg_view('output/tags', array('tags' =>  $product->tags));
 $date = elgg_view_friendly_time($product->time_created);
 
 
-if ($product->comments_on != 'Off') {
+if ($product->comments_on) {
 
 	$comments_count = $product->countComments();
 	//only display if there are commments
 	if ($comments_count != 0) {
-		$text = elgg_echo("comments") . " ($comments_count)";
+		$text = elgg_echo("izap-ecommerce:comments") . " ($comments_count)";
 		$comments_link = elgg_view('output/url', array(
-			'href' => $product->getURL() . '#video-comments',
+			'href' => $product->getURL() . '#store-comments',
 			'text' => $text,
 		));
 	} else {

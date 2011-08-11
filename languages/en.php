@@ -115,6 +115,9 @@ $english = array(
     'izap-ecommerce:saved_successfully' => 'Product saved successfully',
     'izap-ecommerce:access_id' => 'Access id',
     'izap-ecommerce:file' => 'Product file* (Only \'zip\', \'gz\', \'tar\', \'tgz\')',
+    'izap-ecommerce:on' => 'On',
+    'izap-ecommerce:off' => 'Off',
+    'izap-ecommerce:comments' => 'Comments',
     'izap-ecommerce:error_uploading_file' => 'Did you miss the file ? If not then either the file is corrupted or not supported. Please upload \'zip\', \'gz\', \'tar\', \'tgz\' only.',
     // billing info
     'izap-ecommerce:billing_info' => 'Billing info',

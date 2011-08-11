@@ -118,6 +118,19 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         ?>
       </label>
     </p>
+
+    <p>
+    <label>
+      <?php
+        echo elgg_echo('izap-ecommerce:comments');
+        echo elgg_view('input/dropdown',array(
+          'internalname' => 'attributes[comments_on]',
+          'value' => $loaded_data->comments_on,
+          'options_values' => array('1' => elgg_echo('izap-ecommerce:on'), '0' => elgg_echo('izap-ecommerce:off'))
+      ));
+      ?>
+    </label>
+    </p>
     <p><label>
         <?php echo elgg_echo('izap-elgg-bridge:select_categories')?>
         <br/>

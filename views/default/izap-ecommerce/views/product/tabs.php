@@ -16,11 +16,7 @@
 global $IZAP_ECOMMERCE;
 $product = $vars['entity'];
 $tabs_array = array(
-        'tabsArray'=>array(
-                array(
-                        'title'=>elggb_echo('comments'),
-                        'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
-                ),
+        'tabsArray'=>array(                
                 array(
                         'title'=>elggb_echo('send_to_friend'),
                         'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product, 'guid'=>$product->guid)),
@@ -31,6 +27,14 @@ $tabs_array = array(
                 ),
         )
 );
+ 
+if ($product->comments_on) {
+       array_unshift(array(
+            'title'=>elggb_echo('comments'),
+            'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
+             ), $tabs_array['tabsArray']);
+}
+
 $tabs_array['tabsArray'][] = array(
           'title'=>elgg_echo('izap-ecommerce:screenshots'),
           'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/screenshots',array('entity'=>$product)),

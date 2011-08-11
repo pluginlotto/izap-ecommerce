@@ -13,7 +13,7 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-class IzapEcommerce extends ElggFile {
+class IzapEcommerce extends IzapObject {
   public $required_fields = array(
           'title', 'description', 'file'
   );
@@ -590,6 +590,27 @@ class IzapEcommerce extends ElggFile {
       }
     }
   }
+
+
+	/**
+	 * Can a user comment on this store?
+	 *
+	 * @see ElggObject::canComment()
+	 *
+	 * @param int $user_guid User guid (default is logged in user)
+	 * @return bool
+	 * @since 1.8.0
+	 */
+	public function canComment($user_guid = 0) {
+		$result = parent::canComment($user_guid);
+		if ($result == false) {
+			return $result;
+		}
+		if (!$this->comments_on) {
+			return false;
+		}
+		return true;
+	}
 
 }
 
