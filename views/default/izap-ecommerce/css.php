@@ -32,6 +32,34 @@ background-color:#EEEEEE;
 .listing-description {float: left; padding: 2px; margin: 2px; width: 59%}
 .listing-options {float: right; padding: 2px; margin: 7px; }
 
+
+
+.lprice{
+font-weight:bold;
+color:#fff;
+moz-border-radius:5px;
+webkikt-border-radius:px;
+border-radius:5px;
+padding:5px 3px 5px 3px;
+text-align:center;
+width:90px;
+float: right;
+}
+
+.lcomingsoon{
+padding:5px;
+font-weight:bolder;
+font-family:arial;
+color:#fff;
+text-decoration: none;
+background-color:#C25050;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+width:90px;
+float: right;
+}
+
 .price {
 font-weight:bold;
 color:#fff;
@@ -41,6 +69,21 @@ border-radius:5px;
 padding:5px 3px 5px 3px;
 margin: 0 3px 3px 0;
 text-align:center;
+width:90px;
+}
+
+
+.comingsoon {
+padding:5px;
+font-weight:bolder;
+font-family:arial;
+color:#fff;
+text-decoration: none;
+background-color:#C25050;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+margin: 0 3px 3px 0;
+border-radius:5px;
 width:90px;
 }
 
@@ -227,19 +270,6 @@ float:left;
 .download a.img {
 }
 
-.comingsoon {
-padding:5px;
-font-weight:bolder;
-font-family:arial;
-color:#fff;
-text-decoration: none;
-background-color:#C25050;
--moz-border-radius:5px;
--webkit-border-radius:5px;
-margin: 0 3px 3px 0;
-border-radius:5px;
-width:90px;
-}
 
 
 .izap-product-extra {
