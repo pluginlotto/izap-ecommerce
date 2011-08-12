@@ -44,6 +44,8 @@ if($error) {
     $product->comming_soon = 'no';
   }
 
+    $product->comments_on = $posted_data->comments_on;
+
   if(isset($posted_data->categories)){
       $product->categories = $posted_data->categories;
   }

@@ -27,12 +27,11 @@ $tabs_array = array(
                 ),
         )
 );
- 
 if ($product->comments_on) {
-       array_unshift(array(
+       array_unshift($tabs_array['tabsArray'],array(
             'title'=>elggb_echo('comments'),
             'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
-             ), $tabs_array['tabsArray']);
+             ));
 }
 
 $tabs_array['tabsArray'][] = array(
