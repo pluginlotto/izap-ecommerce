@@ -68,5 +68,5 @@ if ($product->comments_on) {
                 'is_available' => $product->isAvailable()
               );
 	$params = $params + $vars;
- $list_body = elgg_view('izap-ecommerce/elements/summary', $params);
+ $list_body = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/elements/summary', $params);
  	echo elgg_view_image_block($product_image, $list_body);

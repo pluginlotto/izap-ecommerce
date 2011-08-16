@@ -51,6 +51,7 @@ if ($metadata) {
 	echo $metadata;
 }
 echo "<h3>$title_link</h3>";
+echo '<br/>';
 echo $price_tag;
 echo "<div class=\"elgg-subtext\">$subtitle</div>";
 echo $tags;
