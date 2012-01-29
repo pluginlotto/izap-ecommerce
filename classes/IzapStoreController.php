@@ -29,12 +29,12 @@ class IzapStoreController extends IzapController {
             )) == 'gallery' && !isset($_REQUEST['search_viewtype'])) {
       set_input('search_viewtype', 'gallery');
     }
-    $context_bak = get_context();
-    set_context('search');
+    $context_bak = elgg_set_context();
+    elgg_set_context('search');
     $this->page_elements['content'] = elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
     if (empty($this->page_elements['content']))
       $this->page_elements['content'] = elgg_view($IZAP_ECOMMERCE->views . '/no_data');
-    set_context($context_bak);
+    elgg_set_context($context_bak);
     $this->drawPage();
   }
 
