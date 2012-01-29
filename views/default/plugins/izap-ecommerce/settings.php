@@ -17,7 +17,7 @@ $plugin = $vars['entity'];
 <p>
   <label>
     <?php echo elgg_echo('izap-ecommerce:allow_to_download_upgraded_version');?>
-    <?php echo elgg_view('input/pulldown', array(
+    <?php echo elgg_view('input/dropdown', array(
     'name' => 'params[allow_to_download_upgraded_version]',
     'options_values' => array(
             'no' => elgg_echo('izap-ecommerce:no'),
@@ -36,7 +36,7 @@ $plugin = $vars['entity'];
 <p>
   <label>
     <?php echo elgg_echo('izap-ecommerce:default_list_view');?>
-    <?php echo elgg_view('input/pulldown', array(
+    <?php echo elgg_view('input/dropdown', array(
     'name' => 'params[default_list_view]',
     'options_values' => array(
             'list' => elgg_echo('izap-ecommerce:list'),

@@ -223,7 +223,7 @@ function izap_plugin_settings($supplied_array) {
   }
 
   // get the old value
-  $old_setting = get_plugin_setting($setting_name, $plugin_name);
+  $old_setting = elgg_get_plugin_setting($setting_name, $plugin_name);
 
   if(is_array($value)) {
     $plugin_values = implode('|', $value);
