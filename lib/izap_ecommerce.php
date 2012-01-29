@@ -805,7 +805,7 @@ function save_order_izap_ecommerce($items, $cart_id) {
 function create_product_download_link_izap_ecommerce($order, $product_guid, $time = '') {
   global $CONFIG;
 
-  $owner_guid = get_loggedin_userid();
+  $owner_guid = elgg_get_logged_in_user_guid();
   if($time == '') {
     $time = md5(microtime());
   }

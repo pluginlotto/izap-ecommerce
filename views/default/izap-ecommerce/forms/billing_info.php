@@ -25,7 +25,7 @@ $billing_info = get_billing_info_izap_ecommerce();
       <label>
         <?php
           echo elgg_echo('izap-ecommerce:firstname');
-          echo '<br />' . elgg_view('input/text', array('internalname' => 'billing_info[FirstName]', 'value' => $billing_info->LastName, 'class' => 'general-textarea'));
+          echo '<br />' . elgg_view('input/text', array('name' => 'billing_info[FirstName]', 'value' => $billing_info->LastName, 'class' => 'general-textarea'));
         ?>
       </label>
     </p>
@@ -34,7 +34,7 @@ $billing_info = get_billing_info_izap_ecommerce();
       <label>
         <?php
           echo elgg_echo('izap-ecommerce:lastname');
-          echo '<br />' . elgg_view('input/text', array('internalname' => 'billing_info[LastName]', 'value' => $billing_info->LastName, 'class' => 'general-textarea'));
+          echo '<br />' . elgg_view('input/text', array('name' => 'billing_info[LastName]', 'value' => $billing_info->LastName, 'class' => 'general-textarea'));
         ?>
       </label>
     </p>
@@ -43,7 +43,7 @@ $billing_info = get_billing_info_izap_ecommerce();
       <label>
         <?php
           echo elgg_echo('izap-ecommerce:email');
-          echo '<br />' . elgg_view('input/text', array('internalname' => 'billing_info[email]', 'value' => $billing_info->email, 'class' => 'general-textarea'));
+          echo '<br />' . elgg_view('input/text', array('name' => 'billing_info[email]', 'value' => $billing_info->email, 'class' => 'general-textarea'));
         ?>
       </label>
     </p>
@@ -55,7 +55,7 @@ $billing_info = get_billing_info_izap_ecommerce();
       <label>
         <?php
           echo elgg_echo('izap-ecommerce:firstname');
-          echo '<br />' . elgg_view('input/text', array('internalname' => 'billing_info[last_name]', 'value' => $billing_info->first_name, 'class' => 'general-textarea'));
+          echo '<br />' . elgg_view('input/text', array('name' => 'billing_info[last_name]', 'value' => $billing_info->first_name, 'class' => 'general-textarea'));
         ?>
       </label>
     </p>

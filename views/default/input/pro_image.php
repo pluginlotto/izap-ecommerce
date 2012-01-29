@@ -15,6 +15,6 @@
 
 $product = $vars['entity'];
 echo '<br />' . elgg_view('input/file', array(
-'internalname' => $vars['internalname'],
+'name' => $vars['name'],
 'value' => $vars['value'],
 ));

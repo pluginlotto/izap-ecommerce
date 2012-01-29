@@ -18,10 +18,10 @@ $number_of_screenshots = 4; ?>
 <form action="<?php echo $vars['url']?>action/izap_ecommerce/add_screenshots" method="POST" enctype="multipart/form-data">
   <?php
   for($i=0; $i<$number_of_screenshots; $i++) :
-    echo elgg_view('input/file', array('internalname' => 'screenshots[]'));
+    echo elgg_view('input/file', array('name' => 'screenshots[]'));
   endfor;
   echo elgg_view('input/securitytoken');
-  echo elgg_view('input/hidden', array('internalname' => 'guid', 'value' => $product->guid));
-  echo elgg_view('input/hidden', array('internalname' => 'total_images', 'value' => $number_of_screenshots));
-  echo '<br />' . elgg_view('input/submit', array('internalname' => 'submit' , 'value' => elgg_echo('izap-ecommerce:upload_images'))); ?>
+  echo elgg_view('input/hidden', array('name' => 'guid', 'value' => $product->guid));
+  echo elgg_view('input/hidden', array('name' => 'total_images', 'value' => $number_of_screenshots));
+  echo '<br />' . elgg_view('input/submit', array('name' => 'submit' , 'value' => elgg_echo('izap-ecommerce:upload_images'))); ?>
 </form>

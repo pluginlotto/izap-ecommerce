@@ -17,7 +17,7 @@ $add_wishlist_link = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_e
 if (IzapEcommerce::isInWishlist($product->guid)) {
   echo '<a href="' . elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/' .
           'remove_from_wishlist?guid=' . $product->guid) . '" class="elgg-button elgg-button-action">' . elgg_echo('izap-ecommerce:remove_from_wishlist') . '</a>';
-} elseif (isloggedin() && !$product->isArchived()) {
+} elseif (elgg_is_logged_in() && !$product->isArchived()) {
   echo '<a href="' . $add_wishlist_link . '" class= "elgg-button elgg-button-action">' . elgg_echo('izap-ecommerce:add_to_wishlist') . '</a>';
 }
 

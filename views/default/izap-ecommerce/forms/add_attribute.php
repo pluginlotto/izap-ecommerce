@@ -21,9 +21,9 @@ if (!$product->canEdit()) {
 }
 $pro_attribs = unserialize($product->attribs);
 $frm_data .= elgg_echo('izap-ecommerce:attrib_group_name');
-$frm_data .= elgg_view('input/text', array('internalname' => 'attrib_group'));
-$frm_data .= elgg_view('input/pulldown', array('internalname' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
-$frm_data .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
+$frm_data .= elgg_view('input/text', array('name' => 'attrib_group'));
+$frm_data .= elgg_view('input/pulldown', array('name' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
+$frm_data .= elgg_view('input/hidden', array('name' => 'product_guid', 'value' => $product->guid));
 $frm_data .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:add_attrib_group')));
 ?><div class="add_group"><?php
 echo elgg_view('input/form', array('body' => $frm_data, 'action' => $vars['url'] . 'action/izap_ecommerce/add_attrib_group'));
@@ -90,7 +90,7 @@ if (is_array($attrib_groups) && sizeof($attrib_groups)) {
             $form = '<legend>Add attribute</legend>';
             $form .= elgg_echo('izap-ecommerce:add_attrib:name');
             $form .= elgg_view('input/text', array(
-            'internalname' => 'attrib_name',
+            'name' => 'attrib_name',
             'value' => ''
             ));
       ?>
@@ -99,12 +99,12 @@ if (is_array($attrib_groups) && sizeof($attrib_groups)) {
       <?php
             $form .= elgg_echo('izap-ecommerce:add_attrib:price');
             $form .= elgg_view('input/text', array(
-            'internalname' => 'attrib_value',
+            'name' => 'attrib_value',
             'value' => ''
             ));
-            $form .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
-            $form .= elgg_view('input/hidden', array('internalname' => 'group_id', 'value' => $key));
-            $form .= elgg_view('input/submit', array('internalname' => 'submit',
+            $form .= elgg_view('input/hidden', array('name' => 'product_guid', 'value' => $product->guid));
+            $form .= elgg_view('input/hidden', array('name' => 'group_id', 'value' => $key));
+            $form .= elgg_view('input/submit', array('name' => 'submit',
             'value' => elgg_echo('izap-ecommerce:add_attrib:submit')));
       ?>
           </label>

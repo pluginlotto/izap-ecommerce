@@ -99,7 +99,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         ));
 
         echo elgg_view('input/hidden', array(
-          'internalname' => 'owner_guid',
+          'name' => 'owner_guid',
           'value' => $user_guid,
         ));
         if(is_plugin_enabled('izap-payment-gateways')) {

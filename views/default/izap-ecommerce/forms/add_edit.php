@@ -23,7 +23,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:title') . '<br />';
         echo elgg_view('input/text', array(
-        'internalname' => 'izap_product[title]',
+        'name' => 'izap_product[title]',
         'value' => $loaded_data->title,
         ));
         ?>
@@ -35,7 +35,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:file') . '<br />';
         echo '<br />' . elgg_view('input/file', array(
-                'internalname' => 'file',
+                'name' => 'file',
                 'value' => $loaded_data->file,
         ));
         ?>
@@ -47,7 +47,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:image') . '<br />';
         echo elgg_view('input/pro_image', array(
-        'internalname' => 'image',
+        'name' => 'image',
         'value' => $loaded_data->image,
         ));
         ?>
@@ -59,7 +59,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:description') . '<br />';
         echo elgg_view('input/longtext', array(
-        'internalname' => 'izap_product[description]',
+        'name' => 'izap_product[description]',
         'value' => $loaded_data->description,
         ));
         ?>
@@ -71,7 +71,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:price_range') . '<br />';
         echo elgg_view('input/text', array(
-        'internalname' => 'izap_product[price]',
+        'name' => 'izap_product[price]',
         'value' => $loaded_data->price,
         ));
         ?>
@@ -83,7 +83,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:izap_product_discount') . '<br />';
         echo elgg_view('input/text', array(
-        'internalname' => 'izap_product[discount]',
+        'name' => 'izap_product[discount]',
         'value' => (($loaded_data->discount) ? $loaded_data->discount : izap_plugin_settings(array(
         'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
         'setting_name' => 'izap_product_discount',
@@ -97,7 +97,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
       <label>
         <?php
         echo elgg_view('input/checkboxes', array(
-        'internalname' => 'izap_product[comming_soon]',
+        'name' => 'izap_product[comming_soon]',
         'value' => $loaded_data->comming_soon,
         'options' => array(
                 elgg_echo('izap-ecommerce:comming soon') => 'yes',
@@ -112,7 +112,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:tags') . '<br />';
         echo elgg_view('input/tags', array(
-        'internalname' => 'izap_product[tags]',
+        'name' => 'izap_product[tags]',
         'value' => $loaded_data->tags,
         ));
         ?>
@@ -124,7 +124,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
       <?php
         echo elgg_echo('izap-ecommerce:comments');
         echo elgg_view('input/dropdown',array(
-          'internalname' => 'izap_product[comments_on]',
+          'name' => 'izap_product[comments_on]',
           'value' => $loaded_data->comments_on,
           'options_values' => array('1' => elgg_echo('izap-ecommerce:on'), '0' => elgg_echo('izap-ecommerce:off'))
       ));
@@ -135,14 +135,14 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php echo elgg_echo('izap-elgg-bridge:select_categories')?>
         <br/>
       </label>
-      <?php echo elgg_view('input/izap_categories', array('internalname' => 'izap_product[categories]','plugin_id' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'value'=>$loaded_data->categories));?>
+      <?php echo elgg_view('input/izap_categories', array('name' => 'izap_product[categories]','plugin_id' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'value'=>$loaded_data->categories));?>
     </p>
     <p>
       <label>
         <?php
         echo elgg_echo('izap-ecommerce:access_id') . '<br />';
         echo elgg_view('input/access', array(
-        'internalname' => 'izap_product[access_id]',
+        'name' => 'izap_product[access_id]',
         'value' => ($loaded_data->access_id) ? $loaded_data->access_id : ACCESS_DEFAULT,
         ));
         ?>
@@ -154,7 +154,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         <?php
         echo elgg_echo('izap-ecommerce:terms') . '<br />';
         echo elgg_view('input/longtext', array(
-        'internalname' => 'izap_product[terms]',
+        'name' => 'izap_product[terms]',
         'value' => $loaded_data->terms,
         ));
         ?>
@@ -164,9 +164,9 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
     <?php
     echo elgg_view('categories', array('entity' => $product));
     if($vars['archive']) {
-      echo elgg_view('input/hidden', array('internalname' => 'izap_product[parent_of]', 'value' => (int)$vars['parent_guid']));
+      echo elgg_view('input/hidden', array('name' => 'izap_product[parent_of]', 'value' => (int)$vars['parent_guid']));
     }else {
-      echo elgg_view('input/hidden', array('internalname' => 'izap_product[guid]', 'value' => (int)$loaded_data->guid));
+      echo elgg_view('input/hidden', array('name' => 'izap_product[guid]', 'value' => (int)$loaded_data->guid));
     }
     echo elgg_view('input/securitytoken');
     echo elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:save')));

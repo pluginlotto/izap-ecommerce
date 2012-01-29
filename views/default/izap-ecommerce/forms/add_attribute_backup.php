@@ -24,9 +24,9 @@ $pro_attribs = unserialize($product->attribs); ?>
 <div id="izap_product_attrib_group_form">
   <?php
   $frm_data .= elgg_echo('izap-ecommerce:attrib_group_name');
-  $frm_data .= elgg_view('input/text', array('internalname' => 'attrib_group'));
-  $frm_data .= elgg_view('input/pulldown', array('internalname' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
-  $frm_data .= elgg_view('input/hidden', array('internalname' => 'product_guid', 'value' => $product->guid));
+  $frm_data .= elgg_view('input/text', array('name' => 'attrib_group'));
+  $frm_data .= elgg_view('input/pulldown', array('name' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
+  $frm_data .= elgg_view('input/hidden', array('name' => 'product_guid', 'value' => $product->guid));
   $frm_data .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:add_attrib_group')));
 
   echo elgg_view('input/form', array('body' => $frm_data, 'action' => $vars['url'] . 'action/izap_ecommerce/add_attrib_group'));

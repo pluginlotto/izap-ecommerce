@@ -30,7 +30,7 @@ if ($product_attrib_groups) {
 }
 
 $form .= elgg_view('input/hidden', array(
-              'internalname' => 'product_guid',
+              'name' => 'product_guid',
               'value' => $product->guid,
           ));
 

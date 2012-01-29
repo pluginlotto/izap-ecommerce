@@ -18,18 +18,18 @@ $product = $vars['entity'];
 $tabs_array = array(
         'tabsArray'=>array(                
                 array(
-                        'title'=>elggb_echo('send_to_friend'),
+                        'title'=>elgg_echo('send_to_friend'),
                         'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product, 'guid'=>$product->guid)),
                 ),
                 array(
-                        'title'=>elggb_echo('terms'),
+                        'title'=>elgg_echo('terms'),
                         'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/terms',array('entity'=>$product)),
                 ),
         )
 );
 if ($product->comments_on) {
        array_unshift($tabs_array['tabsArray'],array(
-            'title'=>elggb_echo('comments'),
+            'title'=>elgg_echo('comments'),
             'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/comments',array('entity'=>$product)),
              ));
 }

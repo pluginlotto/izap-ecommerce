@@ -15,4 +15,4 @@
 
 $parent = $vars['entity'];
 
-$form = elgg_view('input/text', array('internalname' => 'params[_title]'));
+$form = elgg_view('input/text', array('name' => 'params[_title]'));
