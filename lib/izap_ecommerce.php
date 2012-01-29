@@ -34,7 +34,7 @@ class IzapEcommerce extends IzapObject {
 
   function initialise_attributes() {
     global $IZAP_ECOMMERCE;
-    parent::initialise_attributes();
+    parent::initializeAttributes();
     $this->attributes['subtype'] = $IZAP_ECOMMERCE->object_name;
   }
 
@@ -236,7 +236,7 @@ class IzapEcommerce extends IzapObject {
 
   public function canDownload($user = FALSE) {
     if(!$user) {
-      $user = get_loggedin_user();
+      $user = elgg_get_logged_in_user_entity();
     }
 
     // if it is free
@@ -282,7 +282,7 @@ class IzapEcommerce extends IzapObject {
 
   public function hasUserPurchasedOldVersion($user = NULL) {
     if(!($user instanceof ElggUser)) {
-      $user = get_loggedin_user();
+      $user = elgg_get_logged_in_user_entity();
     }
 
 
@@ -328,7 +328,7 @@ class IzapEcommerce extends IzapObject {
 
   public function getIcon($size) {
     global $IZAP_ECOMMERCE;
-    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/'.friendly_title($this->title).'.jpg';
+    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/'.elgg_get_friendly_title($this->title).'.jpg';
     return $url;
   }
 
