@@ -132,10 +132,10 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
     </label>
     </p>
     <p><label>
-        <?php echo elgg_echo('izap-elgg-bridge:select_categories')?>
-        <br/>
+        <?php //echo elgg_echo('izap-elgg-bridge:select_categories')?>
+<!--        <br/>-->
       </label>
-      <?php echo elgg_view('input/izap_categories', array('name' => 'izap_product[categories]','plugin_id' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'value'=>$loaded_data->categories));?>
+      <?php// echo elgg_view('input/izap_categories', array('name' => 'izap_product[categories]','plugin_id' => GLOBAL_IZAP_ECOMMERCE_PLUGIN, 'value'=>$loaded_data->categories));?>
     </p>
     <p>
       <label>
@@ -143,7 +143,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
         echo elgg_echo('izap-ecommerce:access_id') . '<br />';
         echo elgg_view('input/access', array(
         'name' => 'izap_product[access_id]',
-        'value' => ($loaded_data->access_id) ? $loaded_data->access_id : ACCESS_DEFAULT,
+        'value' => isset($loaded_data->access_id) ? $loaded_data->access_id : ACCESS_DEFAULT,
         ));
         ?>
       </label>

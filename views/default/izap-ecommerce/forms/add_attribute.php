@@ -22,7 +22,7 @@ if (!$product->canEdit()) {
 $pro_attribs = unserialize($product->attribs);
 $frm_data .= elgg_echo('izap-ecommerce:attrib_group_name');
 $frm_data .= elgg_view('input/text', array('name' => 'attrib_group'));
-$frm_data .= elgg_view('input/pulldown', array('name' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
+$frm_data .= elgg_view('input/dropdown', array('name' => 'attrib_type', 'options' => array('radio', 'checkboxes')));
 $frm_data .= elgg_view('input/hidden', array('name' => 'product_guid', 'value' => $product->guid));
 $frm_data .= elgg_view('input/submit', array('value' => elgg_echo('izap-ecommerce:add_attrib_group')));
 ?><div class="add_group"><?php
