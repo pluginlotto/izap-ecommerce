@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 if(get_input('search_viewtype') == 'gallery') {
   echo elgg_view($IZAP_ECOMMERCE->views.'gallery', $vars);
-}elseif($vars['full']) {
+}elseif($vars['full_view']) {
   echo elgg_view($IZAP_ECOMMERCE->product.'index', $vars);
 }else {
   if(elgg_view_exists('output/entity_row')) {

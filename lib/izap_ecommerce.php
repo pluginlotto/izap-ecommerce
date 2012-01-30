@@ -618,7 +618,7 @@ function izap_view_cart($full = FALSE) {
   global $IZAP_ECOMMERCE;
   $cart = get_from_session_izap_ecommerce('izap_cart');
   if(is_array($cart) && sizeof($cart)) {
-    return elgg_view($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full' => $full));
+    return elgg_view($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full_view' => $full));
   }else {
     return null;
   }

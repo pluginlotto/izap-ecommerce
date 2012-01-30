@@ -14,7 +14,7 @@
 */
 
 global $IZAP_ECOMMERCE;
-if($vars['full']) {
+if($vars['full_view']) {
   echo elgg_view($IZAP_ECOMMERCE->views . 'cart/full', $vars);
 }else {
   echo elgg_view($IZAP_ECOMMERCE->views . 'cart/partial', $vars);

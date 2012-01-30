@@ -13,7 +13,7 @@ class IzapStoreController extends IzapController {
 
     $cart = get_from_session_izap_ecommerce('izap_cart');
     if (is_array($cart) && sizeof($cart)) {
-      $this->addWidget($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full' => false));
+      $this->addWidget($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full_view' => false));
         }
         $this->addwidget(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/categories',array('entity' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
   }
