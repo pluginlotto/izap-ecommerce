@@ -250,7 +250,7 @@ class IzapEcommerce extends IzapObject {
     }
 
     // if admin loggeding
-    if(isadminloggedin()) {
+    if(elgg_is_admin_logged_in()) {
       return TRUE;
     }
 
@@ -826,7 +826,7 @@ function create_hash_izap_ecommerce($order_guid, $product_guid, $time, $owner_gu
 function verify_order_izap_ecommerce($order) {
   global $IZAP_ECOMMERCE;
 
-  if(isadminloggedin()) {
+  if(elgg_is_admin_logged_in()) {
     return TRUE;
   }
 
@@ -835,7 +835,7 @@ function verify_order_izap_ecommerce($order) {
     forward($IZAP_ECOMMERCE->link . 'order');
   }
 
-  if(!isadminloggedin() && $order->owner_guid != get_loggedin_userid()) {
+  if(!elgg_is_admin_logged_in() && $order->owner_guid != get_loggedin_userid()) {
     register_error(elgg_echo('izap-ecommerce:no_access'));
     forward();
   }

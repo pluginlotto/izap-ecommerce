@@ -14,7 +14,7 @@
 */
 
 global $CONFIG, $IZAP_ECOMMERCE;
-
+gatekeeper();
 $product = get_product_izap_ecommerce(get_input('guid'));
 $forward_url = $IZAP_ECOMMERCE->link . 'wishlist';
 $forward_url = $_SERVER['HTTP_REFERER'];

@@ -23,11 +23,11 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
   <h3 class="izap-cart-title">
     <?php echo (elgg_echo('izap-ecommerce:my_cart'));?>
   </h3>
-  <ol style="margin:0">
-    <?php
+  <table width="100%">
+    <?php 
     $total_price = 0;
     foreach($cart as $guid) {
-      $product = get_product_izap_ecommerce($guid);
+     $product = get_product_izap_ecommerce($guid); 
       if($product) {
         $product_attribs = $attributes[$guid];
         $attrib_amount = array_sum($product_attribs);
@@ -52,24 +52,24 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         }
         
         $remove_link = elgg_add_action_tokens_to_url($remove_lnk . $product->guid);
-        $remove_link = '<a href="'.$remove_link.'" class="izap-product-remove-from-cart" title="'.elgg_echo('izap-ecommerce:remove_from_cart').'"><img src="'.$vars['url'].'mod/'.GLOBAL_IZAP_ELGG_BRIDGE.'/_graphics/delete.png" /></a>'
-                ?>
-    <li style="margin:0;padding:0;" class="izap-partial-cart-product">
-          <?php echo $remove_link;?>:<a href="<?php echo $product->getUrl()?>" title="<?php echo $product->title; ?>" class="">
+        $remove_link = '<a href="'.$remove_link.'" class="izap-product-remove-from-cart" title="'.elgg_echo('izap-ecommerce:remove_from_cart').'"><img src="'.$vars['url'].'mod/'.GLOBAL_IZAP_ELGG_BRIDGE.'/_graphics/delete.png" /></a>';
+         ?>
+    <tr>
+      <td><?php echo $remove_link;?>&nbsp; <a href="<?php echo $product->getUrl()?>" title="<?php echo $product->title; ?>" class="">
             <?php echo $title . $dots;?>
-      </a>
-      [<?php echo $IZAP_ECOMMERCE->currency_sign . $int_price;?>]
-
-    </li>
-        <?php
-        $total_price += $int_price;
+      </a></td>
+      <td align="right"><?php echo $IZAP_ECOMMERCE->currency_sign . $int_price;?></td>
+    </tr>
+        <?      
+    $total_price += $int_price;
       }
     }
     ?>
-  </ol>
+  </table>
+  
   <div  style="padding:1px 5px 1px 1px;margin: 2px;">
     <p style="margin:1px;padding:1px;">
-      <a href="<?php echo $IZAP_ECOMMERCE->link?>cart">
+      <a href="<?php echo $IZAP_ECOMMERCE->link?>cart" class= "elgg-button elgg-button-action">
         <?php echo elgg_echo('izap-ecommerce:checkout');?>
       </a>
       <b class="izap-product-float-right">

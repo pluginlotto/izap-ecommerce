@@ -19,33 +19,33 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
 ?>
 <div class="izap-product-info">
   <div class="left">
-      <?php
-      echo IzapBase::controlEntityMenu(array('page_owner' => false, 'entity' => $product, 'handler' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER));
-      ?>
     <?php
-      echo elgg_view($IZAP_ECOMMERCE->product . 'buy', array('entity' => $product));
-      $attrib_html = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/view_attributes', array('entity' => $product));
-      if (show_buy_now == 'yes') {
+    echo IzapBase::controlEntityMenu(array('page_owner' => false, 'entity' => $product, 'handler' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER));
     ?>
-        <a href="<?php echo $cart_url ?>" id="post_cart_1" class="elgg-button elgg-button-action">
-
-          <span class="add_to_cart">
-        <?php echo elgg_echo('izap-ecommerce:add_to_cart') ?>
-      </span>
-    </a>
     <?php
-      }
-      echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product));
+    echo elgg_view($IZAP_ECOMMERCE->product . 'buy', array('entity' => $product));
+    $attrib_html = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/view_attributes', array('entity' => $product));
+    if (show_buy_now == 'yes' && elgg_is_logged_in()) {
+      ?>
+      <a href="<?php echo $cart_url ?>" id="post_cart_1" class="elgg-button elgg-button-action">
+
+        <span class="add_to_cart">
+          <?php echo elgg_echo('izap-ecommerce:add_to_cart') ?>
+        </span>
+      </a>
+      <?php
+    }
+    echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product));
     ?><br/><br/>
 
     <?php if ($product->comming_soon == 'no')
-        echo $attrib_html; ?>
-    </div>
+      echo $attrib_html; ?>
+  </div>
 
-    <div class="right">
-      <img src="<?php echo $product->getIcon('master'); ?>" alt="<?php $product->title ?>" class="izap-product-image" />
-      <div style="text-align:right">
-        <a href="<?php echo $product->getIcon('orignal'); ?>">
+  <div class="right">
+    <img src="<?php echo $product->getIcon('master'); ?>" alt="<?php $product->title ?>" class="izap-product-image" />
+    <div style="text-align:right">
+      <a href="<?php echo $product->getIcon('orignal'); ?>">
         <?php echo elgg_echo('izap-ecommmerce:get_original') ?>
       </a>
     </div>
@@ -53,9 +53,9 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
   <div class="clearfix"></div>
   <div class="description">
     <?php echo elgg_view('output/longtext', array('value' => $product->description)); ?>
-        <p align="right">
+    <p align="right">
       <?php
-        echo elgg_view('output/tags', array('tags' => $product->tags));
+      echo elgg_view('output/tags', array('tags' => $product->tags));
       ?>
       <br />
     </p>

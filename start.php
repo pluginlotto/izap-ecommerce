@@ -105,7 +105,7 @@ function izap_ecommerce_init() {
   elgg_register_plugin_hook_handler('izap_payment_gateway', 'IPN_NOTIFY_ALERTPAY:SUCCESS', 'izap_alertpay_process_order');
   elgg_register_plugin_hook_handler('izap_payment_gateway', 'IPN_NOTIFY_ALERTPAY:FAIL', 'izap_alertpay_fail');
 
-  elgg_register_js('jquery.md5', 'mod/izap-elgg-bridge/vendors/jquery.md5.js');
+  //elgg_register_js('jquery.md5', 'mod/izap-elgg-bridge/vendors/jquery.md5.js');
 }
 
 function izap_ecommerce_page_handler($page) {

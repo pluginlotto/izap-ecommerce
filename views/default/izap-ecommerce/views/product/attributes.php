@@ -44,7 +44,7 @@ if(sizeof($vars['attribs'])) {
   }
 
   if($vars['type'] == 'radio') {
-    $options['None'] = 0;
+    $options['No Thanks'] = 0;
   }
 
   echo elgg_view('input/' . $vars['type'], array(
