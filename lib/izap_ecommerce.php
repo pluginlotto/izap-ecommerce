@@ -1148,7 +1148,6 @@ function create_product_download_link_izap_ecommerce(array $options) {
   $hash = create_hash_izap_ecommerce((int)$options['order']->guid, $options['product_guid'], $options['time'], $owner_guid);
 
   $download_link = $CONFIG->wwwroot . 'action/izap_ecommerce/download?o=' . $options['order']->guid;
-  //$download_link = elgg_add_action_tokens_to_url($download_link);
   $download_link .= '&p=' . $options['product_guid'] . '&t=' . $options['time'] . '&h=' . $hash;
 
   $download_link = elgg_view('output/url',array(
@@ -1162,10 +1161,29 @@ function create_product_download_link_izap_ecommerce(array $options) {
   return $download_link;
 }
 
+/**
+ * create hash code
+ *
+ * @param integer $order_guid   order id
+ * @param integer $product_guid product id
+ * @param integer $time         timestamp
+ * @param integer $owner_guid   owner id
+ *
+ * @return mixed
+ */
 function create_hash_izap_ecommerce($order_guid, $product_guid, $time, $owner_guid) {
   return md5($order->guid . $owner_guid . $product_guid . $time);
 }
 
+/**
+ * verify order
+ *
+ * @global ElggObject $IZAP_ECOMMERCE object of IZAP_ECOMMERCE
+ *
+ * @param array $order elgg default parameters
+ *
+ * @return bolean
+ */
 function verify_order_izap_ecommerce($order) {
   global $IZAP_ECOMMERCE;
 
@@ -1189,10 +1207,27 @@ function verify_order_izap_ecommerce($order) {
   }
 }
 
+/**
+ * save cart
+ *
+ * @param string $event       elgg event
+ * @param string $object_type type of object
+ * @param string $object      elgg object
+ *
+ * @return <type>
+ */
 function func_save_cart_izap_ecommerce($event, $object_type, $object) {
   return func_save_wishlist_izap_ecommerce();
 }
 
+/**
+ * save wishlist
+ *
+ * @param array $products array of product
+ * @param integer $user   user id
+ *
+ * @return bolean
+ */
 function func_save_wishlist_izap_ecommerce($products = array(), $user = false) {
   if (!($user instanceof ElggUser)) {
     $user = get_loggedin_user();
@@ -1219,6 +1254,14 @@ function func_save_wishlist_izap_ecommerce($products = array(), $user = false) {
   return true;
 }
 
+/**
+ * remove from wishlist
+ *
+ * @param array $products array of product
+ * @param integer $user   user id
+ *
+ * @return bolean
+ */
 function func_remove_from_wishlist_izap_ecommerce($products, $user = false) {
   if (!($user instanceof ElggUser)) {
     $user = get_loggedin_user();
@@ -1238,6 +1281,15 @@ function func_remove_from_wishlist_izap_ecommerce($products, $user = false) {
   return true;
 }
 
+/**
+ * get archive product
+ *
+ * @global ElggObject $IZAP_ECOMMERCE object of IZAP_ECOMMERCE
+ * @param array $products array of product
+ * @param array $return_array array of child product
+ *
+ * @return array
+ */
 function get_archived_products_izap_ecommerce($product, $return_array = false) {
   global $IZAP_ECOMMERCE;
 
@@ -1259,6 +1311,13 @@ function get_archived_products_izap_ecommerce($product, $return_array = false) {
   return $return_array;
 }
 
+/**
+ * get default listing options
+ *
+ * @param array $array array of listing options
+ *
+ * @return array
+ */
 function get_default_listing_options_izap_ecommerce($array = array()) {
   $options['type'] = 'object';
   $options['subtype'] = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
@@ -1278,6 +1337,11 @@ function get_default_listing_options_izap_ecommerce($array = array()) {
   return array_merge($options, $array);
 }
 
+/**
+ * save order
+ *
+ * @param object $order 
+ */
 function save_order_with_user_izap_ecommerce($order) {
   for ($i = 0; $i < $order->total_items; $i++) {
     $item_guid = 'item_guid_' . $i;

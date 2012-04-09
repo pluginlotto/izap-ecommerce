@@ -77,6 +77,7 @@ function izap_ecommerce_init() {
   elgg_register_entity_url_handler('object', 'izap_ecommerce', 'izap_ecommerce_getUrl');
   elgg_register_entity_url_handler('object', 'izap_order', 'izap_order_getUrl');
   add_subtype('object', 'izap_ecommerce', 'IzapEcommerce');
+  elgg_register_event_handler('izap', 'link', 'izap_ecommerce_link_hook');
 
   $actions_arr = array(
       'admin' => array(
@@ -112,6 +113,14 @@ function izap_ecommerce_init() {
   elgg_register_plugin_hook_handler('izap_payment_gateway', 'IPN_NOTIFY_ALERTPAY:FAIL', 'izap_alertpay_fail');
 }
 
+
+function izap_ecommerce_link_hook() {
+  if (elgg_get_context() == GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER) {
+    elgg_extend_view('page/elements/footer', 'output/ilink');
+    return False;
+  }
+  return True;
+}
 
 /**
  * url for entity
