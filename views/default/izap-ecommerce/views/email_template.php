@@ -130,7 +130,6 @@ if (is_plugin_enabled('messages')) {
                 $product = get_entity($order->$item_guid);
                 if ($product) {
                   $product_url = $product->getURL();
-//                  $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
                   $download_link = create_product_download_link_izap_ecommerce(array(
                         'order' => $order,
                         'product_guid' => $order->{$item_guid},
