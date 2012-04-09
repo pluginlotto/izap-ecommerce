@@ -9,14 +9,17 @@ class IzapStoreController extends IzapController {
     global $IZAP_ECOMMERCE;
     $this->_page = $page;
     $this->page_elements['filter'] = false;
-//    $this->page_elements['buttons'] = false;
 
     $cart = get_from_session_izap_ecommerce('izap_cart');
     if (is_array($cart) && sizeof($cart)) {
       $this->addWidget($IZAP_ECOMMERCE->views . 'cart', array('cart' => $cart, 'full_view' => false));
-        }
-        $this->addwidget(GLOBAL_IZAP_ECOMMERCE_PLUGIN.'/categories',array('entity' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
+    }
+    $this->addwidget(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/categories', array('entity' => GLOBAL_IZAP_ECOMMERCE_PLUGIN));
   }
+
+  /*
+   * actionList() list all entities
+   */
 
   public function actionList() {
     global $IZAP_ECOMMERCE;
@@ -38,12 +41,20 @@ class IzapStoreController extends IzapController {
     $this->drawPage();
   }
 
+  /*
+   * actionAdd() entity 
+   */
+
   public function actionAdd() {
     global $CONFIG, $IZAP_ECOMMERCE;
     admin_gatekeeper();
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:add_new_product');
     $this->render($IZAP_ECOMMERCE->forms . 'add_edit');
   }
+
+  /*
+   * actionEdit() entity 
+   */
 
   public function actionEdit() {
     global $CONFIG, $IZAP_ECOMMERCE;
@@ -56,8 +67,11 @@ class IzapStoreController extends IzapController {
     $this->render($IZAP_ECOMMERCE->forms . 'add_edit', array('entity' => $product));
   }
 
-  public function actionProduct() {
+  /*
+   * actionProduct() for add new product vesion
+   */
 
+  public function actionProduct() {
     $izap_product = get_product_izap_ecommerce($this->url_vars[2]);
     if (!$izap_product) {
       register_error(elgg_echo('izap-ecommerce:invalid_product'));
@@ -87,15 +101,14 @@ class IzapStoreController extends IzapController {
       elgg_register_menu_item('page', $menu_add_attrib);
     }
 
-
-
-
-
     $this->page_elements['title'] = $izap_product->title;
-    $this->page_elements['content'] = elgg_view_entity($izap_product,array('full_view' => TRUE));
-    //func_increment_views_byizap($izap_product);
+    $this->page_elements['content'] = elgg_view_entity($izap_product, array('full_view' => TRUE));
     $this->drawPage();
   }
+
+  /*
+   * actionAttrib() add attributes
+   */
 
   public function actionAttrib() {
     $product = get_entity($this->url_vars[2]);
@@ -105,6 +118,10 @@ class IzapStoreController extends IzapController {
       $this->render(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/forms/add_attribute', array('entity' => $product));
     }
   }
+
+  /*
+   * actionIcon() add product image
+   */
 
   public function actionIcon() {
     global $IZAP_ECOMMERCE;
@@ -158,7 +175,9 @@ class IzapStoreController extends IzapController {
             ));
     echo $contents;
   }
-
+/*
+ * actionScreenshots() add product's screenshot
+ */
   public function actionScreenshots() {
     $product = get_product_izap_ecommerce($this->url_vars[1]);
     if ($product) {
@@ -180,7 +199,9 @@ class IzapStoreController extends IzapController {
       }
     }
   }
-
+/*
+ * actionNewversion() add new version of the product
+ */
   public function actionNewversion() {
     admin_gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -196,7 +217,9 @@ class IzapStoreController extends IzapController {
             ));
     $this->drawPage();
   }
-
+/*
+ * actionUserprice()
+ */
   public function actionUserprice() {
     admin_gatekeeper();
     $user = get_user_by_username(get_input('izap_username'));
@@ -206,7 +229,9 @@ class IzapStoreController extends IzapController {
       echo elgg_echo('izap-ecommerce:price') . ': ' . $product->getUserPrice($user);
     }
   }
-
+/*
+ * actionCart() add product to the cart
+ */
   public function actionCart() {
     gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -214,7 +239,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = izap_view_cart(TRUE);
     $this->drawPage();
   }
-
+/*
+ * actionOrders() list all ordre of logged in user
+ */
   public function actionOrders() {
     gatekeeper();
     global $CONFIG, $IZAPTEMPLATE;
@@ -234,7 +261,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = $list;
     $this->drawPage();
   }
-
+/*
+ * actionOrder() detail view of a particular order
+ */
   public function actionOrder() {
     gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -245,10 +274,12 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = elgg_view($IZAP_ECOMMERCE->views . 'order_detail', array('entity' => $order));
     $this->drawPage();
   }
-
+/*
+ * actionWishlist()
+ */
   public function actionWishlist() {
     global $IZAP_ECOMMERCE;
-    $page_owner = page_owner_entity();
+    $page_owner = elgg_get_page_owner_entity();
     $wishlist = IzapEcommerce::getWishList($page_owner);
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:wishlist');
 
@@ -264,7 +295,9 @@ class IzapStoreController extends IzapController {
     }
     $this->drawPage();
   }
-
+/*
+ * actionAll_orders() list all orders
+ */
   public function actionAll_orders() {
     admin_gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -276,7 +309,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = $list;
     $this->drawPage();
   }
-
+/*
+ * actionPaypal_notify()
+ */
   public function actionPaypal_notify() {
     global $IZAP_ECOMMERCE;
 
@@ -311,7 +346,7 @@ class IzapStoreController extends IzapController {
       $order = get_entity($order_id);
 
       $main_array['confirmed'] = 'no';
-      $main_array['error_status'] = 'Error while paypal notification';
+      $main_array['error_status'] = 'izap-ecommerce:error_paypal_notification';
       $main_array['error_time'] = time();
       $main_array['paypal_return'] = serialize($variables);
 
@@ -327,7 +362,9 @@ class IzapStoreController extends IzapController {
       );
     }
   }
-
+/*
+ * actionPay_return()
+ */
   public function actionPay_return() {
     remove_from_session_izap_ecommerce('izap_cart');
     forward('/' . GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/orders');

@@ -18,11 +18,11 @@ $product = $vars['entity'];
 $tabs_array = array(
         'tabsArray'=>array(                
                 array(
-                        'title'=>elgg_echo('send_to_friend'),
+                        'title'=>elgg_echo('izap-ecommerce:send_to_friends'),
                         'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/send_to_friend',array('entity'=>$product, 'guid'=>$product->guid)),
                 ),
                 array(
-                        'title'=>elgg_echo('terms'),
+                        'title'=>elgg_echo('izap-ecommerce:tab_terms'),
                         'content'=>elgg_view($IZAP_ECOMMERCE->product . 'tabs/terms',array('entity'=>$product)),
                 ),
         )

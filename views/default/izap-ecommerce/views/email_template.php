@@ -74,7 +74,7 @@ if (is_plugin_enabled('messages')) {
           <br />
 
           <?php echo elgg_echo('izap-ecommerce:order_date'); ?>:
-              <b>    
+              <b>
             <?php echo date('d-n-Y', $order->time_updated); ?>
             </b>
             <br />
@@ -130,7 +130,11 @@ if (is_plugin_enabled('messages')) {
                 $product = get_entity($order->$item_guid);
                 if ($product) {
                   $product_url = $product->getURL();
-                  $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
+//                  $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
+                  $download_link = create_product_download_link_izap_ecommerce(array(
+                        'order' => $order,
+                        'product_guid' => $order->{$item_guid},
+                      ));
                 } else {
                   $product_url = '#';
                   $download_link = '#';
@@ -163,17 +167,15 @@ if (is_plugin_enabled('messages')) {
               </div>
 
               <div class="izap-product-float-left" style="width: 20%">
-                <a href="<?php echo $download_link ?>">
-            <?php echo elgg_echo('izap-ecommerce:download'); ?>
-              </a>
-            </div>
+          <?php echo $download_link ?>
+              </div>
 
-            <div class="izap-product-float-right" style="width: 20%">
-              <b><?php echo $IZAP_ECOMMERCE->currency_sign . $order->$item_price ?></b>
-            </div>
+              <div class="izap-product-float-right" style="width: 20%">
+                <b><?php echo $IZAP_ECOMMERCE->currency_sign . $order->$item_price ?></b>
+              </div>
 
-            <div class="clearfloat"></div>
-          </div>
+              <div class="clearfloat"></div>
+            </div>
       <?php
                 $odd_even++;
               endfor;

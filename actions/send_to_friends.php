@@ -13,6 +13,9 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
 
+/**
+ * action send to friend
+ */
 global $CONFIG;
 $attribs = IzapBase::getPostedAttributes();
 if (IzapBase::hasFormError()) {

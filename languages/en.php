@@ -85,6 +85,7 @@ $english = array(
     'izap-ecommerce:comments' => 'Comments',
     'izap-ecommerce:send_to_friends' => 'Send to friend',
     'izap-ecommerce:terms' => 'Terms and conditions',
+    'izap-ecommerce:tab_terms' => 'Terms',
     'izap-ecommerce:remove_from_cart' => 'Remove from cart',
     'izap-ecommerce:not_processed_properly' => 'Order was not processed properly. Please contact the site administrator for more details.',
     'izap-ecommerce:added_to_wishlist' => 'Added to wishlist',
@@ -105,6 +106,7 @@ $english = array(
     'izap-ecommerce:add_new_product' => 'Add new product',
     'izap-ecommerce:save' => 'Save',
     'izap-ecommerce:title' => 'Name*',
+    'izap-ecommerce:github_url' => 'Github URL',
     'izap-ecommerce:description' => 'Description*',
     'izap-ecommerce:image' => 'Image',
     'izap-ecommerce:price' => 'Price: ',
@@ -177,6 +179,8 @@ $english = array(
     'izap-ecommerce:add_attrib:submit' =>'Submit',
     'izap-ecommerce:add_attrib:group' => 'Group: ',
     'izap-ecommerce:add_attribute:adding_for' => 'Adding attributes for ',
-    'izap-ecommerce:add_attribute:attributes' => 'Attributes'
+    'izap-ecommerce:add_attribute:attributes' => 'Attributes',
+    //paypal
+    'izap-ecommerce:error_paypal_notification' => 'Error while paypal notification'
 );
 add_translation('en', $english);
