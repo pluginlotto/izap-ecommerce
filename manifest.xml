@@ -7,7 +7,7 @@
 	<description>This is a simple example of a manifest file.  In this example, there are many options used, including screenshots, dependencies, and additional information about the plugin.</description>
 	<website>http://www.pluginlotto.com</website>
 	<copyright>(C) iZAP Web Solutions 2011</copyright>
-	<license>Commercial</license>
+	<license>GNU Public License version 3</license>
 
 	<!-- All plugins must require either elgg_version or elgg_release. -->
 	<requires>
@@ -34,13 +34,17 @@
   </requires>
 
 	<!-- The path is relative to the plugin's root. -->
-	<screenshot>
-		<description>Sample image</description>
-		<path>screenshots/1.jpg</path>
+  <screenshot>
+    <description>Ecommerce</description>  
+    <path>_graphics/ecommerce_product.PNG</path>
+  </screenshot>
+  <screenshot>
+		<description>Sample image 2</description>
+		<path>_graphics/product_list.PNG</path>
 	</screenshot>
   <screenshot>
 		<description>Sample image 2</description>
-		<path>screenshots/2.png</path>
+		<path>_graphics/coming_soon.PNG</path>
 	</screenshot>
 
 	<category>iZAP</category>
@@ -51,15 +55,4 @@
 		<name>izap-ecommerce</name>
 		<version>3.0</version>
 	</provides>
-	<suggests>
-		<type>plugin</type>
-		<name>izap-videos</name>
-		<version>4.0</version>
-	</suggests>
-  <suggests>
-    <type>php_ini</type>
-    <name>memory_limit</name>
-    <value>256M</value>
-    <comparison>ge</comparison>
-  </suggests>
 </plugin_manifest>

@@ -248,7 +248,7 @@ class IzapStoreController extends IzapController {
 
   public function actionWishlist() {
     global $IZAP_ECOMMERCE;
-    $page_owner = page_owner_entity();
+    $page_owner = elgg_get_page_owner_entity();
     $wishlist = IzapEcommerce::getWishList($page_owner);
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:wishlist');
 
