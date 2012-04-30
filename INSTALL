@@ -1,0 +1,12 @@
+Izap-ecommerce
+------------------------
+
+### Installation instructions
+
+1. Grab izap-forum plugin from http://www.pluginlotto.com.
+2. Uncompress downloaded folder with the name "izap-ecommerce"
+3. Move that to mod.
+4. Go to admin panel, find plugin and click "Activate" button.
+5. Configure the plugin settings as you wish (ie. product list view, amount of discount available, 
+   number of products to be viewed in a list) and here you go.
+

@@ -97,12 +97,11 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
         echo elgg_view('input/payment_options', array(
         'user_guid' => $user_guid,
         ));
-
         echo elgg_view('input/hidden', array(
           'name' => 'owner_guid',
           'value' => $user_guid,
         ));
-        if(is_plugin_enabled('izap-payment-gateways')) {
+        if(elgg_is_active_plugin('izap-payment-gateways')) {
         ?><div class="payment">
         <input type="submit" value="<?php echo elgg_echo('izap-ecommerce:pay_now')?>" /></div>
         <?php } else {
