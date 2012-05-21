@@ -163,6 +163,7 @@ $loaded_data = get_loaded_data_izap_ecommerce('izap_product', $product);
 
     <?php
     echo elgg_view('categories', array('entity' => $product));
+    echo elgg_view('forms/izap-seo/fields', $vars);
     if($vars['archive']) {
       echo elgg_view('input/hidden', array('name' => 'izap_product[parent_of]', 'value' => (int)$vars['parent_guid']));
     }else {

@@ -13,6 +13,9 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ * action delete screenshot
+ */
 $product = get_product_izap_ecommerce(get_input('product_guid'));
 if($product) {
   global $IZAP_ECOMMERCE;

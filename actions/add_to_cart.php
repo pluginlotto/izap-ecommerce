@@ -14,6 +14,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ * action add to cart action
+ */
 global $IZAP_ECOMMERCE;
 $product = get_product_izap_ecommerce(get_input('product_guid'));
 if ($product) {

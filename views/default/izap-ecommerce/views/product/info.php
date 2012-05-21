@@ -42,13 +42,8 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
       echo $attrib_html; ?>
   </div>
 
-  <div class="right">
+  <div class="right" style="float: right">
     <img src="<?php echo $product->getIcon('master'); ?>" alt="<?php $product->title ?>" class="izap-product-image" />
-    <div style="text-align:right">
-      <a href="<?php echo $product->getIcon('orignal'); ?>">
-        <?php echo elgg_echo('izap-ecommmerce:get_original') ?>
-      </a>
-    </div>
   </div>
   <div class="clearfix"></div>
   <div class="description">
