@@ -287,7 +287,7 @@ class IzapStoreController extends IzapController {
       foreach ($wishlist as $product_guid) {
         $product = get_entity($product_guid);
         if ($product) {
-          $this->page_elements['content'] = elgg_view_entity($product, FALSE);
+          $this->page_elements['content'] .= elgg_view_entity($product, FALSE);
         }
       }
     } else {
