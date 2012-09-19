@@ -17,6 +17,7 @@
 $english = array(
     // general
     'item:object:izap_ecommerce' => 'Store',
+    'item:object:izap_ecommerce:singular' => 'a Product',
     'item:object:izap_order' => 'Orders',
     'izap_ecommerce:river:annotate' => 'comment on',
     'izap-ecommerce:nothing_to_display' => 'There is nothing to display right now, check back soon.',

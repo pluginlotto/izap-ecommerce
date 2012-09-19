@@ -46,6 +46,7 @@ class IzapStoreController extends IzapController {
    */
 
   public function actionAdd() {
+    
     global $CONFIG, $IZAP_ECOMMERCE;
     admin_gatekeeper();
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:add_new_product');
