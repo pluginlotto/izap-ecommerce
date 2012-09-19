@@ -14,19 +14,18 @@
 		<type>elgg_release</type>
 		<version>1.8b1</version>
 	</requires>
-  <requires>
-		<type>elgg_version</type>
-		<version>2011032200</version>
-	</requires>
+  
   <requires>
     <type>plugin</type>
     <name>izap-elgg-bridge</name>
     <version>2.0</version>
   </requires>
+  
   <requires>
     <type>php_extension</type>
     <name>curl</name>
   </requires>
+  
   <requires>
     <type>priority</type>
     <plugin>izap-elgg-bridge</plugin>
@@ -50,9 +49,5 @@
 	<category>iZAP</category>
 	<admin_interface>advanced</admin_interface>
 
-	<provides>
-		<type>plugin</type>
-		<name>izap-ecommerce</name>
-		<version>3.0</version>
-	</provides>
+	
 </plugin_manifest>
