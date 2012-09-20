@@ -61,6 +61,7 @@ $english = array(
     'izap-ecommerce:page_owner_products' => '[PAGE_OWNER_USERNAME]\'s products',
     'izap-ecommerce:all_orders' => 'All orders',
     'izap-ecommerce:add_version' => 'Add new version',
+    'river:comment:object:default' => '%s has commented on %s',
     // titles and others
     'izap-ecommerce:welcome_to_store' => 'Welcome to the store',
     'izap-ecommerce:free' => 'Free',
