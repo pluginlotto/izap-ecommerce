@@ -168,7 +168,7 @@ class IzapStoreController extends IzapController {
       $contents = file_get_contents($IZAP_ECOMMERCE->default_image);
     }
 
-    $file_friendly_name = elgg_get_friendly_title($izap_product->title . '.' . $izap_product->image_extension);
+    $file_friendly_name = $izap_product->time_updated . elgg_get_friendly_title($izap_product->title . '.' . $izap_product->image_extension);
     IzapBase::cacheHeaders(array(
                 'content_type' => $izap_product->image_mime_type,
                 'file_name' => $file_friendly_name,

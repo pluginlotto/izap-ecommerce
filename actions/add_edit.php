@@ -76,7 +76,7 @@ if ($error) {
       );
       unset_posted_data_izap_ecommerce('izap_product');
       system_message(elgg_echo('izap-ecommerce:saved_successfully'));
-      forward($product->getUrl());
+      forward('/store/list');
     }
   } else {
     register_error(elgg_echo('izap-ecommerce:error_saving'));

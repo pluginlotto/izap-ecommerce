@@ -414,7 +414,7 @@ class IzapEcommerce extends IzapObject {
    */
   public function getIcon($size) {
     global $IZAP_ECOMMERCE;
-    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/' . elgg_get_friendly_title($this->title) . '.jpg';
+    $url = $IZAP_ECOMMERCE->link . 'icon/' . $this->guid . '/' . $this->makeImageSize($size) . '/' . $this->time_updated . elgg_get_friendly_title($this->title) . '.jpg';
     return $url;
   }
 
