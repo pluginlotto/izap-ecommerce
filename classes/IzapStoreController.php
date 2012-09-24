@@ -68,6 +68,16 @@ class IzapStoreController extends IzapController {
     $this->render($IZAP_ECOMMERCE->forms . 'add_edit', array('entity' => $product));
   }
 
+  public function getOgTags() {
+      $ogtags = array(
+          'og:url' => $this->getURL(),
+          'og:image' => $this->getIconURL('large'),
+          'og:title' => $this->getTitle(),
+          'og:description' => htmlentities($this->getDescription()),
+          'og:type' => $this->getObject(),
+          );
+      return $ogtags;
+  }
   /*
    * actionProduct() for add new product vesion
    */
