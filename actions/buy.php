@@ -44,7 +44,7 @@ if ($order->guid !== 0) {
   $data_array['custom'] = $order->guid;
   $payment = new IzapPayment($payment_method);
   $payment->setParams($data_array);
-  $processed = $payment->process((int) get_input('owner_guid'));
+  $processed = $payment->process(elgg_get_logged_in_user_guid());
   if ($payment_method == 'paypal' || $payment_method == 'alertpay') {
     exit;
   }
