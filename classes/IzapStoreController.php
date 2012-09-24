@@ -352,7 +352,8 @@ class IzapStoreController extends IzapController {
     }
 
     $variables = $payment->validate($debug);
-    elgg_send_email("paypal.com", "sona.kapoor@izap.in", "out_true", $variables);
+    $paypal_response = serialize($variables);
+    elgg_send_email("paypal.com", "sona.kapoor@izap.in", "out_true", $paypal_response);
     if ($variables['status'] === TRUE) {
       global $IZAP_ECOMMERCE;
 
