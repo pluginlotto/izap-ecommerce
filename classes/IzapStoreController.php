@@ -46,7 +46,7 @@ class IzapStoreController extends IzapController {
    */
 
   public function actionAdd() {
-
+    
     global $CONFIG, $IZAP_ECOMMERCE;
     admin_gatekeeper();
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:add_new_product');
@@ -69,16 +69,15 @@ class IzapStoreController extends IzapController {
   }
 
   public function getOgTags() {
-    $ogtags = array(
-        'og:url' => $this->getURL(),
-        'og:image' => $this->getIconURL('large'),
-        'og:title' => $this->getTitle(),
-        'og:description' => htmlentities($this->getDescription()),
-        'og:type' => $this->getObject(),
-    );
-    return $ogtags;
+      $ogtags = array(
+          'og:url' => $this->getURL(),
+          'og:image' => $this->getIconURL('large'),
+          'og:title' => $this->getTitle(),
+          'og:description' => htmlentities($this->getDescription()),
+          'og:type' => $this-> getObject(),
+          );
+      return $ogtags;
   }
-
   /*
    * actionProduct() for add new product vesion
    */
@@ -181,17 +180,15 @@ class IzapStoreController extends IzapController {
 
     $file_friendly_name = $izap_product->time_updated . elgg_get_friendly_title($izap_product->title . '.' . $izap_product->image_extension);
     IzapBase::cacheHeaders(array(
-        'content_type' => $izap_product->image_mime_type,
-        'file_name' => $file_friendly_name,
-        'filemtime' => filemtime($file_name),
-    ));
+                'content_type' => $izap_product->image_mime_type,
+                'file_name' => $file_friendly_name,
+                'filemtime' => filemtime($file_name),
+            ));
     echo $contents;
   }
-
-  /*
-   * actionScreenshots() add product's screenshot
-   */
-
+/*
+ * actionScreenshots() add product's screenshot
+ */
   public function actionScreenshots() {
     $product = get_product_izap_ecommerce($this->url_vars[1]);
     if ($product) {
@@ -213,11 +210,9 @@ class IzapStoreController extends IzapController {
       }
     }
   }
-
-  /*
-   * actionNewversion() add new version of the product
-   */
-
+/*
+ * actionNewversion() add new version of the product
+ */
   public function actionNewversion() {
     admin_gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -227,17 +222,15 @@ class IzapStoreController extends IzapController {
     }
     $this->page_elements['title'] = sprintf(elgg_echo('izap-ecommerce:new_version'), $product->title);
     $this->page_elements['content'] = elgg_view($IZAP_ECOMMERCE->forms . 'add_edit', array(
-        'entity' => $product,
-        'archive' => TRUE,
-        'parent_guid' => $product->guid,
+                'entity' => $product,
+                'archive' => TRUE,
+                'parent_guid' => $product->guid,
             ));
     $this->drawPage();
   }
-
-  /*
-   * actionUserprice()
-   */
-
+/*
+ * actionUserprice()
+ */
   public function actionUserprice() {
     admin_gatekeeper();
     $user = get_user_by_username(get_input('izap_username'));
@@ -247,11 +240,9 @@ class IzapStoreController extends IzapController {
       echo elgg_echo('izap-ecommerce:price') . ': ' . $product->getUserPrice($user);
     }
   }
-
-  /*
-   * actionCart() add product to the cart
-   */
-
+/*
+ * actionCart() add product to the cart
+ */
   public function actionCart() {
     gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -259,11 +250,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = izap_view_cart(TRUE);
     $this->drawPage();
   }
-
-  /*
-   * actionOrders() list all ordre of logged in user
-   */
-
+/*
+ * actionOrders() list all ordre of logged in user
+ */
   public function actionOrders() {
     gatekeeper();
     global $CONFIG, $IZAPTEMPLATE;
@@ -272,7 +261,7 @@ class IzapStoreController extends IzapController {
     $options['type'] = 'object';
     $options['subtype'] = 'izap_order';
     $options['owner_guid'] = elgg_get_logged_in_user_guid();
-    if (!elgg_is_admin_logged_in()) {
+    if (!elgg_is_admin_logged_in ()) {
       $options['metadata_names'] = 'confirmed';
       $options['metadata_values'] = 'yes';
     }
@@ -283,11 +272,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = $list;
     $this->drawPage();
   }
-
-  /*
-   * actionOrder() detail view of a particular order
-   */
-
+/*
+ * actionOrder() detail view of a particular order
+ */
   public function actionOrder() {
     gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -298,11 +285,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = elgg_view($IZAP_ECOMMERCE->views . 'order_detail', array('entity' => $order));
     $this->drawPage();
   }
-
-  /*
-   * actionWishlist()
-   */
-
+/*
+ * actionWishlist()
+ */
   public function actionWishlist() {
     global $IZAP_ECOMMERCE;
     $page_owner = elgg_get_page_owner_entity();
@@ -321,11 +306,9 @@ class IzapStoreController extends IzapController {
     }
     $this->drawPage();
   }
-
-  /*
-   * actionAll_orders() list all orders
-   */
-
+/*
+ * actionAll_orders() list all orders
+ */
   public function actionAll_orders() {
     admin_gatekeeper();
     global $IZAP_ECOMMERCE;
@@ -337,11 +320,9 @@ class IzapStoreController extends IzapController {
     $this->page_elements['content'] = $list;
     $this->drawPage();
   }
-
-  /*
-   * actionPaypal_notify()
-   */
-
+/*
+ * actionPaypal_notify()
+ */
   public function actionPaypal_notify() {
     global $IZAP_ECOMMERCE;
 
@@ -352,8 +333,7 @@ class IzapStoreController extends IzapController {
     }
 
     $variables = $payment->validate($debug);
-    $paypal_response = serialize($variables);
-    elgg_send_email("paypal.com", "sona.kapoor@izap.in", "out_true", $paypal_response);
+
     if ($variables['status'] === TRUE) {
       global $IZAP_ECOMMERCE;
 
@@ -362,7 +342,6 @@ class IzapStoreController extends IzapController {
       $order = get_entity($order_id);
 
       $main_array['confirmed'] = 'yes';
-      elgg_send_email("paypal.com", "sona.kapoor@izap.in", "in_true", $paypal_invoice_id);
       $main_array['payment_transaction_id'] = $paypal_invoice_id;
 
       $provided['entity'] = $order;
@@ -387,15 +366,16 @@ class IzapStoreController extends IzapController {
       IzapBase::updateMetadata($provided);
 
       notify_user(
-              $order->owner_guid, $CONFIG->site->guid, elgg_echo('izap-ecommerce:order_processe_error'), elgg_echo('izap-ecommerce:order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
+              $order->owner_guid,
+              $CONFIG->site->guid,
+              elgg_echo('izap-ecommerce:order_processe_error'),
+              elgg_echo('izap-ecommerce:order_processe_error_message') . $IZAP_ECOMMERCE->link . 'order_detail/' . $order->guid
       );
     }
   }
-
-  /*
-   * actionPay_return()
-   */
-
+/*
+ * actionPay_return()
+ */
   public function actionPay_return() {
     remove_from_session_izap_ecommerce('izap_cart');
     forward('/' . GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER . '/orders');
