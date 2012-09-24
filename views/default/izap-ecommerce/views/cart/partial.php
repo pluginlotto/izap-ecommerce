@@ -60,7 +60,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
       </a></td>
       <td align="right"><?php echo $IZAP_ECOMMERCE->currency_sign . $int_price;?></td>
     </tr>
-        <?      
+        <?php
     $total_price += $int_price;
       }
     }
@@ -69,7 +69,7 @@ $remove_lnk = $vars['url'] . 'action/izap_ecommerce/remove_from_cart?guid=';
   
   <div  style="padding:1px 5px 1px 1px;margin: 2px;">
     <p style="margin:1px;padding:1px;">
-      <a href="<?php echo $IZAP_ECOMMERCE->link?>cart" class= "elgg-button elgg-button-action">
+      <a href="<?php echo $IZAP_ECOMMERCE->link;?>cart" class= "elgg-button elgg-button-action">
         <?php echo elgg_echo('izap-ecommerce:checkout');?>
       </a>
       <b class="izap-product-float-right">

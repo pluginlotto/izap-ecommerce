@@ -12,7 +12,7 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-
+  
 global $IZAP_ECOMMERCE, $IZAP_PAYMENT_GATEWAYS;
 $order = $vars['entity'];
 $order_owner = $order->getOwnerEntity();
