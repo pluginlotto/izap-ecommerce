@@ -463,7 +463,7 @@ class IzapEcommerce extends IzapObject {
     $price = $this->calculateDiscountedPrice($price);
 
     if ($format) {
-      return $IZAP_ECOMMERCE->currency_sign . (int) $price;
+      return $IZAP_ECOMMERCE->currency_sign . $price;
     } else {
       return (int) $price;
     }
@@ -569,7 +569,7 @@ class IzapEcommerce extends IzapObject {
       $price_range = explode('-', $price);
       // casting whole array as int
       foreach ($price_range as $val) {
-        $price_range_array[] = (int) $val;
+        $price_range_array[] =  (float) $val;
       }
       switch ($type) {
         case "rand":
@@ -589,7 +589,7 @@ class IzapEcommerce extends IzapObject {
           break;
       }
     } else {
-      return (int) $price;
+      return $price;
     }
   }
 

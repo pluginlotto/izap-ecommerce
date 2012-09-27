@@ -23,10 +23,11 @@ if (!$posted_data->guid) {
   $product->archived = 'no';
   $product->avg_rating = (int) 0;
 }
-if (!is_numeric($posted_data->price)){
+
+$posted_data->price = (float) $posted_data->price;
+if ($posted_data->price <= 0){
   register_error(elgg_echo('izap-ecommerce:price_in_interger'));
   forward(REFERER);
-  //echo 'string value';
 }
 $error = $product->verify_posted_data($posted_data);
 if ($error) {
