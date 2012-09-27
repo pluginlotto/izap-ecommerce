@@ -23,6 +23,7 @@ class IzapStoreController extends IzapController {
 
   public function actionList() {
     global $IZAP_ECOMMERCE;
+    $list = $this->url_vars;
     $this->page_elements['title'] = elgg_echo('izap-ecommerce:welcome_to_store');
 
     if (izap_plugin_settings(array(
@@ -34,7 +35,12 @@ class IzapStoreController extends IzapController {
     }
     $context_bak = elgg_set_context();
     elgg_set_context('search');
-    $this->page_elements['content'] = elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());
+    if ($list[1] == 'all'){
+    $this->page_elements['content'] = elgg_list_entities_from_metadata(get_default_listing_options_izap_ecommerce());}
+    elseif (elgg_is_admin_logged_in()){
+      $this->page_elements['content'] = elgg_list_entities_from_metadata(get_user_listing_options_izap_ecommerce());
+    }
+   
     if (empty($this->page_elements['content']))
       $this->page_elements['content'] = elgg_view($IZAP_ECOMMERCE->views . '/no_data');
     elgg_set_context($context_bak);

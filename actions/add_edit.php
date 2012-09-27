@@ -23,6 +23,11 @@ if (!$posted_data->guid) {
   $product->archived = 'no';
   $product->avg_rating = (int) 0;
 }
+if (!is_numeric($posted_data->price)){
+  register_error(elgg_echo('izap-ecommerce:price_in_interger'));
+  forward(REFERER);
+  //echo 'string value';
+}
 $error = $product->verify_posted_data($posted_data);
 if ($error) {
   register_error(elgg_echo('izap-ecommerce:missing_required_info'));

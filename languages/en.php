@@ -23,6 +23,7 @@ $english = array(
     'izap-ecommerce:nothing_to_display' => 'There is nothing to display right now, check back soon.',
     'izap-ecommerce:deleted' => 'Deleted',
     'izap-ecommmerce:get_original' => 'Show Full Image',
+    'izap-ecommerce:price_in_interger' => 'Price must be in integer',
     // admin settings
     'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
     'izap-ecommerce:download_link_expire_time' => 'Link expire time (in Hrs)',

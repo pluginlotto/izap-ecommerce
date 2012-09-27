@@ -1333,6 +1333,24 @@ function get_default_listing_options_izap_ecommerce($array = array()) {
   $options['metadata_name'] = 'archived';
   $options['metadata_value'] = 'no';
 
+  return array_merge($options, $array);
+}
+
+function get_user_listing_options_izap_ecommerce($array = array()) {
+  $options['type'] = 'object';
+  $options['subtype'] = GLOBAL_IZAP_ECOMMERCE_SUBTYPE;
+  $options['limit'] = izap_plugin_settings(array(
+        'plugin_name' => GLOBAL_IZAP_ECOMMERCE_PLUGIN,
+        'setting_name' => 'izap_product_limit',
+        'value' => 10
+      ));
+  $options['full_view'] = false;
+  $options['offset'] = get_input('offset', 0);
+  $options['view_type_toggle'] = true;
+  $options['pagination'] = true;
+  $options['metadata_name'] = 'archived';
+  $options['metadata_value'] = 'no';
+  $options['owner_guid'] = elgg_get_logged_in_user_guid();
 
   return array_merge($options, $array);
 }
