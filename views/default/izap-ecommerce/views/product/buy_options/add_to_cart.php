@@ -21,11 +21,10 @@ $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
-  <?php echo $product->getPrice();?>
 </div>
 
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('izap-ecommerce:Discounted price');?>
+  <?php echo elgg_echo('Actual Prize');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
 </div>
