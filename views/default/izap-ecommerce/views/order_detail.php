@@ -76,13 +76,13 @@ $notify_link = 'mailto:' . $order_owner->email;
         <br />
 
       <?php
-          if (elgg_is_admin_logged_in ()) {
+          //if (elgg_is_admin_logged_in ()) {
             echo elgg_echo('izap-ecommerce:order_transction_id'); ?>:
             <b>
         <?php echo $order->payment_transaction_id; ?>
           </b>
           <br />
-      <?php } ?>
+      <?php //} ?>
         </div>
 
       </div>
