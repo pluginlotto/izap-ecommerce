@@ -1,3 +1,9 @@
+<style type="text/css">
+  .izap-line {
+  text-decoration:line-through;
+  }
+</style>
+
 <?php
 /* * ************************************************
  * PluginLotto.com                                 *
@@ -18,13 +24,13 @@ if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 
-if($yes) { $line_through='text-decoration:line-through';?>
+if($yes) { $izap_line='izap-line';?>
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div> <?php } ?>
-<div class="price" id="price_span <?php echo $line_through;?>" style="background-color:<?php echo $color; ?>; ">
+<div class="price" id="price_span <?php echo $izap_line;?>" style="background-color:<?php echo $color; ?>; ">
   <?php echo elgg_echo('Actual Prize:$');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
