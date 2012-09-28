@@ -24,7 +24,7 @@ if($yes) {?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div> <?php } ?>
-<div class="price" id="price_span" style="background-color:<?php echo $color ?>">
+<div class="price" id="price_span" style="background-color:<?php echo $color ?>; text-decoration:line-through">
   <?php echo elgg_echo('Actual Prize:$');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
