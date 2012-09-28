@@ -12,16 +12,14 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-$product = elgg_extract('entity', $vars);
-$yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
+$izap_eco = new IzapEcommerce();
+$yes = $izap_eco->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 ?>
-<?php
-if($yes){?>
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('izap-ecommerce:price');?> <?php } ?>
+  <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div>
