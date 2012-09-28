@@ -13,7 +13,8 @@
  */
 
 $izap_eco = new IzapEcommerce();
-$yes = $izap_eco->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
+$yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
+c($yes);
 if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
