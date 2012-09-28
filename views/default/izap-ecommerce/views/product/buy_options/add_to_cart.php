@@ -20,8 +20,10 @@ if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 ?>
+<?php
+if($yes){?>
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('izap-ecommerce:price');?>
+  <?php echo elgg_echo('izap-ecommerce:price');?> <?php } ?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div>
