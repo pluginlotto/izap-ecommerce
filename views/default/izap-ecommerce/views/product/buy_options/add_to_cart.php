@@ -12,6 +12,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+$izap_eco = new IzapEcommerce();
+$izap_eco->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
+c($izap_eco);
 $product = elgg_extract('entity', $vars);
 if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
@@ -24,7 +27,7 @@ $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 </div>
 
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('Actual Prize');?>
+  <?php echo elgg_echo('Actual Prize:$');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
 </div>
