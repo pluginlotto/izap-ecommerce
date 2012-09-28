@@ -18,14 +18,14 @@ define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 ?>
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('izap-ecommerce:price');?>
+  <?php echo elgg_echo('izap-ecommerce:Discounted price');?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
   
 </div>
 
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
-  <?php echo elgg_echo('izap-ecommerce:Discounted price');?>
+  <?php echo elgg_echo('izap-ecommerce:Actual price');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
 </div>
