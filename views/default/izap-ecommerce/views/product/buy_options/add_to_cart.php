@@ -18,7 +18,7 @@ if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 
-if($yes) { $line_through='text-decoration:line-through';?>
+if($yes) { //$line_through='text-decoration:line-through';?>
 <div class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
