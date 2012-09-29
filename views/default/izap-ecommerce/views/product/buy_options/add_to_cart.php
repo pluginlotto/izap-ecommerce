@@ -25,7 +25,7 @@ if($yes) { $izap_line='izap-line';?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div> <?php } ?>
-<div position:absolute class="price <?php echo $izap_line;?>" id="price_span " style="background-color:<?php echo $color; ?>; ">
+<div position:absolute class="price <?php echo $izap_line;?>" id="price_span " style="background-color:#D3322A ">
   <?php echo elgg_echo('Actual Prize:$');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
