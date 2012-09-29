@@ -20,7 +20,7 @@ define('show_buy_now', 'yes');
 //$color = $product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 if ($product->getPrice(FALSE) <= 0){
   $color = '#4DD18C';
-} elseif($product->getPrice(FALSE) <= 0 && $yes){
+} elseif($product->getPrice(FALSE) <= 0 && $yes == 1){
   $color = 'red';
 } else {
    $color = '#4690D6';
