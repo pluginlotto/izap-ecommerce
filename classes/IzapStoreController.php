@@ -89,6 +89,7 @@ class IzapStoreController extends IzapController {
    */
 
   public function actionProduct() {
+    gatekeeper();
     $izap_product = get_product_izap_ecommerce($this->url_vars[2]);
     if (!$izap_product) {
       register_error(elgg_echo('izap-ecommerce:invalid_product'));
