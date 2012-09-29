@@ -1158,6 +1158,8 @@ function create_product_download_link_izap_ecommerce(array $options) {
                     'class' => (string) $options['class']
 
             ));
+  echo $download_link;
+  exit;
 
   return $download_link;
 }
