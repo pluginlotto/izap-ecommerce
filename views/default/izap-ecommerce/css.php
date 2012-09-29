@@ -559,3 +559,11 @@ float:left;
   text-decoration:line-through;
   background-color:#D3322A;
   }
+
+#discount_price_span {
+   float: left;
+}
+#price_span {
+   float: right;
+}
+

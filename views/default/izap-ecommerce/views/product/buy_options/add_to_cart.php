@@ -27,15 +27,17 @@ if ($product->getPrice(FALSE) <= 0) {
 }
 
 if ($yes) : ?>
-<div position:absolute class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?> ">
+<div id="price_id">
+<div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?> ">
   <?php echo elgg_echo('Actual Prize:$'); ?>
   <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
 </div>
 <?php endif ?>
-  <div position:absolute class="price" id="price_span" style="background-color:<?php echo $color ?>">
+  <div  class="price" id="price_span" style="background-color:<?php echo $color ?>">
     <?php echo elgg_echo('izap-ecommerce:price'); ?>
     <?php echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
   </div> 
+</div>
 
 
 
