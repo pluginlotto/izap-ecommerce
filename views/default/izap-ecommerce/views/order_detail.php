@@ -107,7 +107,7 @@ $notify_link = 'mailto:' . $order_owner->email;
               $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
             } else {
               $product_url = '#';
-              $download_link = '#';
+              $download_link = 'http://elgg.izap.in/store/product/kiran/745/new';
             }
   ?>
             <div class="izap-order-detait-<?php echo $class; ?>">
