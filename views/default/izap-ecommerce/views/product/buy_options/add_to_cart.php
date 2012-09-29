@@ -20,12 +20,12 @@ define('show_buy_now', 'yes');
 $color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 
 if($yes) { $izap_line='izap-line';?>
-<div class="price" id="price_span" style="background-color:<?php echo $color ?>">
+<div position:absolute class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
       echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
 </div> <?php } ?>
-<div position:relative class="price <?php echo $izap_line;?>" id="price_span " style="background-color:<?php echo $color; ?>; ">
+<div position:absolute class="price <?php echo $izap_line;?>" id="price_span " style="background-color:<?php echo $color; ?>; ">
   <?php echo elgg_echo('Actual Prize:$');?>
       <?php
       echo '<span id="product_price_html">' . $product->price . '</span>' ?>
