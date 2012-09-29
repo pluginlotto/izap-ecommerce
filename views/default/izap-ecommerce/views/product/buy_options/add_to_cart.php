@@ -1,8 +1,3 @@
-<style type="text/css">
-  .izap-line {
-  text-decoration:line-through;
-  }
-</style>
 
 <?php
 /* * ************************************************

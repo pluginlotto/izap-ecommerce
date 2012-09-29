@@ -26,6 +26,9 @@ float:left;
 background-color:#EEEEEE;
 }
 
+.izap-line {
+  text-decoration:line-through;
+  }
 
 .izap-product-float-right{float:right}
 .listing-image {float: left; padding: 2px; margin: 2px; width: 16%}
