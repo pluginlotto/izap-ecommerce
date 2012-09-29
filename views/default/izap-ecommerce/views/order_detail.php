@@ -101,10 +101,14 @@ $notify_link = 'mailto:' . $order_owner->email;
             $item_guid = 'item_guid_' . $i;
             $class = ($odd_even % 2 == 0) ? 'even' : 'odd';
 
-            $product = get_entity($order->$item_guid);
+            $product = get_entity($order->{$item_guid});
             if ($product) {
               $product_url = $product->getURL();
-              $download_link = create_product_download_link_izap_ecommerce($order, $order->$item_guid);
+              $download_link = create_product_download_link_izap_ecommerce(array(
+                  'order' => $order,
+                  'product_guid' => $order->{$item_guid},
+                   'time' => $time,
+              ));
             } else {
               $product_url = '#';
               $download_link = '#';

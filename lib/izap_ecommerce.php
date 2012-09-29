@@ -1152,13 +1152,12 @@ function create_product_download_link_izap_ecommerce(array $options) {
 
   $download_link = elgg_view('output/url',array(
                     'text' => 'Download',
+                     
                     'href' => $download_link,
                     'is_action' => true,
                     'class' => (string) $options['class']
 
             ));
-  echo ($download_link);
-  exit;
 
   return $download_link;
 }
