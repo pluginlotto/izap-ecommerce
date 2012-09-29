@@ -26,7 +26,7 @@ if ($product->getPrice(FALSE) <= 0){
    echo $color = '#4690D6';
 }
 
-if($yes) { ?>
+if($yes) { c($yes);?>
 <div position:absolute class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
