@@ -560,10 +560,4 @@ float:left;
   background-color:#D3322A;
   }
 
-#discount_price_span {
-   float: left;
-}
-#price_span {
-   float: right;
-}
 
