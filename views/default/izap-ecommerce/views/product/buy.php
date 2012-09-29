@@ -31,7 +31,7 @@ else
   echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/archived', array('entity' => $product));
 }
 ?>
-<!--</div><div class="clearfloat"></div>-->
+<div class="clearfloat"></div>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#post_cart_1, #post_cart_2').click(function (){
