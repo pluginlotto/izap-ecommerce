@@ -1149,8 +1149,6 @@ function create_product_download_link_izap_ecommerce(array $options) {
 
   $download_link = $CONFIG->wwwroot . 'action/izap_ecommerce/download?o=' . $options['order']->guid;
   $download_link .= '&p=' . $options['product_guid'] . '&t=' . $options['time'] . '&h=' . $hash;
-  echo ($download_link);
-  exit;
 
   $download_link = elgg_view('output/url',array(
                     'text' => 'Download',
@@ -1159,6 +1157,8 @@ function create_product_download_link_izap_ecommerce(array $options) {
                     'class' => (string) $options['class']
 
             ));
+  echo ($download_link);
+  exit;
 
   return $download_link;
 }
