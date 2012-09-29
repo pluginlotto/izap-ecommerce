@@ -28,6 +28,7 @@ background-color:#EEEEEE;
 
 .izap-line {
   text-decoration:line-through;
+  background-color:#D3322A;
   }
 
 .izap-product-float-right{float:right}
