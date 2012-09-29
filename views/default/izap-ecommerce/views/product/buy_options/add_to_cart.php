@@ -19,14 +19,14 @@ if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
   define('show_buy_now', 'yes');
 //$color = $product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
 if ($product->getPrice(FALSE) <= 0) {
-  echo $color = '#4DD18C';
+   $color = '#4DD18C';
 } elseif ($product->getPrice(FALSE) <= 0 && $yes == 1) {
-  echo $color = 'red';
+   $color = 'red';
 } else {
-  echo $color = '#4690D6';
+   $color = '#4690D6';
 }
 
-if ($yes) : c($yes); ?>
+if ($yes) : ?>
 <div position:absolute class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?> ">
   <?php echo elgg_echo('Actual Prize:$'); ?>
   <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
