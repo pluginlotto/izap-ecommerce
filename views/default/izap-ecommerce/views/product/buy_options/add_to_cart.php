@@ -37,7 +37,7 @@ if ($yes) : ?>
     <?php echo elgg_echo('izap-ecommerce:price'); ?>
     <?php echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
   </div>
-  <div style="clear: both"></div>
+  <div class="clearfloat"></div>
 </div>  
 
 
