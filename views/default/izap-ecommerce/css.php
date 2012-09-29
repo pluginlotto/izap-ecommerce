@@ -70,7 +70,7 @@ border-radius:5px;
 padding:5px 3px 5px 3px;
 margin: 0 3px 3px 0;
 text-align:center;
-width:130px;
+
 }
 
 
@@ -559,4 +559,5 @@ float:left;
   text-decoration:line-through;
   background-color:#D3322A;
   }
+
 
