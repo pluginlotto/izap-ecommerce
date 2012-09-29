@@ -1160,8 +1160,6 @@ function create_product_download_link_izap_ecommerce(array $options) {
                       'time' => $time,
 
             ));
-                     echo $download_link;
-                     exit;
 
   return $download_link;
 }

@@ -141,7 +141,7 @@ $notify_link = 'mailto:' . $order_owner->email;
           </div>
 
           <div class="izap-product-float-left" style="width: 20%">
-            <a href="<?php echo $download_link ?>">
+            <?php echo $download_link ?>
         <?php echo elgg_echo('izap-ecommerce:download'); ?>
           </a>
         </div>
