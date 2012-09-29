@@ -17,7 +17,7 @@
 /**
  * action add to wishlist
  */
-/*global $CONFIG, $IZAP_ECOMMERCE;
+global $CONFIG, $IZAP_ECOMMERCE;
 gatekeeper();
 $product = get_product_izap_ecommerce(get_input('guid'));
 $forward_url = $IZAP_ECOMMERCE->link . 'wishlist';
@@ -27,4 +27,4 @@ if ($product) {
     system_message(elgg_echo('izap-ecommerce:added_to_wishlist'));
   }
 }
-forward($forward_url);*/
+forward($forward_url);
