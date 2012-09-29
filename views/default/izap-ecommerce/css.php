@@ -26,10 +26,7 @@ float:left;
 background-color:#EEEEEE;
 }
 
-.izap-line {
-  text-decoration:line-through;
-  background-color:#D3322A;
-  }
+
 
 .izap-product-float-right{float:right}
 .listing-image {float: left; padding: 2px; margin: 2px; width: 16%}
@@ -557,3 +554,8 @@ margin-top: 18px;
 margin-right:5px;
 float:left;
 }
+
+.izap-line {
+  text-decoration:line-through;
+  background-color:#D3322A;
+  }

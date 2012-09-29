@@ -17,9 +17,16 @@ $product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if( $product->comming_soon == 'no' && $product->getPrice(FALSE)>0)
 define('show_buy_now', 'yes');
-$color =$product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
+//$color = $product->getPrice(FALSE) <= 0 ? '#4DD18C': '#4690D6';
+if ($product->getPrice(FALSE) <= 0){
+  $color = '#4DD18C';
+} elseif($product->getPrice(FALSE) <= 0 && $yes){
+  $color = 'red';
+} else {
+   $color = '#4690D6';
+}
 
-if($yes) { $izap_line='izap-line';?>
+if($yes) { ?>
 <div position:absolute class="price" id="price_span" style="background-color:<?php echo $color ?>">
   <?php echo elgg_echo('izap-ecommerce:price');?>
       <?php
