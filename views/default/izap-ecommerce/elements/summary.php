@@ -35,7 +35,7 @@ if ($title_link === '') {
 
 if($vars['is_available']) {
   $price_tag = sprintf('<div class="lprice" style="background-color:%s">%s</div>',$entity->getPrice(FALSE) ? "#4690D6" : "#4DD18C", elgg_echo('izap-ecommerce:price') . $entity->getPrice());
- echo $discounted_price = elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);}
+  $discounted_price = elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);}
 else
   $price_tag = sprintf('<div class="lcomingsoon">%s</div>', elgg_echo('izap-ecommerce:comming_soon'));
 
@@ -54,7 +54,7 @@ if ($metadata) {
 echo "<h3>$title_link</h3>";
 echo '<br/>';
 echo $price_tag;
-//echo $discounted_price;
+echo $discounted_price;
 echo "<div class=\"elgg-subtext\">$subtitle</div>";
 echo $tags;
 if ($content) {
