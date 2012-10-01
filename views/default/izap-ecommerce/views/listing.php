@@ -72,9 +72,5 @@ $params = array(
 );
 $params = $params + $vars;
 $list_body = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/elements/summary', $params);
-echo elgg_view_image_block($product_image, $list_body);?>
-<div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:left; ">
-    <?php echo elgg_echo('Actual Prize:$'); ?>
-    <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
-  </div>
-<?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars); ?>
+echo elgg_view_image_block($product_image, $list_body);
+echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars); 
