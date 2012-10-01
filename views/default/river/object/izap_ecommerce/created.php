@@ -16,14 +16,12 @@
 $performed_by = get_entity($vars['item']->subject_guid); // $statement->getSubject();
 $object = get_entity($vars['item']->object_guid);
 $url = $object->getURL();
-
 $url = "<a href=\"{$performed_by->getURL()}\">{$performed_by->name}</a>";
 $contents = strip_tags($object->description); //strip tags from the contents to stop large images etc blowing out the river view
-
 $string = $url . ' has posted new product ';
 $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
-echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart',$vars); 
 $string .= "<div class=\"river_content_display\">";
+echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1', array('entity' => $object)); 
 if(strlen($contents) > 200) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
 }else {
