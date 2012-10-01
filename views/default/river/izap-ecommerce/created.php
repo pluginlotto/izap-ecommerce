@@ -22,6 +22,7 @@ $contents = strip_tags($object->description); //strip tags from the contents to 
 
 $string = $url . ' has posted new product ';
 $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
+echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart',$vars); 
 $string .= "<div class=\"river_content_display\">";
 if(strlen($contents) > 200) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
