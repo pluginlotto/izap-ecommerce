@@ -12,7 +12,7 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-echo "Sona";
+
 $product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
