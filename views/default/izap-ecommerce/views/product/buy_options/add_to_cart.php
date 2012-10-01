@@ -32,7 +32,7 @@ if ($yes) : ?>
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
   </div>-->
-<?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars); ?>
+  <?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars); ?>
   <?php endif ?>
   <div class="price" id="price_span" style="background-color:<?php echo $color ?>; float:left;">
     <?php echo elgg_echo('izap-ecommerce:price'); ?>

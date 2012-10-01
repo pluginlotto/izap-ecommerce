@@ -33,9 +33,9 @@ if ($title_link === '') {
 	$title_link = elgg_view('output/url', $params);
 }
 
-if($vars['is_available']) 
+if($vars['is_available']) {
   $price_tag = sprintf('<div class="lprice" style="float:none;background-color:%s">%s</div>',$entity->getPrice(FALSE) ? "#4690D6" : "#4DD18C", elgg_echo('izap-ecommerce:price') . $entity->getPrice());
-  //$discounted_price = elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);}
+  $discounted_price = elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);}
 else
   $price_tag = sprintf('<div class="lcomingsoon" >%s</div>', elgg_echo('izap-ecommerce:comming_soon'));
 
