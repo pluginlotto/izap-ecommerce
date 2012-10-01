@@ -43,7 +43,7 @@ webkikt-border-radius:px;
 border-radius:5px;
 padding:5px 3px 5px 3px;
 text-align:center;
-width:90px;
+width:130px;
 float: right;
 }
 
