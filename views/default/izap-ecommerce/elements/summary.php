@@ -53,8 +53,8 @@ if ($metadata) {
 }
 echo "<h3>$title_link</h3>";
 echo '<br/>';
-echo '<div style="float:right">'.$price_tag;
-echo $discounted_price.'</div>';
+echo '<div style="float:right">'.$discounted_price;
+echo $price_tag.'</div>';
 echo "<div class=\"elgg-subtext\">$subtitle</div>";
 echo $tags;
 if ($content) {
