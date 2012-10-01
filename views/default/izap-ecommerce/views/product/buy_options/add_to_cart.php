@@ -1,5 +1,5 @@
 
-/*<?php
+<?php
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -13,7 +13,7 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-/*$product = elgg_extract('entity', $vars);
+$product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
   define('show_buy_now', 'yes');
@@ -28,18 +28,17 @@ if ($product->getPrice(FALSE) <= 0) {
 
 if ($yes) : ?>
 <div>
-  <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:left; ">
+<!--  <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:left; ">
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
-  </div>
+  </div>-->
+  <?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars); ?>
   <?php endif ?>
   <div class="price" id="price_span" style="background-color:<?php echo $color ?>; float:left;">
     <?php echo elgg_echo('izap-ecommerce:price'); ?>
     <?php echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
   </div>
   <div class="clearfloat"></div>
-</div>  */
+</div>  
 
 
- echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);
-?>
