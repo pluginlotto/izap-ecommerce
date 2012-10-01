@@ -40,4 +40,6 @@ if ($yes) : ?>
   <div class="clearfloat"></div>
 </div>  */
 
-echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1');
+
+ echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',$vars);
+?>
