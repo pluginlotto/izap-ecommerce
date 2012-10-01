@@ -12,7 +12,7 @@
 * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
 */
-
+echo "sona";
 $performed_by = get_entity($vars['item']->subject_guid); // $statement->getSubject();
 $object = get_entity($vars['item']->object_guid);
 
