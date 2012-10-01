@@ -17,12 +17,12 @@ $product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
   define('show_buy_now', 'yes');
-
+?>
   <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:left; ">
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
   </div>
-  
+ 
 
 
 
