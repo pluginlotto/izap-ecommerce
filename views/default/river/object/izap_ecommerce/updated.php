@@ -33,5 +33,5 @@ $string .= '<div style="float:right">'.elgg_view('izap-ecommerce/views/product/b
 $string .= "</div><div class=\"clearfloat\"></div>";
 echo $string;
 
-$string .= "</div>";
-echo $string; 
+//$string .= "</div>";
+//echo $string; 
