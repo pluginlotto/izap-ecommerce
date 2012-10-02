@@ -15,6 +15,7 @@
 
 $product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
+c($yes);
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
   define('show_buy_now', 'yes');
 if ($product->getPrice(FALSE) <= 0) {
@@ -26,9 +27,8 @@ if ($product->getPrice(FALSE) <= 0) {
 }
 ?>
 <?php
-c($yes);
+
 if ($yes && $vars['entity']->discount >0) : ?>
-echo "Sona Kapoor";
   <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:none ">
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
