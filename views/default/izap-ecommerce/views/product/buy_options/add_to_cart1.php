@@ -33,7 +33,6 @@ if ($yes && $vars['entity']->discount >0) : ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
     </div>
 <?php endif ?>
-<?php echo elgg_view('izap-ecommerce/views/product/buy_options/price');
-?>
+
 
 
