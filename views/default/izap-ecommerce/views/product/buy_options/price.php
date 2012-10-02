@@ -1,4 +1,3 @@
-
 <?php
 /* * ************************************************
  * PluginLotto.com                                 *
@@ -14,26 +13,14 @@
  */
 
 $product = elgg_extract('entity', $vars);
-$yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
-if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
-  define('show_buy_now', 'yes');
 if ($product->getPrice(FALSE) <= 0) {
    $color = '#4DD18C';
 } elseif ($product->getPrice(FALSE) <= 0 && $yes == 1) {
    $color = 'red';
 } else {
    $color = '#4690D6';
-}
-?>
-<?php
-
-if ($yes && $vars['entity']->discount >0) : ?>
-  <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:none ">
-    <?php echo elgg_echo('Actual Prize:$'); ?>
-    <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
-    </div>
-<?php endif ?>
-<?php echo elgg_view('izap-ecommerce/views/product/buy_options/price');
-?>
-
-
+}?>
+<div class="price" id="price_span" style="background-color:<?php echo $color ?>; float:left;">
+    <?php echo elgg_echo('izap-ecommerce:price'); ?>
+    <?php echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
+  </div>
