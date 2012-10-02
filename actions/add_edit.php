@@ -25,6 +25,7 @@ if (!$posted_data->guid) {
 }
 
 $posted_data->price = (float) $posted_data->price;
+$posted_data->price = number_format($posted_data->price,2);
 if ($posted_data->price <= 0){
   register_error(elgg_echo('izap-ecommerce:price_in_interger'));
   forward(REFERER);
