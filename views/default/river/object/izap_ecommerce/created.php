@@ -15,8 +15,6 @@
 
 $performed_by = get_entity($vars['item']->subject_guid); // $statement->getSubject();
 $object = get_entity($vars['item']->object_guid);
-c($object->code);
-
 $url = "<a href=\"{$performed_by->getURL()}\">{$performed_by->name}</a>";
 $contents = strip_tags($object->description); //strip tags from the contents to stop large images etc blowing out the river view
 
