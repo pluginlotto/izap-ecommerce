@@ -19,10 +19,11 @@ $url = "<a href=\"{$performed_by->getURL()}\">{$performed_by->name}</a>";
 $contents = strip_tags($object->description); //strip tags from the contents to stop large images etc blowing out the river view
 
 $string = $url . ' has '.$vars['item']->action_type.' '  . elgg_echo('item:' . $object->getType() . ':' . $object->getSubtype() . ':singular') . ' ';
-$string .= elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',array('entity' => $object)); 
+
 $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
 $string .= "<div class=\"river_content_display\">";
 $string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIcon().'" align="left" class="izap_river_icon"/></a>';
+$string .= elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',array('entity' => $object)); 
 if(strlen($contents) > 200) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
 }else {
