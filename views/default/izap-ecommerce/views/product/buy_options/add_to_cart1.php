@@ -12,7 +12,7 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-
+global $IZAP_ECOMMERCE;
 $product = elgg_extract('entity', $vars);
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
@@ -26,11 +26,10 @@ if ($product->getPrice(FALSE) <= 0) {
 }
 ?>
 <?php
-c($IZAP_ECOMMERCE->currency_sign);
 if ($yes && $vars['entity']->discount >0) : ?>
   <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:none ">
     <?php echo elgg_echo('izap-ecommerce:actual price'); ?>
-    <?php echo '<span id="product_price_html">' .$product->price . '</span>' ?>
+    <?php echo '<span id="product_price_html">' .$IZAP_ECOMMERCE->currency_sign.$product->price . '</span>' ?>
     </div>
 <?php endif ?>
 
