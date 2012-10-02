@@ -32,8 +32,6 @@ if ($yes && $vars['entity']->discount >0) : ?>
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
     </div>
-<?php else :
-  echo "Sona Kapoor";?>
 <?php endif ?>
 
 
