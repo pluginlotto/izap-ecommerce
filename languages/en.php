@@ -26,7 +26,7 @@ $english = array(
     'izap-ecommerce:price_in_interger' => 'Price must be in integer',
     'izap-ecommerce:Discounted price' => 'Price',
     'izap-ecommerce:price' => 'Price',
-    'izap-ecommerce:actual price' => 'Actual price',
+    'izap-ecommerce:actual price' => 'Actual price:',
     // admin settings
     'izap-ecommerce:goto_plugin_settings' => 'Goto admin settings',
     'izap-ecommerce:download_link_expire_time' => 'Link expire time (in Hrs)',
