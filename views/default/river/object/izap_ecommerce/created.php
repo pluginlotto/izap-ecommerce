@@ -22,8 +22,9 @@ $string = $url . ' has '.$vars['item']->action_type.' '  . elgg_echo('item:' . $
 
 $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
 $string .= "<div class=\"river_content_display\">";
-$string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIcon().'" align="left" class="izap_river_icon"/></a>';
 $string .= elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',array('entity' => $object)); 
+$string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIcon().'" align="left" class="izap_river_icon"/></a>';
+
 if(strlen($contents) > 200) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
 }else {
