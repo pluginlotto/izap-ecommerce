@@ -26,6 +26,7 @@ if ($product->getPrice(FALSE) <= 0) {
 }
 ?>
 <?php
+c($yes);
 if ($yes && $vars['entity']->discount >0) : ?>
 echo "Sona Kapoor";
   <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:none ">
