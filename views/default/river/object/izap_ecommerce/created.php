@@ -24,7 +24,7 @@ $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
 $string .= "<div class=\"river_content_display\">";
 $string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIcon().'" align="left" class="izap_river_icon"/></a>';
 
-if(strlen($contents) > 200) {
+if(strlen($contents) > 150) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
 }else {
   $string .= $contents;
