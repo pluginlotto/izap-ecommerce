@@ -244,7 +244,6 @@ class IzapStoreController extends IzapController {
 
     if ($user && $product) {
       echo elgg_echo('izap-ecommerce:price') . ': ' . $product->getUserPrice($user);
-      echo elgg_echo('izap-ecommerce:actual price') . ': ' . $product->getUserPrice($user);
     }
   }
 /*
