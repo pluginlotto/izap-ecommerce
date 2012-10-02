@@ -29,6 +29,6 @@ if(strlen($contents) > 200) {
 }else {
   $string .= $contents;
 }
-$string .= elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart',array('entity' => $object)); 
+$string .= '<div style="float:right">'.elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart',array('entity' => $object)).'</div>'; 
 $string .= "</div><div class=\"clearfloat\"></div>";
 echo $string;
