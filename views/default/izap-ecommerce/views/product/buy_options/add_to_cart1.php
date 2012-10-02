@@ -29,7 +29,7 @@ if ($product->getPrice(FALSE) <= 0) {
 
 if ($yes && $vars['entity']->discount >0) : ?>
   <div  class="price izap-line" id="discount_price_span " style="background-color:<?php echo ($yes) ? 'red' : $color ?>; float:none ">
-    <?php echo elgg_echo('izap-ecommerce:Actual price $'); ?>
+    <?php echo elgg_echo('izap-ecommerce:actual price'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
     </div>
 <?php endif ?>
