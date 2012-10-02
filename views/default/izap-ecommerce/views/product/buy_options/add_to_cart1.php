@@ -32,9 +32,4 @@ if ($yes && $vars['entity']->discount >0) : ?>
     <?php echo elgg_echo('Actual Prize:$'); ?>
     <?php echo '<span id="product_price_html">' . $product->price . '</span>' ?>
     </div>
-<?php else : ?>
-  <div class="price" id="price_span" style="background-color:<?php echo $color ?>; float:left;">?>
-    <?php echo elgg_echo('izap-ecommerce:price'); ?>
-    <?php echo '<span id="product_price_html">' . $product->getPrice() . '</span>' ?>
-  </div>
-<?php endif;?>
+<?php endif ?>
