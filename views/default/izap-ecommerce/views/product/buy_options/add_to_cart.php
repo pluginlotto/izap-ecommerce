@@ -29,17 +29,15 @@ if ($yes) :
   ?>
   <div>
     <div style="float:left">
-      <?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1', $vars); ?>
+    <?php echo elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1', $vars); ?>
     </div>
-  <?php endif ?>
+<?php endif ?>
 
 <!--<div class="price" id="price_span" style="background-color:<?php echo $color ?>; float:left;">
   <?php //echo elgg_echo('izap-ecommerce:price'); ?>
-  <?php //echo '<span id="product_price_html">' . $product->getPrice() . '</span>'  ?>
+<?php //echo '<span id="product_price_html">' . $product->getPrice() . '</span>'  ?>
 </div>-->
-  <div class="clearfloat"></div>
-  <div style="float:left">
-    <?php echo elgg_view('izap-ecommerce/views/product/buy_options/price', $vars); ?>
-  </div>
+
+<?php echo elgg_view('izap-ecommerce/views/product/buy_options/price', $vars); ?>
   <div class="clearfloat"></div>
 </div> 
