@@ -29,7 +29,7 @@ if(strlen($contents) > 150) {
 }else {
   $string .= $contents;
 }
-$string .= '<br/><div style="float:right">'.elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',array('entity' => $object)).'</div> </br> </br>'; 
+$string .= '<br/><br/><div style="float:right">'.elgg_view('izap-ecommerce/views/product/buy_options/add_to_cart1',array('entity' => $object)).'</div> </br> </br>'; 
 $string .= '<div style="float:right">'.elgg_view('izap-ecommerce/views/product/buy_options/price',array('entity' => $object)).'</div> '; 
 
 
