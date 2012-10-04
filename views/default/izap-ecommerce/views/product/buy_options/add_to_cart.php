@@ -14,7 +14,6 @@
  */
 
 $product = elgg_extract('entity', $vars);
-echo $vars['full_view'];
 $yes = $product->hasUserPurchasedOldVersion(elgg_get_logged_in_user_entity());
 if ($product->comming_soon == 'no' && $product->getPrice(FALSE) > 0)
   define('show_buy_now', 'yes');
