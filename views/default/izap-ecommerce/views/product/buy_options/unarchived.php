@@ -16,8 +16,8 @@ if ($product->isAvailable()) {
 ?>
   
 <?php
-echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/add_to_cart', array('entity' => $product));
-echo $form = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/download', array('entity' => $product));
+echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/add_to_cart', array('entity' => $product, 'full_view' => $vars['full_view']));
+echo $form = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/download', array('entity' => $product, 'full_view' => $vars['full_view']));
 ?>
 <?php
 }

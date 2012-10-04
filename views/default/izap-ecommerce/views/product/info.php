@@ -23,7 +23,7 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
     echo IzapBase::controlEntityMenu(array('page_owner' => false, 'entity' => $product, 'handler' => GLOBAL_IZAP_ECOMMERCE_PAGEHANDLER));
     ?>
     <?php
-    echo elgg_view($IZAP_ECOMMERCE->product . 'buy', array('entity' => $product));
+    echo elgg_view($IZAP_ECOMMERCE->product . 'buy', array('entity' => $product, 'full_view' => $vars['full_view']));
     $attrib_html = elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/view_attributes', array('entity' => $product));
     if (show_buy_now == 'yes' && elgg_is_logged_in()) {
       ?>
@@ -35,7 +35,7 @@ $cart_url = elgg_add_action_tokens_to_url($vars['url'] . 'action/izap_ecommerce/
       </a>
       <?php
     }
-    echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product));
+    echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/wishlist', array('entity' => $product, 'full_view' => $vars['full_view']));
     ?><br/><br/>
 
     <?php if ($product->comming_soon == 'no')

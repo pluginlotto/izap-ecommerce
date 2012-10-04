@@ -16,7 +16,7 @@
 global $IZAP_ECOMMERCE;
 $product = $vars['entity']; ?>
 <div class="izapcontentWrapper">
-<?php
+<?php 
 echo elgg_view($IZAP_ECOMMERCE->product.'info', $vars);
 echo elgg_view($IZAP_ECOMMERCE->product.'tabs', $vars);
 ?>

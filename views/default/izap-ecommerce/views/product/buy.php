@@ -1,5 +1,4 @@
 <?php
-
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -21,14 +20,15 @@ $product = $vars['entity'];
 <?php
 // if is comming soon
 if (!$product->isAvailable()) {
-  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/comming_soon', array('entity' => $product));
-}else{
+  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/comming_soon', array('entity' => $product, 'full_view' => $vars['full_view']));
+} else {
 
 // render the archived or non archived version
-if (!$product->isArchived())
-  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/unarchived', array('entity' => $product));
-else
-  echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/archived', array('entity' => $product));
+  if (!$product->isArchived()) {
+    echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/unarchived', array('entity' => $product, 'full_view' => $vars['full_view']));
+  }
+  else
+    echo elgg_view(GLOBAL_IZAP_ECOMMERCE_PLUGIN . '/views/product/buy_options/archived', array('entity' => $product, 'full_view' => $vars['full_view']));
 }
 ?>
 <div class="clearfloat"></div>

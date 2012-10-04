@@ -119,7 +119,7 @@ class IzapStoreController extends IzapController {
     }
 
     $this->page_elements['title'] = $izap_product->title;
-    $this->page_elements['content'] = elgg_view_entity($izap_product, array('full_view' => TRUE));
+    $this->page_elements['content'] = elgg_view_entity($izap_product, array('full_view' => true));
     $this->drawPage();
   }
 
